@@ -57,7 +57,10 @@
 		width: 75%;
 		margin-top: 6px;
 	}
-	input[type=text], select {
+	.right{
+		float: right;
+	}
+	input[type=text], input[type=password], select {
 		width: 75%;
 	}
 }
