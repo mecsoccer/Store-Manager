@@ -58,10 +58,14 @@
 		margin-top: 6px;
 	}
 	.right{
+		width: auto;
 		float: right;
 	}
 	input[type=text], input[type=password], select {
 		width: 75%;
+	}
+	.product{
+		
 	}
 }
 
