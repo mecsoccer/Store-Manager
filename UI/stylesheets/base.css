@@ -1,4 +1,4 @@
-div,header,nav,h1,li,ul,a,h3,h2{
+div,header,nav,h1,li,ul,a,h3,h2,span,button{
 	box-sizing: border-box;
 	margin: 0;
 }
