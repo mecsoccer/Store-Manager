@@ -1,0 +1,51 @@
+@media screen and (min-width: 600px) {
+	.menu{
+		display: none;
+	}
+	.header{
+		height: 105px;
+		background: #256188;
+	}
+	.header h1{
+		color: white;
+	}
+	.nav-bar{
+		transform: translate(0, 0);
+		position: fixed;
+		background: #256188;
+		padding-left: 10px;
+	}
+	.nav-bar li{
+		margin: 0;
+		display: inline-block;
+		width: 10%;
+	}
+	.nav-bar li a{
+		padding: 0;
+	}
+	.login{
+		float:right;
+		margin-right: 2%;
+		width: auto;
+	}
+	.content{
+		margin: auto;
+		margin-top: 120px;
+		padding: 0 5%;
+	}
+	.category{
+		width: 44%;
+		float: left;
+		margin: 3%;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.content{
+		margin-top: 140px;
+	}
+	.category{
+		margin: 1%;
+		width: 48%;
+	}
+}
