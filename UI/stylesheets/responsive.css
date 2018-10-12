@@ -64,9 +64,6 @@
 	input[type=text], input[type=password], select {
 		width: 75%;
 	}
-	.product{
-		
-	}
 }
 
 @media screen and (min-width: 1000px) {
