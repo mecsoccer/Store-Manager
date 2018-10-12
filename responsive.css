@@ -28,9 +28,9 @@
 		margin-right: 2%;
 		width: auto;
 	}
-	.content{
+	.content, .sign-up{
 		margin: auto;
-		margin-top: 120px;
+		margin-top: 80px;
 		padding: 0 5%;
 	}
 	.category{
@@ -38,14 +38,43 @@
 		float: left;
 		margin: 3%;
 	}
+	.sign-up{
+		width: 80%;
+		padding: 40px;
+		height: 610px;
+	}
+	.submit-sign-up{
+		width: 30%;
+		float: right;
+	}
+	.col-25{
+		float: left;
+		width: 25%;
+		margin-top: 6px;
+	}
+	.col-75{
+		float: left;
+		width: 75%;
+		margin-top: 6px;
+	}
+	.right{
+		width: auto;
+		float: right;
+	}
+	form input[type=text], form input[type=password], form select {
+		width: 75%;
+	}
 }
 
 @media screen and (min-width: 1000px) {
-	.content{
+	.content, .sign-up{
 		margin-top: 140px;
 	}
 	.category{
 		margin: 1%;
 		width: 48%;
+	}
+	.sign-up{
+		width: 60%;
 	}
 }
