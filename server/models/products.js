@@ -1,24 +1,24 @@
-const products = { "products": [
+const products = { products: [
   {
 	"id": 1,
 	"name": "milk",
-	"category": "beverage",
+	"category": "provisions",
 	"qty-left": 20,
 	"qty-sold": 10,
 	"price": 800
   }, 
   {
 	"id": 2,
-	"name": "milk",
-	"category": "beverage",
+	"name": "ball",
+	"category": "sports",
 	"qty-left": 20,
 	"qty-sold": 10,
 	"price": 800
   },
   {
 	"id": 3,
-	"name": "milk",
-	"category": "beverage",
+	"name": "shoe",
+	"category": "clothing",
 	"qty-left": 20,
 	"qty-sold": 10,
 	"price": 800
