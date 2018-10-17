@@ -1,4 +1,4 @@
-const products = { products: [
+const products = [
   {
 	"id": 1,
 	"name": "milk",
@@ -25,7 +25,8 @@ const products = { products: [
 	"qty-sold": 10,
 	"price": 1000,
 	"min-qty": 4
-  }]
-}
+  }
+];
+
 
 export default products;
