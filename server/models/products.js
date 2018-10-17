@@ -5,7 +5,8 @@ const products = { products: [
 	"category": "provisions",
 	"qty-left": 20,
 	"qty-sold": 10,
-	"price": 800
+	"price": 800,
+	"min-qty": 4
   }, 
   {
 	"id": 2,
@@ -13,7 +14,8 @@ const products = { products: [
 	"category": "sports",
 	"qty-left": 20,
 	"qty-sold": 10,
-	"price": 800
+	"price": 800,
+	"min-qty": 4
   },
   {
 	"id": 3,
@@ -21,7 +23,8 @@ const products = { products: [
 	"category": "clothing",
 	"qty-left": 20,
 	"qty-sold": 10,
-	"price": 800
+	"price": 1000,
+	"min-qty": 4
   }]
 }
 
