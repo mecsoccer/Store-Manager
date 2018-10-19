@@ -7,13 +7,13 @@
   "description": "Store Manager is a web application that helps store owners manage sales and product inventory records.",
   "main": "index.js",
   "scripts": {
-	"start": "babel-node --presets env,stage-2 ./build/bin/www",
+    "start": "babel-node --presets env,stage-2 ./build/bin/www",
     "devstart": "nodemon --exec babel-node --presets env,stage-2 ./server/bin/www",
-    "test": "mocha",
+    "test": "nyc mocha --exit --timeout 10000 ./server/test/**/*.js --compilers js:babel-core/register",
     "lint": "eslint",
-	"clean": "mkdir build",
-	"build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
-	"build": "npm run clean && npm run build-babel"
+    "clean": "mkdir build",
+    "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
+    "build": "npm run clean && npm run build-babel"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
   }
 }
