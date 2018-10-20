@@ -24,6 +24,8 @@ exports.getProduct = function (req, res) {
     }
   });
 
+  if (requiredProduct === null) return res.status(404).json({ message: 'Sorry, product does not exist' });
+
   return res.status(200).json(requiredProduct);
 };
 
@@ -31,7 +33,7 @@ exports.addProduct = [body('name', 'product name is required').isLength({ min: 1
   var errors = validationResult(req);
 
   if (!errors.isEmpty) {
-    res.status(422).send('problem with data supplied');
+    res.status(422).send('Invalid data supplied');
   }
 
   var _req$body = req.body,
@@ -42,6 +44,7 @@ exports.addProduct = [body('name', 'product name is required').isLength({ min: 1
       price = _req$body.price,
       min_qty = _req$body.min_qty;
 
+
   var id = _products2.default.length + 1;
 
   var newProduct = {
@@ -49,6 +52,6 @@ exports.addProduct = [body('name', 'product name is required').isLength({ min: 1
   };
 
   _products2.default.push(newProduct);
-  return res.status(201).json({ created: newProduct, success: true });
+  return res.status(201).json({ newProduct: newProduct, message: 'product successfully created' });
 }];
 //# sourceMappingURL=productController.js.map

@@ -18,8 +18,6 @@ var _verify2 = _interopRequireDefault(_verify);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//import validate from '../middlewares/validate';
-
 var router = _express2.default.Router();
 
 router.get('/products', _productController2.default.getAll);
@@ -27,7 +25,7 @@ router.get('/products/:productId', _productController2.default.getProduct);
 router.post('/products', _verify2.default.admin, _productController2.default.addProduct);
 
 router.get('/sales', _verify2.default.admin, _salesController2.default.getAll);
-router.get('/sales/:saleId', _verify2.default.creator, _salesController2.default.getSale);
+router.get('/sales/:saleId', _verify2.default.adminOrAttendant, _salesController2.default.getSale);
 router.post('/sales', _verify2.default.attendant, _salesController2.default.addSale);
 
 module.exports = router;

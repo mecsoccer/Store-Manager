@@ -1,20 +1,30 @@
 
 exports.admin = (req, res, next) => {
-	if (req.headers.authorization != 'Bearer admin') {
-		return res.status(401).send('Sorry unauthorized access.');
-	}
+  if (req.headers.authorization != 'Bearer admin') {
+    return res.status(401).json({ message: 'Sorry, accessible to admin only' });
+  }
 
-	return next();
+  return next();
 };
 
 exports.attendant = (req, res, next) => {
-	if (req.headers.authorization != 'Bearer attendant') {
-		return res.status(401).send('Sorry unauthorized access.');
-	}
-	
-	return next();
+  if (req.headers.authorization != 'Bearer attendant') {
+    return res.status(401).json({ message: 'Sorry, accessible to attendant only' });
+  }
+
+  return next();
+};
+
+exports.adminOrAttendant = (req, res, next) => {
+  const { authorization } = req.headers;
+
+  if (authorization != 'Bearer admin' && authorization != 'Bearer attendant') {
+    return res.status(401).json({ message: 'Sorry, accessible to admin/attendant only' });
+  }
+
+  return next();
 };
 
 exports.creator = (req, res, next) => {
-	next();
+  next();
 };

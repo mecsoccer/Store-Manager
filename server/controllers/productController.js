@@ -16,6 +16,8 @@ exports.getProduct = function (req, res) {
     }
   });
 
+  if (requiredProduct === null) return res.status(404).json({ message: 'Sorry, product does not exist' });
+
   return res.status(200).json(requiredProduct);
 };
 
@@ -32,12 +34,13 @@ exports.addProduct = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty) {
-      res.status(422).send('problem with data supplied');
+      res.status(422).send('Invalid data supplied');
     }
 
     const {
       name, category, qty_left, qty_sold, price, min_qty,
     } = req.body;
+
     const id = products.length + 1;
 
     const newProduct = {
@@ -45,7 +48,7 @@ exports.addProduct = [
     };
 
     products.push(newProduct);
-    return res.status(201).json({ created: newProduct, success: true });
+    return res.status(201).json({ newProduct, message: 'product successfully created' });
   },
 
 ];
