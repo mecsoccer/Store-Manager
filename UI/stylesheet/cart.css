@@ -12,7 +12,7 @@
 .container{
 	border: 1px solid gainsboro;
 	padding: 5px 2%;
-    border-radius: 5px;
+  border-radius: 5px;
 	margin: 10px 2%;
 }
 .description, .description span{
@@ -30,7 +30,6 @@
 .prod-name, .quantity, .prod-price{
 	height: 30px;
 	padding: 5px 1%;
-	overflow: auto;
 	color: white;
 }
 .prod-name{
