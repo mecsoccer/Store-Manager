@@ -68,7 +68,7 @@ body{
 .content, .sign-up{
 	background: lightgray;
 	width: 100%;
-	height: 665px;
+	height: auto;
 	padding: 1px 0;
 	margin-top: 60px;
 }
