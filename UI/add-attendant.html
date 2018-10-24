@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/base.css">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/sign-up.css">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/products.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/responsive.css">
   <link rel="icon" href="">
 </head>
@@ -30,24 +30,32 @@
   </header>
   
   <div class="sign-up">
-    <form action="/forms/sign-up">
+    <form action="/forms/sign-up" method="post">
+      <label for="firstname" class="col-25">Full Name</label>
+      <input type="text" id="firstname" name="firstname" class="col-75" required>
+
+	  <label for="email" class="col-25">Email</label>
+      <input type="text" id="email" name="email" class="col-75" required>
+	  
 	  <label for="username" class="col-25">Username</label>
-      <input type="text" id="username" name="username" class="col-75" placeholder="Enter Username" required>
+      <input type="text" id="username" name="username" class="col-75">
 	  
 	  <label for="password" class="col-25">Password</label>
-      <input type="password" id="password" name="password" class="col-75" placeholder="Enter password" required>
+      <input type="password" id="password" name="password" class="col-75">
 	  
-	  <label class="col-25">
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-	  
-      <input class="col-25 submit-sign-up" type="submit" value="Login">
-	  
-	  <p class="right col-25"><a href="#">forgot password?</a></p>
-	  
+	  <label for="confirm-password" class="col-25">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" class="col-75">
+
+      <label for="user-type" class="col-25">User Type</label>
+      <select id="user-type" name="user-type" class="col-75" required>
+        <option value="admin">Admin</option>
+        <option value="attendant">Store Attendant</option>
+      </select>
+  
+      <input class="submit-sign-up" type="submit" value="Submit">
     </form>
   </div>
-  <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/toggle.js"></script>
+  <script src="https://mecsoccer.github.io/Store-Manager/UI/javascripts/toggle.js"></script>
   
 </body>
 </html>
