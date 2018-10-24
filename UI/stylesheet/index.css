@@ -1,0 +1,85 @@
+@import url(http://weloveiconfonts.com/api/?family=zocial);
+@import url(http://weloveiconfonts.com/api/?family=typicons);
+/* zocial */
+[class*="zocial-"]:before {
+  font-family: 'zocial', sans-serif;
+}
+/* typicons */
+[class*="typicons-"]:before {
+  font-family: 'typicons', sans-serif;
+}
+.box{
+  width: 90%;
+  height: 200px;
+  border: 1px solid blue;
+  border-radius: 5px;
+  padding: 5px;
+  margin: auto;
+}
+img{
+  width: 100%;
+  height: -webkit-fill-available;
+  border-radius: 5px;
+}
+.img-50{
+  width: 50%;
+  float: left;
+  padding: 2px;
+}
+.desc-50{
+  width: 50%;
+  float:left;
+  padding: 2px;
+}
+.desc-50 p{
+  margin: 2% 0;
+  text-align: center;
+  padding: 4px 0;
+}
+.desc-50 div span{
+  width: 50%;
+}
+.btn-cn{
+  text-align: center;
+  width: 100%;
+  float: left;
+  text-decoration: none;
+  color: black;
+}
+.product-name{
+  color: blue;
+}
+.product-category{
+  color: cadetblue;
+}
+.product-price{
+  color: blue;
+}
+.product-detail{
+  border: 0.5px solid cadetblue;
+  border-radius: 3px;
+  color: cadetblue;
+}
+.footer{
+  margin-top: 20px;
+}
+.img-50, .desc-50{
+  height: 188px;
+}
+.cart{
+  padding: 0 10%;
+  border: 1px solid blue;
+  font-size: 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+@media screen and (min-width: 600px) {
+  .box{
+    width: 30%;
+    height: 200px;
+    margin: 0 1%;
+    float: left;
+  }
+}
