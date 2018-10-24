@@ -76,7 +76,7 @@ body{
 .category{
 	width: 90%;
 	height: 100px;
-	background: blue;
+	background: #f2f2f2;
 	margin: 5% 5%;
 	list-style: none;
 	text-align: center;
@@ -84,11 +84,11 @@ body{
 	cursor: pointer;
 }
 .category-name{
-	color: yellow;
+	color: darkblue;
 	font-family: sans-serif, helvetica;
 }
 .available-products{
-	color: white;
+	color: blue;
 }
 .login{
   background: lightgreen !important;
