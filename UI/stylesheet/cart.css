@@ -5,8 +5,7 @@
 .cart-title{
 	margin: auto;
 	width: fit-content;
-	text-decoration: underline;
-	color: white;
+	color: blue;
 	text-transform: capitalize;
 }
 .container{
@@ -20,7 +19,7 @@
 	text-transform: uppercase;
 }
 .prod-details{
-	background: black;
+	background: #f2f2f2;
 	height: fit-content;
 	display: flex;
 	padding: 0 2%;
@@ -30,7 +29,7 @@
 .prod-name, .quantity, .prod-price{
 	height: 30px;
 	padding: 5px 1%;
-	color: white;
+	color: black;
 }
 .prod-name{
 	text-transform: capitalize;
@@ -56,7 +55,7 @@
 }
 .cart-pay button{
 	background: darkblue;
-	color: lightgreen;
+	color: white;
 	font-size: 20px;
 	border-radius: 5px;
 }
