@@ -8,6 +8,21 @@
 [class*="typicons-"]:before {
   font-family: 'typicons', sans-serif;
 }
+.searcher{
+  margin: 7px 10%;
+  width: 80%;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid cadetblue;
+  padding: 15px 0 15px 40px;
+  background-image: url('/UI/image/searchicon.png');
+  background-position: 10px 13px;
+  background-repeat: no-repeat;
+}
+.container{
+  width: 100%;
+  margin: auto;
+}
 .box{
   width: 90%;
   height: 200px;
@@ -15,6 +30,7 @@
   border-radius: 5px;
   padding: 5px;
   margin: auto;
+  margin-top: 15px;
 }
 img{
   width: 100%;
@@ -81,5 +97,6 @@ img{
     height: 200px;
     margin: 0 1%;
     float: left;
+    margin-top: 15px;
   }
 }

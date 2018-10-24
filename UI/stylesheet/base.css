@@ -1,4 +1,4 @@
-div,header,nav,h1,li,ul,a,h3,h2,span,button{
+div,header,nav,h1,li,ul,a,h3,h2,span,button,input{
 	box-sizing: border-box;
 	margin: 0;
 }
@@ -71,6 +71,7 @@ body{
 	height: 665px;
 	padding: 1px 0;
 	margin-top: 60px;
+  overflow: auto;
 }
 .category{
 	width: 90%;
