@@ -30,7 +30,6 @@
 .prod-name, .quantity, .prod-price{
 	height: 30px;
 	padding: 5px 1%;
-	overflow: auto;
 	color: white;
 }
 .prod-name{

@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/base.css">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/admin.css">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/sign-up.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/responsive.css">
   <link rel="icon" href="">
 </head>
@@ -29,52 +29,26 @@
     </nav>
   </header>
   
-  <div class="content">
-    <h2 class="title">Admin Page</h2>
-	<div class="section">
-	  <h3>store attendant section</h3>
-	  <div class="centered">
-		<div>
-		  <button class="btn">view sale attendants</button>
-		</div>
-		<div>
-		  <button class="btn">update sale attendant</button>
-		</div>
-		<div>
-		  <button class="btn">create new sale attendant</button>
-		</div>
-	  </div>
-	</div>
-	<div class="section">
-	  <h3>products section</h3>
-	  <div class="centered">
-		<div>
-		  <button class="btn">Create New product</button>
-		</div>
-		<div>
-		  <button class="btn">Update Products</button>
-		</div>
-		<div>
-		  <button class="btn">View All Products</button>
-		</div>
-	  </div>
-	</div>
-	<div class="section">
-	  <h3>sales section</h3>
-	  <div class="centered">
-		<div>
-		  <button class="btn">view all sales</button>
-		</div>
-		<div>
-		  <button class="btn">individual sales</button>
-		</div>
-		<div>
-		  <button class="btn">view category sales</button>
-		</div>
-	  </div>
-	</div>
-  </div>
+  <div class="sign-up">
+    <form action="/forms/sign-up" method="post">
+      <label for="firstname" class="col-25">Full Name</label>
+      <input type="text" id="firstname" name="firstname" class="col-75" required>
+
+	  <label for="email" class="col-25">Email</label>
+      <input type="text" id="email" name="email" class="col-75" required>
+	  
+	  <label for="username" class="col-25">Username</label>
+      <input type="text" id="username" name="username" class="col-75">
+	  
+	  <label for="password" class="col-25">Password</label>
+      <input type="password" id="password" name="password" class="col-75">
+	  
+	  <label for="confirm-password" class="col-25">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" class="col-75">
   
+      <input class="submit-sign-up" type="submit" value="Submit">
+    </form>
+  </div>
   <script src="https://mecsoccer.github.io/Store-Manager/UI/javascripts/toggle.js"></script>
   
 </body>
