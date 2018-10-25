@@ -36,6 +36,10 @@ body{
   font-size: 27px;
   text-shadow: 1px 1px 0px #A36;
 }
+.header h1 a{
+  text-decoration: none;
+  color: blue;
+}
 .nav-bar{
   position: fixed;
   top: 60px;

@@ -15,7 +15,7 @@
   border-radius: 4px;
   border: 1px solid cadetblue;
   padding: 15px 0 15px 40px;
-  background-image: url('/UI/image/searchicon.png');
+  background-image: url('https://mecsoccer.github.io/Store-Manager/UI/image/searchicon.png');
   background-position: 10px 13px;
   background-repeat: no-repeat;
 }
@@ -61,6 +61,9 @@ img{
   float: left;
   text-decoration: none;
   color: black;
+}
+.btn-cn a{
+  text-decoration: none;
 }
 .product-name{
   color: blue;
