@@ -5,7 +5,7 @@
 .cart-title{
 	margin: auto;
 	width: fit-content;
-	color: blue;
+	color: darkblue;
 	text-transform: capitalize;
 }
 .container{
@@ -47,15 +47,14 @@
 	margin: auto;
 }
 .total{
-	background: black;
-	color: white;
+	color: darkblue;
 	margin-right: 15px;
 	border-radius: 3px;
 	font-size: 20px;
 }
 .cart-pay button{
-	background: darkblue;
-	color: white;
-	font-size: 20px;
-	border-radius: 5px;
+  background: darkgray;
+  color: darkblue;
+  font-size: 20px;
+  border-radius: 5px;
 }

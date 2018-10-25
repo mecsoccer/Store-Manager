@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/base.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/sales-record.css">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/index.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/responsive.css">
   <link rel="icon" href="">
 </head>
@@ -30,81 +31,213 @@
   </header>
   
   <div class="content">
+    <h3 class="titler">Sale Records</h3>
+    <div class="sorter">
+      <div class="sorts">
+        <div class="sorthead">Sort by:</div>
+      </div>
+      <div class="sorts">
+        <div>
+          <input type="checkbox" class="checkbox"/>
+          <input type="text" class="textbox" placeholder="product name"/>
+        </div>
+      </div>
+      <div class="sorts">
+        <div>
+          <input type="checkbox" class="checkbox"/>
+          <input type="text" class="textbox" placeholder="date"/>
+        </div>
+      </div>
+      <div class="sorts">
+        <div>
+          <input type="checkbox" class="checkbox"/>
+          <input type="text" class="textbox" placeholder="creator"/>
+        </div>
+      </div>
+    </div>
     <li class="record">
-	  <h3 class="attendant-name">attendant: <span>jaachimma onyenze</span></h3>
-	  <div class="wrapper table-header col-50">
-	    <div class="col-3">
-		  <span>sale records</span>
-		</div>
-		<div class="col-3">
-		  <span>products sold</span>
-		</div>
-		<div class="col-3">
-		  <span>sales worth($)</span>
-		</div>
-	  </div>
-	  <div class="wrapper col-50">
-	    <div class="sm col-3">
-		  <span>10</span>
-		</div>
-		<div class="sm col-3">
-		  <span>10</span>
-		</div>
-		<div class="sm col-3">
-		  <span>10000</span>
-		</div>
-	  </div>
-	</li>
-    <li class="record">
-	  <h3 class="attendant-name">attendant: <span>oguguo onyenze</span></h3>
-	  <div class="wrapper table-header col-50">
-	    <div class="col-3">
-		  <span>sale records</span>
-		</div>
-		<div class="col-3">
-		  <span>products sold</span>
-		</div>
-		<div class="col-3">
-		  <span>sales worth($)</span>
-		</div>
-	  </div>
-	  <div class="wrapper col-50">
-	    <div class="sm col-3">
-		  <span>10</span>
-		</div>
-		<div class="sm col-3">
-		  <span>10</span>
-		</div>
-		<div class="sm col-3">
-		  <span>10000</span>
-		</div>
-	  </div>
-	</li>
-    <li class="record">
-	  <h3 class="attendant-name">attendant: <span>chioma onyenze</span></h3>
-	  <div class="wrapper table-header col-50">
-	    <div class="col-3">
-		  <span>sale records</span>
-		</div>
-		<div class="col-3">
-		  <span>products sold</span>
-		</div>
-		<div class="col-3">
-		  <span>sales worth($)</span>
-		</div>
-	  </div>
-	  <div class="wrapper col-50">
-	    <div class="sm col-3">
-		  <span>10</span>
-		</div>
-		<div class="sm col-3">
-		  <span>10</span>
-		</div>
-		<div class="sm col-3">
-		  <span>10000</span>
-		</div>
-	  </div>
-	</li>
+      <div class="wrapper table-header col-50">
+        <div class="col-6">
+          <span>date</span>
+        </div>
+        <div class="col-6">
+          <span>creator</span>
+        </div>
+        <div class="col-6">
+          <span>product name</span>
+        </div>
+        <div class="col-6">
+          <span>qty</span>
+        </div>
+        <div class="col-6">
+          <span>price($)</span>
+        </div>
+        <div class="col-6">
+          <span>total</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>02/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john smith</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+      <div class="wrapper col-50">
+        <div class="sm col-6">
+          <span>03/10/2018</span>
+        </div>
+        <div class="sm col-6">
+          <span>john okafor</span>
+        </div>
+        <div class="sm col-6">
+          <span>T-shirt 1</span>
+        </div>
+        <div class="sm col-6">
+          <span>100</span>
+        </div>
+        <div class="sm col-6">
+          <span>10</span>
+        </div>
+        <div class="sm col-6">
+          <span>1000</span>
+        </div>
+      </div>
+    </li>
+
   </div>
   
   <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/toggle.js"></script>
