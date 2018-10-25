@@ -1,7 +1,7 @@
 import express from 'express';
 import products from '../controllers/productController';
 import sales from '../controllers/salesController';
-import verify from '../middlewares/verify';
+import verify from '../middlewares/verify/verify';
 
 const { getAllProducts, getSpecificProduct, addProduct } = products;
 const { getAllSales, getSpecificSale, addSale } = sales;
