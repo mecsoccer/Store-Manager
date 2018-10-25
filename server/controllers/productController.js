@@ -1,54 +1,37 @@
 import products from '../models/products';
 
-const { body, validationResult } = require('express-validator/check');
-
-exports.getAll = function (req, res) {
+function getAllProducts(req, res) {
   return res.status(200).json(products);
-};
+}
 
-exports.getProduct = function (req, res) {
-  const productId = req.params.productId;
-  let requiredProduct = null;
+function getSpecificProduct(req, res) {
+  const { productId } = req.params;
+  let requestedProduct = null;
 
   products.forEach((product) => {
     if (product.id == productId) {
-      requiredProduct = product;
+      requestedProduct = product;
     }
   });
 
-  if (requiredProduct === null) return res.status(404).json({ message: 'Sorry, product does not exist' });
+  if (requestedProduct === null) return res.status(404).json({ message: 'Sorry, product does not exist' });
 
-  return res.status(200).json(requiredProduct);
-};
+  return res.status(200).json(requestedProduct);
+}
 
-exports.addProduct = [
+function addProduct(req, res) {
+  const {
+    name, category, quantityLeft, quantitySold, price, minQuantity,
+  } = req.body;
 
-  body('name', 'product name is required').isLength({ min: 1 }).trim(),
-  body('category', 'product category is required').isLength({ min: 1 }),
-  body('qty_left', 'qty_left should be a number').isNumeric(),
-  body('qty_sold', 'qty_sold should be a number').isNumeric(),
-  body('price', 'price should be a number').isNumeric(),
-  body('min_qty', 'min_qty should be a number').isNumeric(),
+  const id = products.length + 1;
 
-  function (req, res) {
-    const errors = validationResult(req);
+  const newProduct = {
+    id, name, category, quantityLeft, quantitySold, price, minQuantity,
+  };
 
-    if (!errors.isEmpty) {
-      res.status(422).send('Invalid data supplied');
-    }
+  products.push(newProduct);
+  return res.status(201).json({ newProduct, message: 'product successfully created' });
+}
 
-    const {
-      name, category, qty_left, qty_sold, price, min_qty,
-    } = req.body;
-
-    const id = products.length + 1;
-
-    const newProduct = {
-      id, name, category, qty_left, qty_sold, price, min_qty,
-    };
-
-    products.push(newProduct);
-    return res.status(201).json({ newProduct, message: 'product successfully created' });
-  },
-
-];
+export default { getAllProducts, getSpecificProduct, addProduct };

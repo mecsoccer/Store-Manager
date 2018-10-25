@@ -1,32 +1,29 @@
 const sales = [
   {
     id: 1,
-    attendant: 'Jaachimma',
-    no_of_products: 200,
-    worth_of_sales: 12000,
-    details: [{ name: 'shoe', quantity: 2, price: 2000 },
-					 { name: 'shoe', quantity: 2, price: 2000 },
-					 { name: 'shoe', quantity: 2, price: 2000 },
-				   ],
+    date: '02/10/2018',
+    creator: 'Jaachimma',
+    productName: 'shoe',
+    quantity: 2,
+    price: 2000,
+    total: 4000
   }, {
-    id: 1,
-    attendant: 'Oguguo',
-    no_of_products: 200,
-    worth_of_sales: 12000,
-    details: [{ name: 'shoe', quantity: 2, price: 2000 },
-					 { name: 'shoe', quantity: 2, price: 2000 },
-					 { name: 'shoe', quantity: 2, price: 2000 },
-				   ],
+    id: 2,
+    date: '01/10/2018',
+    creator: 'Oguguo',
+    productName: 'shoe',
+    quantity: 2,
+    price: 2000,
+    total: 4000
   }, {
-    id: 1,
-    attendant: 'chioma',
-    no_of_products: 200,
-    worth_of_sales: 12000,
-    details: [{ name: 'shoe', quantity: 2, price: 2000 },
-					 { name: 'shoe', quantity: 2, price: 2000 },
-					 { name: 'shoe', quantity: 2, price: 2000 },
-				   ],
-  },
+    id: 3,
+    date: '03/10/2018',
+    creator: 'Chioma',
+    productName: 'shoe',
+    quantity: 2,
+    price: 1000,
+    total: 2000
+  }
 ];
 
 export default sales;
