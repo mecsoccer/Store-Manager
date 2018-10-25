@@ -1,4 +1,4 @@
-div,header,nav,h1,li,ul,a,h3,h2,span,button{
+div,header,nav,h1,li,ul,a,h3,h2,span,button,input{
 	box-sizing: border-box;
 	margin: 0;
 }
@@ -28,7 +28,7 @@ body{
 	width: 30px;
 }
 .header h1{
-  color: red;
+  color: blue;
   width: fit-content;
   margin: auto;
   line-height: 49px;
@@ -71,23 +71,31 @@ body{
 	height: 665px;
 	padding: 1px 0;
 	margin-top: 60px;
+  overflow: auto;
 }
 .category{
 	width: 90%;
-	height: 100px;
-	background: blue;
-	margin: 5% 5%;
-	list-style: none;
-	text-align: center;
-	border-radius: 10px;
-	cursor: pointer;
+	background: cadetblue;
+  margin: 5% 5%;
+  list-style: none;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 11px;
+  overflow: auto;
 }
 .category-name{
-	color: yellow;
+	color: darkblue;
 	font-family: sans-serif, helvetica;
 }
+.category div button{
+  background: darkgray;
+  color: darkblue;
+  border-radius: 5px;
+  border-style: double;
+}
 .available-products{
-	color: white;
+	color: blue;
 }
 .login{
   background: lightgreen !important;

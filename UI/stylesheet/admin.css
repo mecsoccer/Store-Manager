@@ -1,12 +1,13 @@
 .section{
 	padding: 5px 2%;
 	margin: 10px 5% 20px 5%;
-	background: white;
+	background: cadetblue;
+  border-radius: 8px;
 	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12);
 }
 .btn{
 	cursor: pointer;
-	border: 0.5px solid blue;
+	border: 0.5px solid lightgray;
 	border-radius: 10px;
 	color: black;
 	background: none;
@@ -16,6 +17,10 @@
 	margin: 5px 0;
 	text-transform: capitalize;
 }
+.btn a{
+  text-decoration: none;
+  color: blue;
+}
 .btn:hover{
 	background: darkgreen;
 }
@@ -24,8 +29,8 @@
 }
 .title{
 	text-align: center;
-	color: blue;
-    margin-bottom: 30px;
+	color: darkblue;
+  margin-bottom: 30px;
 }
 h3{
 	color: darkblue;

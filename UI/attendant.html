@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/base.css">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/sign-up.css">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/attendant.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/index.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/responsive.css">
   <link rel="icon" href="">
@@ -26,32 +26,36 @@
       <li><a href="https://mecsoccer.github.io/Store-Manager/UI/categories.html">Categories</a></li>
       <li><a href="https://mecsoccer.github.io/Store-Manager/UI/admin.html">Admin</a></li>
       <li><a href="https://mecsoccer.github.io/Store-Manager/UI/sales-record.html">Sales</a></li>
-      <li class="login"><a href="https://mecsoccer.github.io/Store-Manager/UI/products.html">Login</a></li>
+      <li class="login"><a href="https://mecsoccer.github.io/Store-Manager/UI/products.html">Log out</a></li>
     </nav>
   </header>
-  
-  <div class="sign-up">
-    <form action="/forms/sign-up" method="post">
-      <label for="firstname" class="col-25">Full Name</label>
-      <input type="text" id="firstname" name="firstname" class="col-75" required>
-
-	  <label for="email" class="col-25">Email</label>
-      <input type="text" id="email" name="email" class="col-75" required>
-	  
-	  <label for="username" class="col-25">Username</label>
-      <input type="text" id="username" name="username" class="col-75">
-	  
-	  <label for="password" class="col-25">Password</label>
-      <input type="password" id="password" name="password" class="col-75">
-	  
-	  <label for="confirm-password" class="col-25">Confirm Password</label>
-      <input type="password" id="confirm-password" name="confirm-password" class="col-75">
-  
-      <input class="submit-sign-up" type="submit" value="Submit">
-    </form>
+  <div class="content">
+    <div class="profile-card">
+	  <div class="row1">
+	    <img class="profile-photo" src="https://mecsoccer.github.io/Store-Manager/UI/image/john-doe.jpg" alt="pic"/>
+	    <div class="col-med">
+	      <h3 class="profile-name">Full Name</h3>
+		  <span class="profile-email">yourmail@email.com</span>
+	    </div>
+	  </div>
+	  <div class="row2">
+	    <div class="row2a">
+		  <span class="col-a1">no. of sales:</span>
+		  <span class="col-a2">20</span>
+		</div>
+		<div class="row2a">
+		  <span class="col-a1">products sold:</span>
+		  <span class="col-a2">20</span>
+		</div>
+		<div class="row2a">
+		  <span class="col-a1">sales worth($):</span>
+		  <span class="col-a2">20</span>
+		</div>
+	  </div>
+	</div>
   </div>
+  
   <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/toggle.js"></script>
   
 </body>
 </html>
-  

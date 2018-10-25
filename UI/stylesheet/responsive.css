@@ -49,9 +49,8 @@
 	}
 	.sign-up{
 		width: 80%;
-		padding: 40px;
+		padding: 40px 80px;
 		height: auto;
-    overflow: auto;
 	}
 	.submit-sign-up{
 		width: 30%;
