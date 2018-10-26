@@ -1,5 +1,5 @@
 exports.verifyAdmin = (req, res, next) => {
-  if (req.headers.authorization != 'Bearer admin') {
+  if (req.headers.authorization !== 'Bearer admin') {
     return res.status(401).json({ message: 'Sorry, accessible to admin only' });
   }
 
@@ -7,7 +7,7 @@ exports.verifyAdmin = (req, res, next) => {
 };
 
 exports.verifyAttendant = (req, res, next) => {
-  if (req.headers.authorization != 'Bearer attendant') {
+  if (req.headers.authorization !== 'Bearer attendant') {
     return res.status(401).json({ message: 'Sorry, accessible to attendant only' });
   }
 
@@ -17,7 +17,7 @@ exports.verifyAttendant = (req, res, next) => {
 exports.verifyAdminOrAttendant = (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (authorization != 'Bearer admin' && authorization != 'Bearer attendant') {
+  if (authorization !== 'Bearer admin' && authorization !== 'Bearer attendant') {
     return res.status(401).json({ message: 'Sorry, accessible to admin/attendant only' });
   }
 

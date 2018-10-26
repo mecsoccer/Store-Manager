@@ -31,7 +31,7 @@ function addProduct(req, res) {
   };
 
   products.push(newProduct);
-  return res.status(201).json({ newProduct, message: 'product successfully created' });
+  return res.status(201).json({ message: 'product successfully created', newProduct });
 }
 
 export default { getAllProducts, getSpecificProduct, addProduct };

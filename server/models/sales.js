@@ -6,7 +6,7 @@ const sales = [
     productName: 'shoe',
     quantity: 2,
     price: 2000,
-    total: 4000
+    total: 4000,
   }, {
     id: 2,
     date: '01/10/2018',
@@ -14,7 +14,7 @@ const sales = [
     productName: 'shoe',
     quantity: 2,
     price: 2000,
-    total: 4000
+    total: 4000,
   }, {
     id: 3,
     date: '03/10/2018',
@@ -22,8 +22,8 @@ const sales = [
     productName: 'shoe',
     quantity: 2,
     price: 1000,
-    total: 2000
-  }
+    total: 2000,
+  },
 ];
 
 export default sales;
