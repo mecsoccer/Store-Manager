@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
   res.render('products', { title: 'products page' });
 });
 

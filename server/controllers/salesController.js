@@ -1,9 +1,11 @@
 import sales from '../models/sales';
 
-exports.getAll = (req, res) => res.status(200).json(sales);
+function getAllSales(req, res) {
+  res.status(200).json(sales);
+}
 
-exports.getSale = (req, res) => {
-  const saleId = req.params.saleId;
+function getSpecificSale(req, res) {
+  const { saleId } = req.params;
   let requiredRecord = null;
 
   sales.forEach((sale) => {
@@ -17,18 +19,21 @@ exports.getSale = (req, res) => {
   }
 
   return res.status(200).json(requiredRecord);
-};
+}
 
-exports.addSale = (req, res) => {
+function addSale(req, res) {
   const {
-    attendant, no_of_sales, products_sold, worth_of_sales,
+    date, creator, productName, quantity, price, total,
   } = req.body;
+
   const id = sales.length + 1;
 
   const newRecord = {
-    id, attendant, no_of_sales, products_sold, worth_of_sales,
+    id, date, creator, productName, quantity, price, total,
   };
 
   sales.push(newRecord);
   return res.status(201).json({ newRecord, message: 'New record created' });
-};
+}
+
+export default { getAllSales, getSpecificSale, addSale };
