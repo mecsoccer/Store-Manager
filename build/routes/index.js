@@ -12,21 +12,40 @@ var _salesController = require('../controllers/salesController');
 
 var _salesController2 = _interopRequireDefault(_salesController);
 
-var _verify = require('../middlewares/verify');
+var _verify = require('../middlewares/verify/verify');
 
 var _verify2 = _interopRequireDefault(_verify);
 
+var _validateProduct = require('../middlewares/validate/validateProduct');
+
+var _validateProduct2 = _interopRequireDefault(_validateProduct);
+
+var _validateSales = require('../middlewares/validate/validateSales');
+
+var _validateSales2 = _interopRequireDefault(_validateSales);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var getAllProducts = _productController2.default.getAllProducts,
+    getSpecificProduct = _productController2.default.getSpecificProduct,
+    addProduct = _productController2.default.addProduct;
+var getAllSales = _salesController2.default.getAllSales,
+    getSpecificSale = _salesController2.default.getSpecificSale,
+    addSale = _salesController2.default.addSale;
+var verifyAdmin = _verify2.default.verifyAdmin,
+    verifyAttendant = _verify2.default.verifyAttendant,
+    verifyAdminOrAttendant = _verify2.default.verifyAdminOrAttendant;
+
 
 var router = _express2.default.Router();
 
-router.get('/products', _productController2.default.getAll);
-router.get('/products/:productId', _productController2.default.getProduct);
-router.post('/products', _verify2.default.admin, _productController2.default.addProduct);
+router.get('/products', getAllProducts);
+router.get('/products/:productId', getSpecificProduct);
+router.post('/products', verifyAdmin, _validateProduct2.default, addProduct);
 
-router.get('/sales', _verify2.default.admin, _salesController2.default.getAll);
-router.get('/sales/:saleId', _verify2.default.adminOrAttendant, _salesController2.default.getSale);
-router.post('/sales', _verify2.default.attendant, _salesController2.default.addSale);
+router.get('/sales', verifyAdmin, getAllSales);
+router.get('/sales/:saleId', verifyAdminOrAttendant, getSpecificSale);
+router.post('/sales', verifyAttendant, _validateSales2.default, addSale);
 
 module.exports = router;
 //# sourceMappingURL=index.js.map

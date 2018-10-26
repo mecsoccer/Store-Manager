@@ -1,17 +1,22 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _sales = require('../models/sales');
 
 var _sales2 = _interopRequireDefault(_sales);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.getAll = function (req, res) {
-  return res.status(200).json(_sales2.default);
-};
+function getAllSales(req, res) {
+  res.status(200).json(_sales2.default);
+}
 
-exports.getSale = function (req, res) {
+function getSpecificSale(req, res) {
   var saleId = req.params.saleId;
+
   var requiredRecord = null;
 
   _sales2.default.forEach(function (sale) {
@@ -25,22 +30,27 @@ exports.getSale = function (req, res) {
   }
 
   return res.status(200).json(requiredRecord);
-};
+}
 
-exports.addSale = function (req, res) {
+function addSale(req, res) {
   var _req$body = req.body,
-      attendant = _req$body.attendant,
-      no_of_sales = _req$body.no_of_sales,
-      products_sold = _req$body.products_sold,
-      worth_of_sales = _req$body.worth_of_sales;
+      date = _req$body.date,
+      creator = _req$body.creator,
+      productName = _req$body.productName,
+      quantity = _req$body.quantity,
+      price = _req$body.price,
+      total = _req$body.total;
+
 
   var id = _sales2.default.length + 1;
 
   var newRecord = {
-    id: id, attendant: attendant, no_of_sales: no_of_sales, products_sold: products_sold, worth_of_sales: worth_of_sales
+    id: id, date: date, creator: creator, productName: productName, quantity: quantity, price: price, total: total
   };
 
   _sales2.default.push(newRecord);
   return res.status(201).json({ newRecord: newRecord, message: 'New record created' });
-};
+}
+
+exports.default = { getAllSales: getAllSales, getSpecificSale: getSpecificSale, addSale: addSale };
 //# sourceMappingURL=salesController.js.map
