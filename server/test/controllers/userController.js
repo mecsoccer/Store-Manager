@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
+import addAttendant from '../../controllers/userController';
 
 chai.use(chaiHttp);
 
@@ -15,9 +16,9 @@ describe('Users', () => {
         .send({
           username: 'Onyenze',
           password: 'attendant01',
+          email: 'addAttendant@mail.com',
         })
         .end((err, res) => {
-          expect(err).to.be(null);
           expect(res.status).to.equal(200);
           expect(res).to.be.an('object');
           expect(res.name).to.equal('Onyenze');
@@ -38,10 +39,20 @@ describe('Users', () => {
           password: 'attendant01',
         })
         .end((err, res) => {
-          expect(err).to.not.be(null);
-          expect(res.data).to.be(null);
-          expect(res.success).to.be(false);
+          expect(res.data).to.equal(null);
+          expect(res.success).to.equal(false);
           expect(res.status).to.equal(401);
+          done();
+        });
+    });
+
+    it('should return 422 error if admin has not supplied any username or password', (done) => {
+      chai.request(app)
+        .post('/auth/signup')
+        .set('Authorization', 'Bearer admin')
+        .end((err, res) => {
+          expect(res.status).to.equal(422);
+          expect(res.message).t0.be.a('string').that.equals('Username and password are required');
           done();
         });
     });
