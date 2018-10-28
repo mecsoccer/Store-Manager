@@ -16,6 +16,13 @@
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
     "build": "mkdir build && npm run build-babel"
   },
+  "nyc": {
+    "exclude": [
+      "server/app.js",
+      "server/middlewares/customValidator.js",
+      "build"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mecsoccer/Store-Manager.git"
@@ -37,6 +44,8 @@
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.3.0",
     "morgan": "~1.9.0",
+    "pg": "^6.1.0",
+    "pg-format": "^1.0.4",
     "pug": "2.0.0-beta11",
     "serve-favicon": "^2.5.0"
   },
@@ -47,6 +56,12 @@
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
     "coveralls": "^3.0.2",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^13.1.0"
