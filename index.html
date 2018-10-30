@@ -7,6 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/base.css">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/sign-up.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/index.css">
   <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/responsive.css">
   <link rel="icon" href="">
@@ -27,61 +28,29 @@
       <li><a href="https://mecsoccer.github.io/Store-Manager/UI/categories.html">Categories</a></li>
       <li><a href="https://mecsoccer.github.io/Store-Manager/UI/admin.html">Admin</a></li>
       <li><a href="https://mecsoccer.github.io/Store-Manager/UI/sales-record.html">Sales</a></li>
-      <li class="login"><a href="https://mecsoccer.github.io/Store-Manager/UI/login.html">Log out</a></li>
+      <li class="login"><a href="https://mecsoccer.github.io/Store-Manager/UI/products.html">Login</a></li>
     </nav>
   </header>
   
-  <div class="content">
-    <div class="box">
-      <div class="img-50">
-        <img src="https://mecsoccer.github.io/Store-Manager/UI/image/t-shirt.jpg" alt="pic"/>
-      </div>
-      <div class="desc-50">
-        <p class="product-name"><strong>T-shirt 1</strong></p>
-        <p class="product-category">clothing</p>
-        <p class="product-price">$2000</p>
-        <a href="https://mecsoccer.github.io/Store-Manager/UI/product-detail.html" class="btn-cn product-detail">full details</a>
-        <div class="btn-cn footer">
-          <a href="https://mecsoccer.github.io/Store-Manager/UI/cart.html"><span class="cart" title="add to cart">cart</span></a>
-          <a href="https://mecsoccer.github.io/Store-Manager/UI/update-product.html"><span class="cart" title="modify product">edit</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="box">
-      <div class="img-50">
-        <img src="https://mecsoccer.github.io/Store-Manager/UI/image/chair.jpg" alt="pic"/>
-      </div>
-      <div class="desc-50">
-        <p class="product-name"><strong>Chair01</strong></p>
-        <p class="product-category">furniture</p>
-        <p class="product-price">$2500</p>
-        <a href="https://mecsoccer.github.io/Store-Manager/UI/product-detail.html" class="btn-cn product-detail">full details</a>
-        <div class="btn-cn footer">
-          <a href="https://mecsoccer.github.io/Store-Manager/UI/cart.html"><span class="cart" title="add to cart">cart</span></a>
-          <a href="https://mecsoccer.github.io/Store-Manager/UI/update-product.html"><span class="cart" title="modify product">edit</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="box">
-      <div class="img-50">
-        <img src="https://mecsoccer.github.io/Store-Manager/UI/image/tv.jpg" alt="pic"/>
-      </div>
-      <div class="desc-50">
-        <p class="product-name"><strong>Television</strong></p>
-        <p class="product-category">electronics</p>
-        <p class="product-price">$3000</p>
-        <a href="https://mecsoccer.github.io/Store-Manager/UI/product-detail.html" class="btn-cn product-detail">full details</a>
-        <div class="btn-cn footer">
-          <a href="https://mecsoccer.github.io/Store-Manager/UI/cart.html"><span class="cart" title="add to cart">cart</span></a>
-          <a href="https://mecsoccer.github.io/Store-Manager/UI/update-product.html"><span class="cart" title="modify product">edit</span></a>
-        </div>
-      </div>
-    </div>
-
+  <div class="sign-up">
+    <form action="/login">
+	  <label for="username" class="col-25">Username</label>
+      <input type="text" id="username" name="username" class="col-75" placeholder="Enter Username" required>
+	  
+	  <label for="password" class="col-25">Password</label>
+    <input type="password" id="password" name="password" class="col-75" placeholder="Enter password" required>
+	  
+	  <label class="col-25">
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+	  
+    <input class="col-25 submit-sign-up" type="submit" value="Login">
+	  
+	  <p class="right col-25"><a href="#">forgot password?</a></p>
+	  
+    </form>
   </div>
-    
   <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/toggle.js"></script>
   
 </body>
 </html>
-  
