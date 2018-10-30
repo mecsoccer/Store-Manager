@@ -1,7 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../../app';
-import addAttendant from '../../controllers/userController';
 
 chai.use(chaiHttp);
 
@@ -39,7 +38,7 @@ describe('Users', () => {
           password: 'attendant01',
         })
         .end((err, res) => {
-          expect(res.data).to.equal(null);
+          expect(res.data).to.be.null;
           expect(res.success).to.equal(false);
           expect(res.status).to.equal(401);
           done();
