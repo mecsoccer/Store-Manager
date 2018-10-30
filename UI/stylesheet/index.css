@@ -8,6 +8,13 @@
 [class*="typicons-"]:before {
   font-family: 'typicons', sans-serif;
 }
+.titler{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: darkblue;
+}
 .searcher{
   margin: 7px 10%;
   width: 80%;
