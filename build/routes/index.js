@@ -16,36 +16,53 @@ var _verify = require('../middlewares/verify/verify');
 
 var _verify2 = _interopRequireDefault(_verify);
 
-var _validateProduct = require('../middlewares/validate/validateProduct');
+var _userController = require('../controllers/userController');
 
-var _validateProduct2 = _interopRequireDefault(_validateProduct);
-
-var _validateSales = require('../middlewares/validate/validateSales');
-
-var _validateSales2 = _interopRequireDefault(_validateSales);
+var _userController2 = _interopRequireDefault(_userController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import validateSignup from '../middlewares/validate/validateSignup';
+// import validateProduct from '../middlewares/validate/validateProduct';
+// import validateSales from '../middlewares/validate/validateProduct';
+
 var getAllProducts = _productController2.default.getAllProducts,
     getSpecificProduct = _productController2.default.getSpecificProduct,
-    addProduct = _productController2.default.addProduct;
+    addProduct = _productController2.default.addProduct,
+    updateProduct = _productController2.default.updateProduct,
+    deleteProduct = _productController2.default.deleteProduct;
 var getAllSales = _salesController2.default.getAllSales,
     getSpecificSale = _salesController2.default.getSpecificSale,
     addSale = _salesController2.default.addSale;
 var verifyAdmin = _verify2.default.verifyAdmin,
     verifyAttendant = _verify2.default.verifyAttendant,
-    verifyAdminOrAttendant = _verify2.default.verifyAdminOrAttendant;
+    authVerify = _verify2.default.authVerify;
+var addUser = _userController2.default.addUser,
+    login = _userController2.default.login,
+    getAllUsers = _userController2.default.getAllUsers,
+    getUser = _userController2.default.getUser,
+    updateUser = _userController2.default.updateUser,
+    deleteUser = _userController2.default.deleteUser;
 
 
 var router = _express2.default.Router();
 
-router.get('/products', getAllProducts);
-router.get('/products/:productId', getSpecificProduct);
-router.post('/products', verifyAdmin, _validateProduct2.default, addProduct);
+router.post('/auth/signup', authVerify, verifyAdmin, addUser);
+router.post('/auth/login', login);
+router.get('/users', authVerify, verifyAdmin, getAllUsers);
+router.get('/users/:userId', authVerify, verifyAdmin, getUser);
+router.put('/users/:userId', authVerify, updateUser);
+router.delete('/users/:userId', authVerify, deleteUser);
 
-router.get('/sales', verifyAdmin, getAllSales);
-router.get('/sales/:saleId', verifyAdminOrAttendant, getSpecificSale);
-router.post('/sales', verifyAttendant, _validateSales2.default, addSale);
+router.get('/products', authVerify, getAllProducts);
+router.get('/products/:productId', authVerify, getSpecificProduct);
+router.post('/products', authVerify, verifyAdmin, addProduct);
+router.put('/products/:productId', authVerify, verifyAdmin, updateProduct);
+router.delete('/products/:productId', authVerify, verifyAdmin, deleteProduct);
+
+router.get('/sales', authVerify, verifyAdmin, getAllSales);
+router.get('/sales/:saleId', authVerify, getSpecificSale);
+router.post('/sales', authVerify, verifyAttendant, addSale);
 
 module.exports = router;
 //# sourceMappingURL=index.js.map

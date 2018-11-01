@@ -5,8 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 function validateSales(req, res, next) {
   var _req$body = req.body,
-      date = _req$body.date,
-      creator = _req$body.creator,
+      seller = _req$body.seller,
       productName = _req$body.productName,
       quantity = _req$body.quantity,
       price = _req$body.price,
@@ -17,13 +16,7 @@ function validateSales(req, res, next) {
 
   var errors = [];
 
-  if (date.length === 10) {
-    valid += 1;
-  } else {
-    errors.push('date should be 10 characters long.');
-  }
-
-  if (creator.length > 1) {
+  if (seller.length > 1) {
     valid += 1;
   } else {
     errors.push('creator should be more than one character long.');
@@ -53,7 +46,7 @@ function validateSales(req, res, next) {
     errors.push('total should be a number equal to price times quantity');
   }
 
-  if (valid < 6) {
+  if (valid < 5) {
     return res.status(422).send({ message: 'Invalid inputs', errors: errors });
   }
 

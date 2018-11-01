@@ -1,19 +1,13 @@
 function validateSales(req, res, next) {
   const {
-    date, creator, productName, quantity, price, total,
+    seller, productName, quantity, price, total,
   } = req.body;
 
   let valid = 0;
 
   const errors = [];
 
-  if (date.length === 10) {
-    valid += 1;
-  } else {
-    errors.push('date should be 10 characters long.');
-  }
-
-  if (creator.length > 1) {
+  if (seller.length > 1) {
     valid += 1;
   } else {
     errors.push('creator should be more than one character long.');
@@ -43,7 +37,7 @@ function validateSales(req, res, next) {
     errors.push('total should be a number equal to price times quantity');
   }
 
-  if (valid < 6) {
+  if (valid < 5) {
     return res.status(422).send({ message: 'Invalid inputs', errors });
   }
 
