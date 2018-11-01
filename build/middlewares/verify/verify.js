@@ -26,8 +26,9 @@ var apiKey = process.env.ApiKey;
 function verifyAdmin(req, res, next) {
   var password = req.authData.password;
 
+  var hash = _bcryptjs2.default.hashSync(password, 10);
 
-  if (!_bcryptjs2.default.compareSync(apiKey, password)) {
+  if (!_bcryptjs2.default.compareSync(apiKey, hash)) {
     return res.status(401).json({ message: 'Sorry, accessible to admin only' });
   }
 
@@ -37,8 +38,9 @@ function verifyAdmin(req, res, next) {
 function verifyAttendant(req, res, next) {
   var password = req.authData.password;
 
+  var hash = _bcryptjs2.default.hashSync(password, 10);
 
-  if (_bcryptjs2.default.compareSync(apiKey, password)) {
+  if (_bcryptjs2.default.compareSync(apiKey, hash)) {
     return res.status(401).json({ message: 'Sorry, accessible to store attendants only' });
   }
 
