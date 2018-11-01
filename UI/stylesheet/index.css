@@ -8,11 +8,11 @@
 [class*="typicons-"]:before {
   font-family: 'typicons', sans-serif;
 }
-.titler{
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 20px;
+.page-title{
+  position: fixed;
+  top: 125px;
   text-align: center;
+  width: 100%;
   color: darkblue;
 }
 .searcher{
