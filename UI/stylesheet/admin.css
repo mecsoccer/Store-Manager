@@ -1,7 +1,7 @@
 .section{
 	padding: 5px 2%;
 	margin: 10px 5% 20px 5%;
-	background: cadetblue;
+	background: darkgray;
   border-radius: 8px;
 	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12);
 }
@@ -10,7 +10,7 @@
 	border: 0.5px solid lightgray;
 	border-radius: 10px;
 	color: black;
-	background: none;
+	background: darkblue;
 	text-decoration: none;
 	width: 100%;
 	padding: 5px 0;
@@ -19,7 +19,7 @@
 }
 .btn a{
   text-decoration: none;
-  color: blue;
+  color: white;
 }
 .btn:hover{
 	background: darkgreen;
