@@ -83,6 +83,11 @@
   font-size: 20px;
   border-radius: 4px;
   color: darkgray;
+  text-align: center;
+}
+.table-header span{
+  color: darkblue;
+  font-weight: bolder;
 }
 
 @media screen and (min-width: 600px) {
