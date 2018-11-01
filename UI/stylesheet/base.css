@@ -67,7 +67,6 @@ body{
 .nav-bar li a{
   text-decoration: none;
   padding: 0 25%;
-  color: darkblue;
 }
 .content, .sign-up{
 	background: lightgray;
@@ -108,5 +107,5 @@ body{
   width: 40%;
 }
 .login a{
-  color: blue;
+  color: white;
 }
