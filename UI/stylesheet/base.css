@@ -38,7 +38,7 @@ body{
 }
 .header h1 a{
   text-decoration: none;
-  color: blue;
+  color: darkblue;
 }
 .nav-bar{
   position: fixed;
@@ -102,7 +102,7 @@ body{
 	color: blue;
 }
 .login{
-  background: lightgreen !important;
+  background: #5959aa !important;
   border: 1px solid blue;
   margin: 0 30%;
   width: 40%;
