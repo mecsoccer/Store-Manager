@@ -47,7 +47,7 @@ var addUser = _userController2.default.addUser,
 
 var router = _express2.default.Router();
 
-router.post('/auth/signup', /* authVerify, verifyAdmin, */addUser);
+router.post('/auth/signup', authVerify, verifyAdmin, addUser);
 router.post('/auth/login', login);
 router.get('/users', authVerify, verifyAdmin, getAllUsers);
 router.get('/users/:userId', authVerify, verifyAdmin, getUser);
