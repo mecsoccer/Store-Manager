@@ -1,14 +1,13 @@
+import http from 'http';
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import ejs from 'ejs';
-import pg from 'pg';
-import format from 'pg-format';
 
-import frontendRouter from './server/routes/home';
-import apiRouter from './server/routes/index';
+import frontendRouter from './routes/home';
+import apiRouter from './routes/index';
 
 const app = express();
 
@@ -42,34 +41,10 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-/*
-const PGUSER = 'postgres';
-const PGDATABASE = 'testdb';
-const age = 732;
+const port = process.env.PORT || '3000';
+app.set('port', port);
 
-const config = {
-  user: PGUSER, // name of the user account
-  database: PGDATABASE, // name of the database
-  max: 10, // max number of clients in the pool
-  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
-};
-
-const pool = new pg.Pool(config);
-let myClient;
-
-pool.connect((err, client) => {
-  if (err) console.log(err);
-
-  myClient = client;
-  const ageQuery = format('SELECT * from numbers WHERE age = %L', age);
-
-  myClient.query(ageQuery, (error, result) => {
-    if (error) {
-      console.log(error);
-    }
-    console.log(result.rows[0]);
-  });
-});
-*/
+const server = http.createServer(app);
+server.listen(port);
 
 module.exports = app;

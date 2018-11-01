@@ -5,10 +5,10 @@
     "node": "8.9.1"
   },
   "description": "Store Manager is a web application that helps store owners manage sales and product inventory records.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "babel-node --presets env,stage-2 ./build/bin/www",
-    "devstart": "nodemon --exec babel-node --presets env,stage-2 ./server/bin/www",
+    "start": "node ./build/app.js",
+    "devstart": "nodemon --exec babel-node --presets env,stage-2 ./server/app.js",
     "test": "nyc mocha --exit --timeout 10000 ./server/test/**/*.js --compilers js:babel-core/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
@@ -19,7 +19,6 @@
   "nyc": {
     "exclude": [
       "server/app.js",
-      "server/middlewares/customValidator.js",
       "build"
     ]
   },
@@ -34,9 +33,11 @@
   },
   "homepage": "https://github.com/mecsoccer/Store-Manager#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
