@@ -96,8 +96,9 @@ img{
   padding: 0 10%;
   font-size: 20px;
   border-radius: 5px;
+  border: 1px solid blue;
   text-decoration: none;
-  color: black;
+  color: blue;
 }
 
 @media screen and (min-width: 600px) {
