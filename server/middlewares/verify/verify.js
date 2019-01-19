@@ -1,17 +1,14 @@
-import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const secret = process.env.SECRET_KEY;
-const apiKey = process.env.ApiKey;
 
 function verifyAdmin(req, res, next) {
-  const { password } = req.authData;
-  const hash = bcrypt.hashSync(password, 10);
+  const { role } = req.authData;
 
-  if (!bcrypt.compareSync(apiKey, hash)) {
+  if (role !== 'admin') {
     return res.status(401).json({ message: 'Sorry, accessible to admin only' });
   }
 
@@ -19,10 +16,9 @@ function verifyAdmin(req, res, next) {
 }
 
 function verifyAttendant(req, res, next) {
-  const { password } = req.authData;
-  const hash = bcrypt.hashSync(password, 10);
+  const { role } = req.authData;
 
-  if (bcrypt.compareSync(apiKey, hash)) {
+  if (role !== 'attendant') {
     return res.status(401).json({ message: 'Sorry, accessible to store attendants only' });
   }
 

@@ -1,0 +1,454 @@
+html,body,div,span,nav,a,button,img,input,header,ul,li{
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    margin: 0;
+    background: rgb(255, 255, 255);
+    margin-bottom: 100px;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* fonts */
+.twelve{
+    font-size: 12px;
+}
+.fourteen{
+    font-size: 14px;
+}
+.sixteen{
+    font-size: 16px;
+}
+.twenty{
+    font-size: 20px
+}
+.twenty-four{
+    font-size: 24px;
+}
+
+/* text */
+.align-left{
+    text-align: left;
+}
+.align-right{
+    text-align: right;
+}
+.align-center{
+    text-align: center;
+}
+.white-text{
+    color: white;
+}
+
+/*images*/
+svg{
+    width: 20px;
+    height: 14px;
+}
+
+/*widths*/
+.onecol{
+    width: 8.33%;
+}
+.twocol{
+    width: 16.66%
+}
+.threecol{
+    width: 25%;
+}
+.fourcol{
+    width: 33.33%;
+}
+.fivecol{
+    width: 41.67%;
+}
+.sixcol{
+    width: 50%; 
+}
+.sevencol{
+    width: 58.33%;
+}
+.eightcol{
+    width: 66.67%;
+}
+.ninecol{
+    width: 75%;
+}
+.tencol{
+    width: 83.33%;
+}
+.elevencol{
+    width: 91.67%;
+}
+.twelvecol{
+    width: 100%;
+}
+.ten-percent{
+    width: 10%;
+}
+.fifteen-percent{
+    width: 15%;
+}
+.sixty-percent{
+    width: 60%;
+}
+
+/* link */
+.format-link{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* padding */
+.top-padding-45{
+    padding-top: 45px;
+}
+.left-padding-10{
+    padding-left: 10px;
+}
+
+/* margin */
+.top-margin-15{
+    margin-top: 15px;
+}
+.top-margin-20{
+    margin-top: 20px;
+}
+.top-margin-25{
+    margin-top: 25px;
+}
+.top-margin-45{
+    margin-top: 45px;
+}
+.bottom-margin-45{
+    margin-bottom: 45px;
+}
+.bottom-margin-35{
+    margin-bottom: 35px;
+}
+.bottom-margin-15{
+    margin-bottom: 15px;
+}
+.no-margin{
+    margin: 0;
+}
+
+/* radius */
+.radius-5{
+    border-radius: 5px;
+}
+
+/* buttons */
+.normal-btn{
+    width: fit-content;
+    padding: 10px;
+    border: none;
+    text-decoration: none;
+}
+.trans-btn{
+    width: fit-content;
+    padding: 0 10px;
+    border: 2px solid;
+    background: inherit;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* tables */
+.table-header{
+    background-color: #4CAF50;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: #f2f2f2
+}
+
+/* navigation */
+.top-navbar{
+    position: fixed;
+    top: 0px;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+    background-color: #F4F4F8;
+    flex-wrap: wrap;
+    padding: 0;
+}
+.top-nav-list{
+    margin-top: 0px;
+}
+.side-bar{
+    height: 100vh;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    transform: translate(0, 0);
+    transition: transform 0.3s ease;
+}
+.close{
+    -webkit-transform: translate(-100vw, 0);
+    transform: translate(-100vw, 0);
+    transition: transform 0.3s ease;
+}
+.side-nav-list{
+    list-style: none;
+    margin-top: 75px;
+    padding-left: 60px;
+}
+.side-nav-btn{
+    color: white;
+    margin-bottom: 15%;
+}
+.highlighted{
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* others */
+.logo-name{
+    font-size: 24px;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding-top: 13px;
+    float: left;
+}
+.menu-button{
+    padding: 20px 0 0 20px;
+    width: 20%;
+    float: left;
+}
+.menu-button:hover{
+    cursor: pointer;
+}
+.menu-button-2{
+    width: 20px;
+    height: 17px;
+    display: none;
+}
+.menu-button-2:hover{
+    cursor: pointer;
+}
+.container{
+    width: 100%;
+    margin-top: 60px;
+    padding: 4%;
+}
+.dom-color{
+    color: #0C8BE8;
+}
+.dom-color-bkg{
+    background-color: #0C8BE8;
+}
+.bkg-color{
+    background-color: #F4F4EF;
+}
+.white{
+    color: white;
+}
+.centered{
+    margin: auto;
+}
+.center-text{
+    margin: auto;
+    text-align: center;
+}
+.form-space{
+    margin: auto;
+}
+.page-title{
+    margin-bottom: 35px;
+}
+.pad-under{
+    padding-bottom: 20px;
+}
+.pad-top{
+    padding-top: 20px;
+}
+.margin-top{
+    margin-top: 20px;
+}
+.margin-top40{
+    margin-top: 40px;
+}
+.margin-under{
+    margin-bottom: 20px;
+}
+.password-field{
+    height: 45px;
+    width: 100%;
+    border: 1px solid #DBDBDB;
+    font-size: 14px;
+    box-shadow:  0 4px 8px 0px rgba(0, 0, 0, 0.2);
+    padding: 0 2%;
+    margin-bottom: 20px;
+}
+.sign-in-button{
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 17px 15px 35px 0px rgba(0, 0, 0, 0.2);
+}
+select{
+    width: 65%;
+}
+.right-end{
+    float: right;
+}
+.left-end-major{
+    width: 80%;
+}
+.search-bar{
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid gainsboro;
+    padding: 5px;
+    box-shadow: 0px 1px 2px 1px gainsboro;
+}
+.fit{
+    width: fit-content;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.off{
+    display: none;
+}
+
+/*customs*/
+.sign-in-container{
+    width: 100%;
+    margin-top: 100px;
+    padding: 4%;
+}
+.cart-svg{
+    width: fit-content;
+    height: 58px;
+    background-image: url("https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/cart.svg");
+    padding-left: 22px;
+    margin: auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.cart-qty{
+    width: 20px;
+    height: 20px;
+    background: red;
+    text-align: center;
+    border-radius: 10px;
+}
+.products{
+    width: 100%;
+    height: 40vh;
+    background: white;
+    list-style: none;
+    padding: 10px 2px 0 2px;
+    overflow-y: scroll;
+    border-style: inset;
+    border: 1px solid gainsboro;
+    margin: 0;
+}
+.product{
+    overflow: hidden;
+}
+.delta-up{
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.delta-down{
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.qty{
+    background: #F9F9F9;
+}
+.a-t-c-btn{
+    height: 35px;
+    border-color: #0C8BE8;
+    color: #0C8BE8;
+}
+.side-bar-customs{
+    background: #707070;
+}
+.back-arrow{
+    width: 12px;
+    height: 12px;
+    float: right;
+    margin-right: 30px;
+}
+.sign-in-title{
+    font-weight: lighter;
+    font-size: 24px;
+}
+.green-color{
+    color: #44A751;
+}
+.cart-content{
+    height: 55vh;
+}
+.cart-total{
+    margin-left: 35px;
+    background: white;
+    padding: 21px 11px;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px 0 20px 0px;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    text-align: center;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    color: white;
+}

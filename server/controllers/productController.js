@@ -16,6 +16,22 @@ function getAllProducts(req, res) {
     });
 }
 
+function getAvailableProducts(req, res) {
+  const query = {
+    text: 'SELECT * FROM products where quantityLeft > $1',
+    values: [0],
+  };
+
+  pool.query(query)
+    .then((available) => {
+      const availableProducts = available.rows;
+      res.status(200).json({ availableProducts });
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+}
+
 function getSpecificProduct(req, res) {
   const { productId } = req.params;
 
@@ -95,5 +111,10 @@ function deleteProduct(req, res) {
 }
 
 export default {
-  getAllProducts, getSpecificProduct, addProduct, updateProduct, deleteProduct,
+  getAllProducts,
+  getAvailableProducts,
+  getSpecificProduct,
+  addProduct,
+  updateProduct,
+  deleteProduct,
 };

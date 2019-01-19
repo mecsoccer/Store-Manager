@@ -3,42 +3,44 @@ function validateSales(req, res, next) {
     seller, productName, quantity, price, total,
   } = req.body;
 
-  let valid = 0;
+  const sellerExp = /^[a-z]+$/g;
+  const productNameExp = /^\w+$/g;
+  const monetaryExp = /^\d+\.\d\d$/;
+  const integerExp = /^\d+$/;
 
-  const errors = [];
-
-  if (seller.length > 1) {
-    valid += 1;
-  } else {
-    errors.push('creator should be more than one character long.');
+  if (sellerExp.test(seller) === false) {
+    return res.status(422).json({
+      error: true,
+      message: 'seller should be a lowercase name without spaces eg. john',
+    });
   }
 
-  if (productName.length > 1) {
-    valid += 1;
-  } else {
-    errors.push('productName should be more than one character long.');
+  if (productNameExp.test(productName) === false) {
+    return res.status(422).json({
+      error: true,
+      message: "product name must be a string preceeded by alphabets and can contain spaces, underscores, alphabets, numbers eg. 'dangote cement_50kg'",
+    });
   }
 
-  if (typeof quantity === 'number' && quantity > 0) {
-    valid += 1;
-  } else {
-    errors.push('quantity should be a number greater than zero');
+  if (integerExp.test(quantity) === false) {
+    return res.status(422).json({
+      error: true,
+      message: 'quantity must be an integer.',
+    });
   }
 
-  if (typeof price === 'number') {
-    valid += 1;
-  } else {
-    errors.push('price should be a number');
+  if (monetaryExp.test(price) === false) {
+    return res.status(422).json({
+      error: true,
+      message: "price must be a number having two decimal places enclosed in quotes eg. '20.00'",
+    });
   }
 
-  if (typeof total === 'number' && total === price * quantity) {
-    valid += 1;
-  } else {
-    errors.push('total should be a number equal to price times quantity');
-  }
-
-  if (valid < 5) {
-    return res.status(422).send({ message: 'Invalid inputs', errors });
+  if (monetaryExp.test(total) === false) {
+    return res.status(422).json({
+      error: true,
+      message: "total must be a number having two decimal places enclosed in quotes eg. '20.00'",
+    });
   }
 
   return next();

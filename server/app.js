@@ -21,6 +21,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'UI')));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8080');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Authorization, Accept');
+  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS, GET, PUT, DELETE');
+  next();
+});
 
 app.use('/', frontendRouter);
 app.use('/api/v1', apiRouter);
