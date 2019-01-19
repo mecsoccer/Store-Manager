@@ -76,12 +76,13 @@ function login(req, res) {
     .then((user) => {
       const foundUser = user.rows[0];
       if (!bcrypt.compareSync(password, foundUser.password)) {
-        return res.status(422).json({ message: 'supply valid password', error: true });
+        return res.status(401).json({ error: true, message: 'sorry username and password have no match' });
       }
-      return res.status(200).json({ foundUser, token });
+      return res.status(200).json({ username, token });
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .catch(() => {
+      const [error, message] = [true, 'sorry username and password have no match'];
+      return res.status(401).json({ error, message });
     });
 }
 
@@ -125,6 +126,25 @@ function deleteUser(req, res) {
     });
 }
 
+function giveAdminRight(req, res) {
+  const { userId } = req.params;
+  const { username, role } = req.body;
+
+  const query = {
+    text: 'UPDATE users SET role=$1 WHERE id=$2 and username=$3;',
+    values: [role, userId, username],
+  };
+
+  pool.query(query)
+    .then((user) => {
+      const adminUser = user;
+      return res.status(200).json({ adminUser });
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+}
+
 export default {
-  addUser, login, getAllUsers, getUser, updateUser, deleteUser,
+  addUser, login, getAllUsers, getUser, updateUser, deleteUser, giveAdminRight,
 };

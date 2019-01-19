@@ -1,0 +1,88 @@
+@media screen and (min-width: 600px) {
+	.menu{
+		display: none;
+	}
+	.header{
+		height: 105px;
+	}
+	.header h1{
+		float: left;
+		margin-top: 25px;
+		margin-left: 10px;
+		border: 2px solid darkblue;
+		font-size: 30px;
+		padding: 1px 36px;
+		width: fit-content;
+		border-radius: 10px;
+	}
+	.nav-bar{
+		transform: translate(0, 0);
+		position: static;
+		background: none;
+		padding-left: 10px;
+		margin-top: 30px;
+		width: calc(97vw - 220px);
+		float: left;
+  }
+	.nav-bar li{
+		margin: 0;
+		display: inline-block;
+		width: fit-content;
+		padding: 0 2%;
+		float: left;
+	}
+	.nav-bar li a{
+		padding: 0;
+	}
+	.login{
+		float: right !important;
+		margin-right: 2%;
+		width: auto;
+	}
+	.content, .sign-up{
+		margin: auto;
+		margin-top: 170px;
+		padding: 0 5%;
+	}
+	.category{
+		width: 44%;
+		float: left;
+		margin: 3%;
+	}
+	.sign-up{
+		width: 80%;
+		padding: 40px 80px;
+		height: auto;
+	}
+	.submit-sign-up{
+		width: 30%;
+		float: right;
+	}
+	.col-25{
+		float: left;
+		width: 25%;
+		margin-top: 6px;
+	}
+	.col-75{
+		float: left;
+		width: 75%;
+		margin-top: 6px;
+	}
+	.right{
+		width: auto;
+		float: right;
+	}
+	input[type=text], input[type=password], select {
+		width: 75%;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.category{
+		margin: 1%;
+		width: 48%;
+	}
+	.sign-up{
+		width: 60%;
+	}
+}

@@ -1,0 +1,111 @@
+div,header,nav,h1,li,ul,a,h3,h2,span,button,input{
+	box-sizing: border-box;
+	margin: 0;
+}
+body{
+	margin: 0;
+	background: lightgray;
+  font-family: Open Sans;
+}
+.header{
+	position: fixed;
+  top: 0;
+  left: 0;
+	background: darkgray;
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12), 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
+.menu{
+	float: left;
+	margin-left: 10px;
+	line-height: 65px;
+}
+.menu svg{
+	height: 30px;
+	width: 30px;
+}
+.header h1{
+  color: blue;
+  width: fit-content;
+  margin: auto;
+  line-height: 49px;
+  font-family: Open Sans, sans-serif;
+  font-size: 27px;
+  text-shadow: 1px 1px 0px #A36;
+}
+.header h1 a{
+  text-decoration: none;
+  color: darkblue;
+}
+.nav-bar{
+  position: fixed;
+  top: 60px;
+  width: 65%;
+  height: fit-content;
+  padding: 10px 1%;
+  background: darkgray;
+  -webkit-transform: translate(-100vw, 0);
+  transform: translate(-100vw, 0);
+  transition: transform 0.3s ease;
+}
+.nav-bar.open{
+	transform: translate(0, 0);
+}
+.nav-bar li{
+  list-style: none;
+  margin: auto;
+  text-align: center;
+  border: 2px solid cadetblue;
+  border-radius: 10px;
+  padding: 3px 0;
+  margin-bottom: 5px;
+  background: lightgray;
+}
+.nav-bar li a{
+  text-decoration: none;
+  padding: 0 25%;
+}
+.content, .sign-up{
+	background: lightgray;
+	width: 100%;
+	height: 665px;
+	padding: 1px 0;
+	margin-top: 60px;
+  overflow: auto;
+}
+.category{
+	width: 90%;
+	background: cadetblue;
+  margin: 5% 5%;
+  list-style: none;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 11px;
+  overflow: auto;
+}
+.category-name{
+	color: darkblue;
+	font-family: sans-serif, helvetica;
+}
+.category div button{
+  background: darkgray;
+  color: darkblue;
+  border-radius: 5px;
+  border-style: double;
+}
+.available-products{
+	color: blue;
+}
+.login{
+  background: #5959aa !important;
+  border: 1px solid blue;
+  margin: 0 30%;
+  width: 40%;
+}
+.login a{
+  color: white;
+}

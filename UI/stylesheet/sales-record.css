@@ -1,0 +1,104 @@
+.record{
+	list-style: none;
+  background: cadetblue;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 5px 2%;
+  margin-bottom: 10px;
+  overflow: auto;
+}
+.attendant-name{
+	min-width: 280px;
+	overflow: hidden;
+	text-transform: capitalize;
+	background: black;
+  color: lightgreen;
+  padding: 0 5%;
+  border-radius: 10px;
+	width: fit-content;
+}
+.wrapper{
+	
+}
+.table-header{
+	text-transform: capitalize;
+  color: darkblue !important;
+  background: lightgray;
+  border-radius: 5px;
+}
+.wrapper span{
+	margin: 2px 0;
+}
+.col-50{
+	width: 46%;
+	float: left;
+	text-align: center;
+	color: darkblue;
+	margin: 5px 2%;
+}
+.col-3{
+	margin: 5px 2%;
+	border-radius: 5px;
+	background: darkblue;
+}
+.sm{
+	background: none;
+}
+.titler{
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: darkblue;
+}
+.sorter{
+  width: 100%;
+  margin: 10px 0;
+  height: 50px;
+  border: 1px solid cadetblue;
+  border-radius: 5px;
+  padding: 5px;
+}
+.sorts{
+  width: 25%;
+  height: 40px;
+  float: left;
+  padding: 5px;
+}
+.sorts div{
+  width: 80%;
+  text-align: center;
+  margin: 0 10%;
+  height: fit-content;
+}
+.sorthead{
+  font-size: 20px;
+  color: darkblue;
+}
+.checkbox{
+  float: left;
+}
+.textbox{
+  float: left;
+  font-size: 20px;
+  border-radius: 4px;
+  color: darkgray;
+  text-align: center;
+}
+.table-header span{
+  color: darkblue;
+  font-weight: bolder;
+}
+
+@media screen and (min-width: 600px) {
+	.col-6{
+		width: 16%;
+		float: left;
+		text-align: center;
+	}
+  
+	.col-50{
+		width: 100%;
+		margin: 5px 0;
+	}
+}

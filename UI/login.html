@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Store Man</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/new-sign-in.css">
+  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/new-responsive.css">
+  <link rel="stylesheet" href="/stylesheet/new-sign-in.css">
+  <link rel="stylesheet" href="/stylesheet/new-responsive.css">
+  <link rel="icon" href="">
+</head>
+<body>
+
+  <nav class="top-navbar">
+    <header class="logo-name dom-color twelvecol">Store Manager</header>
+  </nav>
+  <div class="sign-in-container">
+    <div class="page-title sign-in-title">Sign in to your account</div>
+    <div class="">
+        <input type="text" id="username" class="twelvecol password-field" placeholder="Username"/>
+    </div>
+    <div class="">
+        <input type="password" id="password" class="twelvecol password-field" placeholder="Password"/>
+    </div>
+    <div class="">
+        <button class="dom-color-bkg white centered sign-in-button">SIGN IN</button>
+    </div>
+    <div class="center-text margin-top40">
+        <a class="twelvecol dom-color format-link" href="#">Forgot your password?</a>
+    </div>
+  </div>
+  <script>
+    const submit = document.querySelector('.sign-in-button');
+
+    submit.addEventListener('click', () => {
+      const username = document.querySelector('#username').value;
+      const password = document.querySelector('#password').value;
+      signIn({ username, password });
+    })
+
+    function signIn(loginDetails) {
+      return fetch('http://localhost:3000/api/v1/auth/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'cors',
+        body: JSON.stringify(loginDetails)
+      })
+      .then(function(response) {
+        const responseJson = response.json();
+        return responseJson;
+      })
+      .then((data) => {
+        sessionStorage.setItem('user', data.username);
+        sessionStorage.setItem('token', data.token);
+        window.location.assign('http://127.0.0.1:8080/cart.html');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  </script>
+  
+</body>
+</html>
+  
