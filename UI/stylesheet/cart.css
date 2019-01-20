@@ -1,12 +1,11 @@
 .cart{
-	background: green;
+	background: cadetblue;
 	padding: 5px 1%;
 }
 .cart-title{
 	margin: auto;
 	width: fit-content;
-	text-decoration: underline;
-	color: white;
+	color: darkblue;
 	text-transform: capitalize;
 }
 .container{
@@ -20,7 +19,7 @@
 	text-transform: uppercase;
 }
 .prod-details{
-	background: black;
+	background: #f2f2f2;
 	height: fit-content;
 	display: flex;
 	padding: 0 2%;
@@ -30,7 +29,11 @@
 .prod-name, .quantity, .prod-price{
 	height: 30px;
 	padding: 5px 1%;
+<<<<<<< HEAD
+	color: black;
+=======
 	color: white;
+>>>>>>> 5f13f1e0d5a73eebf99fae6c60d12aa1103d73f4
 }
 .prod-name{
 	text-transform: capitalize;
@@ -48,15 +51,14 @@
 	margin: auto;
 }
 .total{
-	background: black;
-	color: white;
+	color: darkblue;
 	margin-right: 15px;
 	border-radius: 3px;
 	font-size: 20px;
 }
 .cart-pay button{
-	background: darkblue;
-	color: lightgreen;
-	font-size: 20px;
-	border-radius: 5px;
+  background: darkgray;
+  color: darkblue;
+  font-size: 20px;
+  border-radius: 5px;
 }

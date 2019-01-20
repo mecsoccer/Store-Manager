@@ -1,0 +1,74 @@
+@media screen and (min-width: 400px) {
+    /*customs*/
+    .products{
+        padding: 10px 15px 0 15px;
+        height: 60vh;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .top-navbar{
+        height: 80px;
+        margin-bottom: 85px;
+    }
+    .side-bar{
+        top: 85px;
+    }
+    .logo-name{
+        font-size: 32px;
+        padding: 15px;
+    }
+    .sign-in-container{
+        background-color: white;
+        box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+        padding: 4% 10%;
+        margin: 170px 20% 0 20%;
+        width: auto;
+    }
+    .container{
+        padding: 4%;
+    }
+    .container.open{
+        width: 100%;
+        padding: 4% 20%;
+    }
+}
+
+@media screen and (min-width: 700px) {
+
+}
+
+@media screen and (min-width: 1000px) {
+    .logo-name{
+        width: 100%;
+    }
+    .menu-button{
+        display: none;
+    }
+    .menu-button-2{
+        display: block;
+    }
+    .back-arrow{
+        display: none;
+    }
+    /* custom css*/
+    .side-bar{
+        width: 25%;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        -webkit-transform: translate(-100vw, 0);
+        transform: translate(-100vw, 0);
+        transition: transform 0.3s ease;
+    }
+    .side-bar.open{
+        transform: translate(0, 0);
+    }
+    .container{
+        width: 75%;
+        float: right;
+    }
+    .products{
+        height: 45vh;
+    }
+}

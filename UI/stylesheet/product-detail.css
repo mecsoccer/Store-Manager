@@ -1,27 +1,31 @@
 .product-card{
 	width: 100%;
 	height: 250px;
-	background: darkblue;
+	background: cadetblue;
 	padding: 10px 10px;
 	border-radius: 5px;
 }
+.prod-image{
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+}
 .product-card div{
 	margin: 10px 2%;
-	background: lightblue;
+	background: #f2f2f2;
 	display: flex;
 	border-radius: 5px;
 }
 .title{
 	margin: auto;
 	width: fit-content;
-	color: cyan;
-	text-decoration: underline;
+	color: blue;
 }
 .col-md{
 	width: 50%;
 	float: left;
 	font-family: sans-serif;
-    color: darkgreen;
+  color: darkblue;
 	padding: 5px 2%;
 }
 

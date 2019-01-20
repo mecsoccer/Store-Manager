@@ -1,4 +1,4 @@
-div,header,nav,h1,li,ul,a,h3,h2,span,button{
+div,header,nav,h1,li,ul,a,h3,h2,span,button,input{
 	box-sizing: border-box;
 	margin: 0;
 }
@@ -28,13 +28,17 @@ body{
 	width: 30px;
 }
 .header h1{
-  color: red;
+  color: blue;
   width: fit-content;
   margin: auto;
   line-height: 49px;
   font-family: Open Sans, sans-serif;
   font-size: 27px;
   text-shadow: 1px 1px 0px #A36;
+}
+.header h1 a{
+  text-decoration: none;
+  color: darkblue;
 }
 .nav-bar{
   position: fixed;
@@ -63,38 +67,45 @@ body{
 .nav-bar li a{
   text-decoration: none;
   padding: 0 25%;
-  color: darkblue;
 }
 .content, .sign-up{
 	background: lightgray;
 	width: 100%;
-	height: auto;
+	height: 665px;
 	padding: 1px 0;
 	margin-top: 60px;
+  overflow: auto;
 }
 .category{
 	width: 90%;
-	height: 100px;
-	background: blue;
-	margin: 5% 5%;
-	list-style: none;
-	text-align: center;
-	border-radius: 10px;
-	cursor: pointer;
+	background: cadetblue;
+  margin: 5% 5%;
+  list-style: none;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 11px;
+  overflow: auto;
 }
 .category-name{
-	color: yellow;
+	color: darkblue;
 	font-family: sans-serif, helvetica;
 }
+.category div button{
+  background: darkgray;
+  color: darkblue;
+  border-radius: 5px;
+  border-style: double;
+}
 .available-products{
-	color: white;
+	color: blue;
 }
 .login{
-  background: lightgreen !important;
+  background: #5959aa !important;
   border: 1px solid blue;
   margin: 0 30%;
   width: 40%;
 }
 .login a{
-  color: blue;
+  color: white;
 }
