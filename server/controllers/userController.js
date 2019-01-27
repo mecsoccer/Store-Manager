@@ -42,14 +42,16 @@ function getUser(req, res) {
 }
 
 function addUser(req, res) {
-  const { username, password, email } = req.body;
+  const {
+    username, password, email, role,
+  } = req.body;
 
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
   const query = {
-    text: 'INSERT INTO users(username, password, email, productSold, noOfSales, worthOfSales) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
-    values: [username, hash, email, 0, 0, 0],
+    text: 'INSERT INTO users(username, password, email, productSold, noOfSales, worthOfSales, role) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    values: [username, hash, email, 0, 0, 0, role],
   };
 
   pool.query(query)
@@ -63,25 +65,28 @@ function addUser(req, res) {
 }
 
 function login(req, res) {
-  const { username, password } = req.body;
-
-  const token = jwt.sign(req.body, secret, { expiresIn: '1hr' });
+  const { usernameInput, passwordInput } = req.body;
 
   const query = {
     text: 'SELECT * FROM users WHERE username = $1',
-    values: [username],
+    values: [usernameInput],
   };
 
   pool.query(query)
     .then((user) => {
       const foundUser = user.rows[0];
-      if (!bcrypt.compareSync(password, foundUser.password)) {
-        return res.status(401).json({ error: true, message: 'sorry username and password have no match' });
+      if (!bcrypt.compareSync(passwordInput, foundUser.password)) {
+        return res.status(401).json({ error: true, message: 'username or password incorrect' });
       }
-      return res.status(200).json({ username, token });
+      return foundUser;
+    })
+    .then((foundUser) => {
+      const { username, password, role } = foundUser;
+      const token = jwt.sign({ username, password, role }, secret, { expiresIn: '1hr' });
+      return res.status(200).json({ username, role, token });
     })
     .catch(() => {
-      const [error, message] = [true, 'sorry username and password have no match'];
+      const [error, message] = [true, 'user does not exist'];
       return res.status(401).json({ error, message });
     });
 }

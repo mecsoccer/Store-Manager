@@ -43,10 +43,16 @@ function getSpecificProduct(req, res) {
   pool.query(query)
     .then((requestedProduct) => {
       const product = requestedProduct.rows[0];
-      return res.status(200).json({ product });
+      return product;
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .then((product) => {
+      const { id } = product;
+      if (typeof id === 'number') {
+        return res.status(200).json({ product });
+      }
+    })
+    .catch(() => {
+      res.status(404).json({ message: 'sorry, product does not exist' });
     });
 }
 

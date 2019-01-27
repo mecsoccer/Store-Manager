@@ -8,21 +8,19 @@ const secret = process.env.SECRET_KEY;
 function verifyAdmin(req, res, next) {
   const { role } = req.authData;
 
-  if (role !== 'admin') {
-    return res.status(401).json({ message: 'Sorry, accessible to admin only' });
+  if (role === 'admin') {
+    return next();
   }
-
-  return next();
+  return res.status(401).json({ message: 'Sorry, accessible to admin only' });
 }
 
 function verifyAttendant(req, res, next) {
   const { role } = req.authData;
 
-  if (role !== 'attendant') {
-    return res.status(401).json({ message: 'Sorry, accessible to store attendants only' });
+  if (role === 'attendant') {
+    return next();
   }
-
-  return next();
+  return res.status(401).json({ message: 'Sorry, accessible to store attendants only' });
 }
 
 function authVerify(req, res, next) {
@@ -43,8 +41,9 @@ function authVerify(req, res, next) {
       });
     }
     req.authData = authData;
-    return next();
   });
+
+  return next();
 }
 
 export default { verifyAdmin, verifyAttendant, authVerify };

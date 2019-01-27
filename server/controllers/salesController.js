@@ -27,10 +27,17 @@ function getSpecificSale(req, res) {
   pool.query(query)
     .then((sale) => {
       const requestedSale = sale.rows[0];
-      return res.status(200).json({ requestedSale });
+      return requestedSale;
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .then((sale) => {
+      const { id } = sale;
+      if (typeof id === 'number') {
+        return res.status(200).json({ sale });
+      }
+      return res.status(404).json({ message: 'sorry, the sale record does not exist' });
+    })
+    .catch(() => {
+      res.status(404).json({ message: 'sorry, the sale record does not exist' });
     });
 }
 

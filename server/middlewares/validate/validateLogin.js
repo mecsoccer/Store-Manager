@@ -1,7 +1,7 @@
 function validateLogin(req, res, next) {
-  const { username, password } = req.body;
+  const { usernameInput, passwordInput } = req.body;
 
-  if (username === '' || password === '') {
+  if (usernameInput === '' || passwordInput === '') {
     res.status(422).json({ error: true, message: 'username and password fields must not be empty' });
   }
 

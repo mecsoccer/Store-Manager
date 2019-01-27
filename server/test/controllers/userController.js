@@ -12,6 +12,7 @@ const {
 } = mocks;
 
 let adminToken;
+let attendantToken;
 
 describe('Users', () => {
   before((done) => {
@@ -23,45 +24,14 @@ describe('Users', () => {
         done();
       });
   });
-  context('Add / signup a new store attendant', () => {
-    it('Should add new attendant if data is correct', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signup')
-        .set('Authorization', adminToken)
-        .send(newAttendant)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res.status).to.equal(201);
-          expect(res).to.be.an('object');
-          expect(res.body.newAttendant.username).to.equal('Onyenze');
-          expect(res.body.newAttendant.email).to.equal('addattendant@gmail.com');
-          done();
-        });
-    });
-
-    it('should return error if not admin', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signup')
-        .set('Authorization', 'anonimous')
-        .send({ newAttendant })
-        .end((err, res) => {
-          expect(res.body.data).to.equal(undefined);
-          expect(res.body.success).to.equal(false);
-          expect(res.status).to.equal(401);
-          done();
-        });
-    });
-
-    it('should return 422 error if admin has supplied unacceptable username or password', (done) => {
-      chai.request(app)
-        .post('/api/v1/auth/signup')
-        .set('Authorization', '3toremana8a')
-        .end((err, res) => {
-          expect(res.status).to.equal(422);
-          expect(res.body.message).to.be.a('string').that.equals('Username or password incorrect');
-          done();
-        });
-    });
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(attendant)
+      .end((err, res) => {
+        attendantToken = res.body.token;
+        done();
+      });
   });
 
   context('Tests for Login route', () => {
@@ -86,7 +56,7 @@ describe('Users', () => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(401);
           expect(res.body.error).to.equal(true);
-          expect(res.body.message).to.equal('sorry username and password have no match');
+          expect(res.body.message).to.equal('user does not exist');
           done();
         });
     });
@@ -100,6 +70,34 @@ describe('Users', () => {
           expect(res.status).to.equal(200);
           expect(res.body.username).to.be.a('string');
           expect(res.body.token).to.be.a('string');
+          done();
+        });
+    });
+  });
+
+  context('Add / signup a new store attendant', () => {
+    it('Should add new attendant if data is correct', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', adminToken)
+        .send(newAttendant)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(201);
+          expect(res).to.be.an('object');
+          expect(res.body).to.have.property('newAttendant');
+          done();
+        });
+    });
+
+    it('should return a 401 and error message if not admin', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', attendantToken)
+        .send({ newAttendant })
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body.message).to.equal('Sorry, accessible to admin only');
           done();
         });
     });

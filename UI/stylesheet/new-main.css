@@ -1,4 +1,4 @@
-html,body,div,span,nav,a,button,img,input,header,ul,li{
+html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     box-sizing: border-box;
 }
 body{
@@ -6,12 +6,18 @@ body{
     margin: 0;
     background: rgb(255, 255, 255);
     margin-bottom: 100px;
-    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
 }
 
 /* fonts */
+.roboto{
+    font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana'; 
+}
 .twelve{
     font-size: 12px;
+}
+.thirteen{
+    font-size: 13px;
 }
 .fourteen{
     font-size: 14px;
@@ -38,6 +44,9 @@ body{
 }
 .white-text{
     color: white;
+}
+.bold{
+    font-weight: bold;
 }
 
 /*images*/
@@ -93,6 +102,11 @@ svg{
     width: 60%;
 }
 
+/* height */
+.height-fit{
+    height: fit-content;
+}
+
 /* link */
 .format-link{
     text-decoration: none;
@@ -100,6 +114,24 @@ svg{
 }
 
 /* padding */
+.padding-5{
+    padding: 5px;
+}
+.paddign-10{
+    padding: 10px;
+}
+.top-bottom-p10{
+    padding: 10px 0;
+}
+.top-bottom-p5{
+    padding: 5px 0;
+}
+.right-left-p10{
+    padding: 0 10px;
+}
+.right-left-p5{
+    padding: 0 5px;
+}
 .top-padding-45{
     padding-top: 45px;
 }
@@ -108,6 +140,9 @@ svg{
 }
 
 /* margin */
+.top-margin-10{
+    margin-top: 10px;
+}
 .top-margin-15{
     margin-top: 15px;
 }
@@ -126,11 +161,25 @@ svg{
 .bottom-margin-35{
     margin-bottom: 35px;
 }
+.bottom-margin-20{
+    margin-bottom: 20px;
+}
 .bottom-margin-15{
     margin-bottom: 15px;
 }
+.bottom-margin-10{
+    margin-bottom: 10px;
+}
 .no-margin{
     margin: 0;
+}
+
+/* border */
+.no-border{
+    border: none;
+}
+.border-1{
+    border: 1px solid #707070;
 }
 
 /* radius */
@@ -156,7 +205,7 @@ svg{
 
 /* tables */
 .table-header{
-    background-color: #4CAF50;
+    background-color: #44A751;
     color: white;
 }
 tr:nth-child(even){
@@ -201,6 +250,34 @@ tr:nth-child(even){
 }
 .highlighted{
     color: rgba(255, 255, 255, 0.5);
+}
+
+/* tabs */
+.tab-container{
+    overflow-y: hidden;
+    padding: 8px 0 4px 0;
+}
+.tab{
+    color: #707070;
+    border-radius: 5px;
+    padding: 7px 5%;
+    cursor: pointer;
+}
+.tab-main{
+    color: #44A751;
+    background: #F4F4EF;
+    font-weight: bold;
+}
+
+/* display */
+.inline-block{
+    display: inline-block;
+}
+.inline{
+    display: inline;
+}
+.block{
+    display: block;
 }
 
 /* others */
@@ -289,9 +366,6 @@ tr:nth-child(even){
     border-radius: 5px;
     box-shadow: 17px 15px 35px 0px rgba(0, 0, 0, 0.2);
 }
-select{
-    width: 65%;
-}
 .right-end{
     float: right;
 }
@@ -345,11 +419,10 @@ select{
     height: 40vh;
     background: white;
     list-style: none;
-    padding: 10px 2px 0 2px;
+    padding: 5px 2px 0 2px;
     overflow-y: scroll;
     border-style: inset;
     border: 1px solid gainsboro;
-    margin: 0;
 }
 .product{
     overflow: hidden;
@@ -398,6 +471,24 @@ select{
     background: white;
     padding: 21px 11px;
 }
+hr{
+    margin-top: 0;
+    height: 1px;
+    background-color: #44A751; 
+    border: none;
+}
+.all-products{
+    height: 65vh;
+}
+.category-drop-header{
+    padding: 5px 5px;
+    background: #707070;
+    text-align: center;
+}
+.cat-prod-list{
+    height: 60vh;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
