@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./build/app.js",
     "devstart": "nodemon --exec babel-node --presets env,stage-2 ./server/app.js",
-    "test": "nyc mocha --exit --timeout 10000 ./server/test/controllers/*.js --compilers js:babel-core/register",
+    "test": "nyc mocha --exit --timeout 10000 ./server/test/controllers/*.js --require @babel/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint",
