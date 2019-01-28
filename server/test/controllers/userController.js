@@ -94,7 +94,7 @@ describe('Users', () => {
       chai.request(app)
         .post('/api/v1/auth/signup')
         .set('Authorization', attendantToken)
-        .send({ newAttendant })
+        .send(newAttendant)
         .end((err, res) => {
           expect(res.status).to.equal(401);
           expect(res.body.message).to.equal('Sorry, accessible to admin only');

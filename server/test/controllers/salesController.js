@@ -131,7 +131,7 @@ describe('Tests for sales', () => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
-        .send({ wrongSellerName })
+        .send(wrongSellerName)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
@@ -145,7 +145,7 @@ describe('Tests for sales', () => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
-        .send({ wrongProductName })
+        .send(wrongProductName)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
@@ -159,7 +159,7 @@ describe('Tests for sales', () => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
-        .send({ wrongQuantity })
+        .send(wrongQuantity)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
@@ -173,7 +173,7 @@ describe('Tests for sales', () => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
-        .send({ wrongPrice })
+        .send(wrongPrice)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
@@ -187,7 +187,7 @@ describe('Tests for sales', () => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
-        .send({ wrongTotal })
+        .send(wrongTotal)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);

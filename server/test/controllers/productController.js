@@ -87,7 +87,7 @@ describe('products', () => {
       chai.request(app)
         .post('/api/v1/products')
         .set('Authorization', attendantToken)
-        .send({ exampleProduct })
+        .send(exampleProduct)
         .end((err, res) => {
           expect(res).to.have.status(401);
           expect(res.body.message).to.equal('Sorry, accessible to admin only');
@@ -95,18 +95,17 @@ describe('products', () => {
         });
     });
 
-    /*
     it('admin should add products to the store', (done) => {
       chai.request(app)
         .post('/api/v1/products')
         .set('Authorization', adminToken)
-        .send({ exampleProduct })
+        .send(exampleProduct)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(201);
           expect(res.body.newProduct).to.have.property('id');
           done();
         });
-    }); */
+    });
   });
 });
