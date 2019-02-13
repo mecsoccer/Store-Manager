@@ -1,8 +1,9 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 var salesData = {
   exampleSale: {
     seller: 'jaachimma',
@@ -47,6 +48,6 @@ var salesData = {
     total: 'forty'
   }
 };
-
-exports.default = salesData;
+var _default = salesData;
+exports.default = _default;
 //# sourceMappingURL=salesData.js.map

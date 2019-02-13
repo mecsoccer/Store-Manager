@@ -1,20 +1,21 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _express = require('express');
-
-var _express2 = _interopRequireDefault(_express);
+var _express = _interopRequireDefault(require("express"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var router = _express2.default.Router();
+var router = _express.default.Router();
 
 router.get('/', function (req, res, next) {
-  res.render('products', { title: 'products page' });
+  res.render('products', {
+    title: 'products page'
+  });
 });
-
-exports.default = router;
+var _default = router;
+exports.default = _default;
 //# sourceMappingURL=home.js.map

@@ -1,17 +1,18 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
+
 function validateSales(req, res, next) {
   var _req$body = req.body,
       seller = _req$body.seller,
       productName = _req$body.productName,
-      quantity = _req$body.quantity,
+      quantitySold = _req$body.quantitySold,
       price = _req$body.price,
-      total = _req$body.total;
-
-
+      total = _req$body.total,
+      productId = _req$body.productId;
   var sellerExp = /^[a-z]+$/g;
   var productNameExp = /^\w+$/g;
   var monetaryExp = /^\d+\.\d\d$/;
@@ -31,10 +32,10 @@ function validateSales(req, res, next) {
     });
   }
 
-  if (integerExp.test(quantity) === false) {
+  if (integerExp.test(quantitySold) === false) {
     return res.status(422).json({
       error: true,
-      message: 'quantity must be an integer.'
+      message: 'quantitySold must be an integer.'
     });
   }
 
@@ -52,8 +53,16 @@ function validateSales(req, res, next) {
     });
   }
 
+  if (integerExp.test(productId) === false) {
+    return res.status(422).json({
+      error: true,
+      message: 'productId must be an integer.'
+    });
+  }
+
   return next();
 }
 
-exports.default = validateSales;
+var _default = validateSales;
+exports.default = _default;
 //# sourceMappingURL=validateSales.js.map

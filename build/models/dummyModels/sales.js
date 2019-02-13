@@ -1,8 +1,9 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 var sales = [{
   id: 1,
   date: '02/10/2018',
@@ -28,6 +29,6 @@ var sales = [{
   price: 1000,
   total: 2000
 }];
-
-exports.default = sales;
+var _default = sales;
+exports.default = _default;
 //# sourceMappingURL=sales.js.map

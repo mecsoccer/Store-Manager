@@ -1,44 +1,41 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _dotenv = require('dotenv');
-
-var _dotenv2 = _interopRequireDefault(_dotenv);
+var _dotenv = _interopRequireDefault(require("dotenv"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_dotenv2.default.config();
+_dotenv.default.config();
 
 var userData = {
   admin: {
-    username: 'jaachimma onyenze',
-    password: process.env.ApiKey
+    usernameInput: 'jaachimma onyenze',
+    passwordInput: process.env.ApiKey
   },
   attendant: {
-    username: process.env.AttendantUsername,
-    password: process.env.AttendantKey
+    usernameInput: process.env.AttendantUsername,
+    passwordInput: process.env.AttendantKey
   },
   newAttendant: {
-    username: 'Onyenze',
+    username: 'onyenze',
     password: 'attendant0001',
     email: 'addattendant@gmail.com',
-    productSold: '0',
-    noOfSales: 0,
-    worthOfSales: 0
+    role: 'attendant'
   },
   emptyFields: {
-    username: '',
-    password: ''
+    usernameInput: '',
+    passwordInput: ''
   },
   unknownUser: {
-    username: 'winterbutter',
-    password: 'adasd8ada'
+    usernameInput: 'winterbutter',
+    passwordInput: 'adasd8ada'
   },
   attendantLogin: {}
 };
-
-exports.default = userData;
+var _default = userData;
+exports.default = _default;
 //# sourceMappingURL=userData.js.map

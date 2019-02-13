@@ -1,8 +1,9 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 var products = [{
   id: 1,
   name: 'milk',
@@ -28,6 +29,6 @@ var products = [{
   price: 1000,
   minQuantity: 4
 }];
-
-exports.default = products;
+var _default = products;
+exports.default = _default;
 //# sourceMappingURL=products.js.map

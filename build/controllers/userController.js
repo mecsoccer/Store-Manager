@@ -1,28 +1,21 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _jsonwebtoken = require('jsonwebtoken');
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
-var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
+var _bcryptjs = _interopRequireDefault(require("bcryptjs"));
 
-var _bcryptjs = require('bcryptjs');
+var _dotenv = _interopRequireDefault(require("dotenv"));
 
-var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
-
-var _dotenv = require('dotenv');
-
-var _dotenv2 = _interopRequireDefault(_dotenv);
-
-var _migration = require('../models/migration');
-
-var _migration2 = _interopRequireDefault(_migration);
+var _migration = _interopRequireDefault(require("../models/migration"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_dotenv2.default.config();
+_dotenv.default.config();
 
 var secret = process.env.SECRET_KEY;
 
@@ -32,9 +25,11 @@ function getAllUsers(req, res) {
     values: []
   };
 
-  _migration2.default.query(query).then(function (users) {
+  _migration.default.query(query).then(function (users) {
     var allUsers = users.rows;
-    res.status(200).json({ allUsers: allUsers });
+    res.status(200).json({
+      allUsers: allUsers
+    });
   }).catch(function (err) {
     res.status(500).json(err);
   });
@@ -42,16 +37,16 @@ function getAllUsers(req, res) {
 
 function getUser(req, res) {
   var userId = req.params.userId;
-
-
   var query = {
     text: 'SELECT * FROM users WHERE id = $1;',
     values: [userId]
   };
 
-  _migration2.default.query(query).then(function (requestedUser) {
+  _migration.default.query(query).then(function (requestedUser) {
     var user = requestedUser.rows[0];
-    return res.status(200).json({ user: user });
+    return res.status(200).json({
+      user: user
+    });
   }).catch(function (err) {
     res.status(500).json(err);
   });
@@ -61,20 +56,23 @@ function addUser(req, res) {
   var _req$body = req.body,
       username = _req$body.username,
       password = _req$body.password,
-      email = _req$body.email;
+      email = _req$body.email,
+      role = _req$body.role;
 
+  var salt = _bcryptjs.default.genSaltSync(10);
 
-  var salt = _bcryptjs2.default.genSaltSync(10);
-  var hash = _bcryptjs2.default.hashSync(password, salt);
+  var hash = _bcryptjs.default.hashSync(password, salt);
 
   var query = {
-    text: 'INSERT INTO users(username, password, email, productSold, noOfSales, worthOfSales) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
-    values: [username, hash, email, 0, 0, 0]
+    text: 'INSERT INTO users(username, password, email, productSold, noOfSales, worthOfSales, role) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    values: [username, hash, email, 0, 0, 0, role]
   };
 
-  _migration2.default.query(query).then(function (user) {
+  _migration.default.query(query).then(function (user) {
     var newAttendant = user.rows[0];
-    return res.status(201).json({ newAttendant: newAttendant });
+    return res.status(201).json({
+      newAttendant: newAttendant
+    });
   }).catch(function (err) {
     res.status(500).json(err);
   });
@@ -82,28 +80,49 @@ function addUser(req, res) {
 
 function login(req, res) {
   var _req$body2 = req.body,
-      username = _req$body2.username,
-      password = _req$body2.password;
-
-
-  var token = _jsonwebtoken2.default.sign(req.body, secret, { expiresIn: '1hr' });
-
+      usernameInput = _req$body2.usernameInput,
+      passwordInput = _req$body2.passwordInput;
   var query = {
     text: 'SELECT * FROM users WHERE username = $1',
-    values: [username]
+    values: [usernameInput]
   };
 
-  _migration2.default.query(query).then(function (user) {
+  _migration.default.query(query).then(function (user) {
     var foundUser = user.rows[0];
-    if (!_bcryptjs2.default.compareSync(password, foundUser.password)) {
-      return res.status(401).json({ error: true, message: 'sorry username and password have no match' });
+
+    if (!_bcryptjs.default.compareSync(passwordInput, foundUser.password)) {
+      return res.status(401).json({
+        error: true,
+        message: 'username or password incorrect'
+      });
     }
-    return res.status(200).json({ username: username, token: token });
+
+    return foundUser;
+  }).then(function (foundUser) {
+    var username = foundUser.username,
+        password = foundUser.password,
+        role = foundUser.role;
+
+    var token = _jsonwebtoken.default.sign({
+      username: username,
+      password: password,
+      role: role
+    }, secret, {
+      expiresIn: '1hr'
+    });
+
+    return res.status(200).json({
+      username: username,
+      role: role,
+      token: token
+    });
   }).catch(function () {
     var error = true,
-        message = 'sorry username and password have no match';
-
-    return res.status(401).json({ error: error, message: message });
+        message = 'user does not exist';
+    return res.status(401).json({
+      error: error,
+      message: message
+    });
   });
 }
 
@@ -114,16 +133,16 @@ function updateUser(req, res) {
       noOfSales = _req$body3.noOfSales,
       worthOfSales = _req$body3.worthOfSales;
   var userId = req.params.userId;
-
-
   var query = {
     text: 'UPDATE users SET productSold = $1,noOfSales =$2,worthOfSales = $3 WHERE username = $4 AND id = $5;',
     values: [productSold, noOfSales, worthOfSales, username, userId]
   };
 
-  _migration2.default.query(query).then(function (user) {
+  _migration.default.query(query).then(function (user) {
     var updatedUser = user;
-    return res.status(200).json({ updatedUser: updatedUser });
+    return res.status(200).json({
+      updatedUser: updatedUser
+    });
   }).catch(function (err) {
     res.status(500).json(err);
   });
@@ -132,16 +151,16 @@ function updateUser(req, res) {
 function deleteUser(req, res) {
   var userId = req.params.userId;
   var username = req.body.username;
-
-
   var query = {
     text: 'DELETE FROM users WHERE id = $1 AND username = $2;',
     values: [userId, username]
   };
 
-  _migration2.default.query(query).then(function (user) {
+  _migration.default.query(query).then(function (user) {
     var deletedUser = user;
-    return res.status(200).json({ deletedUser: deletedUser });
+    return res.status(200).json({
+      deletedUser: deletedUser
+    });
   }).catch(function (err) {
     res.status(200).json(err);
   });
@@ -152,22 +171,29 @@ function giveAdminRight(req, res) {
   var _req$body4 = req.body,
       username = _req$body4.username,
       role = _req$body4.role;
-
-
   var query = {
     text: 'UPDATE users SET role=$1 WHERE id=$2 and username=$3;',
     values: [role, userId, username]
   };
 
-  _migration2.default.query(query).then(function (user) {
+  _migration.default.query(query).then(function (user) {
     var adminUser = user;
-    return res.status(200).json({ adminUser: adminUser });
+    return res.status(200).json({
+      adminUser: adminUser
+    });
   }).catch(function (err) {
     res.status(500).json(err);
   });
 }
 
-exports.default = {
-  addUser: addUser, login: login, getAllUsers: getAllUsers, getUser: getUser, updateUser: updateUser, deleteUser: deleteUser, giveAdminRight: giveAdminRight
+var _default = {
+  addUser: addUser,
+  login: login,
+  getAllUsers: getAllUsers,
+  getUser: getUser,
+  updateUser: updateUser,
+  deleteUser: deleteUser,
+  giveAdminRight: giveAdminRight
 };
+exports.default = _default;
 //# sourceMappingURL=userController.js.map
