@@ -49,6 +49,11 @@ body{
     font-weight: bold;
 }
 
+/* color */
+.txt-ash-black{
+    color: #707070;
+}
+
 /*images*/
 svg{
     width: 20px;
@@ -179,7 +184,7 @@ svg{
     border: none;
 }
 .border-1{
-    border: 1px solid #707070;
+    border: 1px solid #BCE0FD;
 }
 
 /* radius */
@@ -219,9 +224,10 @@ tr:nth-child(even){
     height: 60px;
     width: 100%;
     box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
-    background-color: #F4F4F8;
+    background-color: #0C8BE8;
     flex-wrap: wrap;
     padding: 0;
+    z-index: 2;
 }
 .top-nav-list{
     margin-top: 0px;
@@ -229,10 +235,11 @@ tr:nth-child(even){
 .side-bar{
     height: 100vh;
     position: fixed;
-    top: 65px;
+    top: 60px;
     left: 0;
     transform: translate(0, 0);
     transition: transform 0.3s ease;
+    z-index: 1;
 }
 .close{
     -webkit-transform: translate(-100vw, 0);
@@ -255,17 +262,20 @@ tr:nth-child(even){
 /* tabs */
 .tab-container{
     overflow-y: hidden;
-    padding: 8px 0 4px 0;
 }
 .tab{
     color: #707070;
-    border-radius: 5px;
+    border-radius: 5px 5px 0px 0px;
     padding: 7px 5%;
+    float: left;
     cursor: pointer;
+}
+.tab:hover{
+    background: aliceblue;
 }
 .tab-main{
     color: #44A751;
-    background: #F4F4EF;
+    background: white;
     font-weight: bold;
 }
 
@@ -279,6 +289,18 @@ tr:nth-child(even){
 .block{
     display: block;
 }
+/* position */
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+
+/* cursor */
+.pointer{
+    cursor: pointer;
+}
 
 /* others */
 .logo-name{
@@ -290,7 +312,7 @@ tr:nth-child(even){
     float: left;
 }
 .menu-button{
-    padding: 20px 0 0 20px;
+    padding: 15px 0 0 20px;
     width: 20%;
     float: left;
 }
@@ -308,7 +330,6 @@ tr:nth-child(even){
 .container{
     width: 100%;
     margin-top: 60px;
-    padding: 4%;
 }
 .dom-color{
     color: #0C8BE8;
@@ -401,7 +422,7 @@ tr:nth-child(even){
 .cart-svg{
     width: fit-content;
     height: 58px;
-    background-image: url("https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/cart.svg");
+    background-image: url("../image/storemanager/cart.svg");
     padding-left: 22px;
     margin: auto;
     margin-top: 20px;
@@ -448,7 +469,7 @@ tr:nth-child(even){
     color: #0C8BE8;
 }
 .side-bar-customs{
-    background: #707070;
+    background: #58646d;
 }
 .back-arrow{
     width: 12px;
@@ -477,18 +498,26 @@ hr{
     background-color: #44A751; 
     border: none;
 }
-.all-products{
-    height: 65vh;
-}
-.category-drop-header{
-    padding: 5px 5px;
-    background: #707070;
-    text-align: center;
-}
 .cat-prod-list{
     height: 60vh;
 }
-
+.showing{
+    padding: 5px;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+}
+.content{
+    padding: 1px 4%;
+}
+.tab-position{
+    padding: 5px 2% 0 2%;
+    background: #ECEEEF;
+    height: 60px;
+}
+.menu{
+    width: 30px;
+}
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

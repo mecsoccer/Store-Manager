@@ -24,11 +24,7 @@ describe('Tests for sales', () => {
       .send(admin)
       .end((err, res) => {
         adminToken = res.body.token;
-        done();
       });
-  });
-
-  before((done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(attendant)
@@ -38,7 +34,7 @@ describe('Tests for sales', () => {
       });
   });
 
-  context('#get requests for sales', () => {
+  describe('get requests for sales', () => {
     it('Should not return sales record if not admin', (done) => {
       chai.request(app)
         .get('/api/v1/sales')
@@ -100,7 +96,7 @@ describe('Tests for sales', () => {
     });
   });
 
-  context('#post requests for sales', () => {
+  describe('post requests for sales', () => {
     it('should return 401 and error message if request has bad token', (done) => {
       chai.request(app)
         .post('/api/v1/sales')

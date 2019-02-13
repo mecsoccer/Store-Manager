@@ -5,64 +5,63 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/base.css">
-<<<<<<< HEAD
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/sign-up.css">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/index.css">
-=======
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/products.css">
->>>>>>> 5f13f1e0d5a73eebf99fae6c60d12aa1103d73f4
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/responsive.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="./UI/stylesheet/new-main.css">
+  <link rel="stylesheet" href="./UI/stylesheet/new-responsive.css">
   <link rel="icon" href="">
 </head>
 <body>
 
-  <header class="header">
-    <a class="menu">
-      <svg xmlns="http://www.w3.org/20d00/svg" viewBox="0 0 24 24">
-        <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
-      </svg>
-    </a>
-<<<<<<< HEAD
-    <h1>
-      <a href="https://mecsoccer.github.io/Store-Manager/index.html">Store Man</a>
-    </h1>
-=======
-    <h1>Store Man</h1>
-    <nav class="nav-bar">
-      <li><a href="https://mecsoccer.github.io/Store-Manager/UI/products.html">Products</a></li>
-      <li><a href="https://mecsoccer.github.io/Store-Manager/UI/categories.html">Categories</a></li>
-      <li><a href="https://mecsoccer.github.io/Store-Manager/UI/admin.html">Admin</a></li>
-      <li><a href="https://mecsoccer.github.io/Store-Manager/UI/sales-record.html">Sales</a></li>
-      <li class="login"><a href="https://mecsoccer.github.io/Store-Manager/UI/login.html">Login</a></li>
-    </nav>
->>>>>>> 5f13f1e0d5a73eebf99fae6c60d12aa1103d73f4
-  </header>
-  <h3 class="page-title">Login Page</h3>
-  <div class="sign-up">
-    <form action="/login">
-	  <label for="username" class="col-25">Username</label>
-      <input type="text" id="username" name="username" class="col-75" placeholder="Enter Username" required>
-	  
-	  <label for="password" class="col-25">Password</label>
-    <input type="password" id="password" name="password" class="col-75" placeholder="Enter password" required>
-	  
-	  <label class="col-25">
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-	  
-    <input class="col-25 submit-sign-up" type="submit" value="Login">
-	  
-	  <p class="right col-25"><a href="#">forgot password?</a></p>
-	  
-    </form>
+  <nav class="top-navbar">
+    <header class="logo-name white-text twelvecol">Store Manager</header>
+  </nav>
+  <div class="sign-in-container">
+    <div class="page-title sign-in-title">Sign in to your account</div>
+    <div class="">
+        <input type="text" id="username" class="twelvecol password-field" placeholder="Username"/>
+    </div>
+    <div class="">
+        <input type="password" id="password" class="twelvecol password-field" placeholder="Password"/>
+    </div>
+    <div class="">
+        <button class="dom-color-bkg white centered sign-in-button">SIGN IN</button>
+    </div>
+    <div class="center-text margin-top40">
+        <a class="twelvecol dom-color format-link" href="#">Forgot your password?</a>
+    </div>
   </div>
-<<<<<<< HEAD
-=======
-  
->>>>>>> 5f13f1e0d5a73eebf99fae6c60d12aa1103d73f4
-  <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/toggle.js"></script>
+  <script>
+    const submit = document.querySelector('.sign-in-button');
+
+    submit.addEventListener('click', () => {
+      const usernameInput = document.querySelector('#username').value;
+      const passwordInput = document.querySelector('#password').value;
+      signIn({ usernameInput, passwordInput });
+    })
+
+    function signIn(loginDetails) {
+      return fetch('https://stark-crag-43885.herokuapp.com/api/v1/auth/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json'},
+        mode: 'cors',
+        body: JSON.stringify(loginDetails)
+      })
+      .then(function(response) {
+        const responseJson = response.json();
+        return responseJson;
+      })
+      .then((data) => {
+        sessionStorage.setItem('user', data.username);
+        sessionStorage.setItem('token', data.token);
+        window.location.assign('./UI/cart.html');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  </script>
   
 </body>
 </html>
+  

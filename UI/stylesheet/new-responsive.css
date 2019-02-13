@@ -14,7 +14,7 @@
         margin-bottom: 85px;
     }
     .side-bar{
-        top: 85px;
+        top: 80px;
     }
     .logo-name{
         font-size: 32px;
@@ -27,9 +27,6 @@
         margin: 170px 20% 0 20%;
         width: auto;
     }
-    .container{
-        padding: 4%;
-    }
     .container.open{
         width: 100%;
         padding: 4% 20%;
@@ -37,10 +34,6 @@
 }
 
 @media screen and (min-width: 700px) {
-
-}
-
-@media screen and (min-width: 800px) {
     .logo-name{
         width: 100%;
     }
@@ -52,6 +45,9 @@
     }
     .back-arrow{
         display: none;
+    }
+    .tab-position{
+        padding: 5px 10% 0 10%;
     }
     /* custom css*/
     .side-bar{
@@ -67,6 +63,7 @@
         transform: translate(0, 0);
     }
     .container{
+        margin-top: 80px;
         width: 75%;
         float: right;
     }

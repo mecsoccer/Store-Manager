@@ -6,57 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/new-sign-in.css">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/new-responsive.css">
-  <link rel="stylesheet" href="/stylesheet/new-main.css">
-  <link rel="stylesheet" href="/stylesheet/new-responsive.css">
+  <link rel="stylesheet" href="./stylesheet/new-main.css">
+  <link rel="stylesheet" href="./stylesheet/new-responsive.css">
   <link rel="icon" href="">
 </head>
 <body>
 
   <nav class="top-navbar">
     <div class="menu-button">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.5 14"><defs><style>.a{fill-rule:evenodd;opacity:0.54;}</style></defs><path class="a" d="M3,20H23.5V17.667H3V20Zm0-5.833H23.5V11.833H3v2.333ZM3,6V8.333H23.5V6Z" transform="translate(-3 -6)"/></svg>
+        <img class="menu" src="./image/storemanager/ic_menu.svg">
     </div>
-    <header class="logo-menu logo-name dom-color sixty-percent"><a class="format-link" href="#">Store Manager</a></header>
+    <header class="logo-menu logo-name white-text sixty-percent"><a class="format-link" href="#">Store Manager</a></header>
   </nav>
   <div class="container">
     <div class="side-bar eightcol side-bar-customs open close">
         <div>
-            <img class="back-arrow top-margin-25" src="https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/backward-arrow.svg">
+            <img class="back-arrow top-margin-25" src="./image/storemanager/backward-arrow.svg">
         </div>
         <ul class="side-nav-list">
-            <li class="side-nav-btn">PRODUCTS</li>
-            <li class="side-nav-btn">CATEGORIES</li>
             <li class="side-nav-btn highlighted">CART</li>
+            <li class="side-nav-btn"><a href="./products.html" class="format-link">PRODUCTS</a></li>
+            <li class="side-nav-btn">CATEGORIES</li>
             <li class="side-nav-btn">SALES</li>
             <li class="side-nav-btn">MY PROFILE</li>
             <li class="side-nav-btn top-padding-45" id="sign-out">SIGN OUT</li>
         </ul>
     </div>
-    <div class="fit left top-margin-25">
-      <img class="menu-button-2" src="https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/menu2.svg">
-    </div>
-    <div class="cart-svg">
-      <div class="cart-qty white-text"><a class="format-link" href="#">0</a></div>
-      <span class="cart-total">$0</span>
-    </div>
-    <input class="search-bar twelvecol top-margin-45" type="text" placeholder="Search for products and categories">
-    <div>
-        <div class="cart-content products align-center">
-            <table>
-                <tr class="table-header align-left">
-                    <th>Product name</th>
-                    <th class="align-center">Price($)</th>
-                    <th>Quantity</th>
-                </tr>
-            </table>
+    <div class="content">
+        <div class="fit left top-margin-25">
+            <img class="menu-button-2" src="./image/storemanager/menu2.svg">
         </div>
-      <div class="centered fit">
-        <button class="trans-btn a-t-c-btn top-margin-25" id="place-order">Place order</button>
-      </div>
+        <div class="cart-svg">
+            <div class="cart-qty white-text"><a class="format-link" href="#">0</a></div>
+            <span class="cart-total">$0</span>
+        </div>
+        <input class="search-bar twelvecol top-margin-45" type="text" placeholder="Search for products and categories">
+        <div>
+            <div class="cart-content products align-center">
+                <table>
+                    <tr class="table-header align-left">
+                        <th>Product name</th>
+                        <th class="align-center">Price($)</th>
+                        <th>Quantity</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="centered fit">
+            <button class="trans-btn a-t-c-btn top-margin-25" id="place-order">Place order</button>
+        </div>
     </div>
-  </div>
   <!-- The Modal -->
     <div id="myModal" class="modal">
 
@@ -76,8 +75,8 @@
     
     </div>
   
-  <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/storeman.js"></script>
-  <script src="https://mecsoccer.github.io/Store-Manager/UI/javascript/add-to-cart.js"></script>
+  <script src="./javascript/storeman.js"></script>
+  <script src="./javascript/add-to-cart.js"></script>
   
 </body>
 </html>

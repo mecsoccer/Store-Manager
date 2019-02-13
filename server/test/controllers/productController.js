@@ -20,10 +20,7 @@ describe('products', () => {
       .send(admin)
       .end((err, res) => {
         adminToken = res.body.token;
-        done();
       });
-  });
-  before((done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(attendant)
@@ -33,7 +30,7 @@ describe('products', () => {
       });
   });
 
-  context('#get requests for products', () => {
+  describe('get requests for products', () => {
     it('Should return all products', (done) => {
       chai.request(app)
         .get('/api/v1/products')
@@ -82,7 +79,7 @@ describe('products', () => {
     });
   });
 
-  context('#post requests for products', () => {
+  describe('post requests for products', () => {
     it('attendants should not add products to the store', (done) => {
       chai.request(app)
         .post('/api/v1/products')

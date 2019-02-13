@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'UI')));
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://mecsoccer.github.io');
+  res.header('Access-Control-Allow-Origin', 'https://mecsoccer.github.io/Store-Manager');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-type, Authorization, Accept');
   res.header('Access-Control-Allow-Methods', 'POST, OPTIONS, GET, PUT, DELETE');

@@ -1,13 +1,13 @@
-//for the menu icon
-var menu = document.querySelector('.menu');
-var main = document.querySelector('.content');
-var nav = document.querySelector('.nav-bar');
+// for the menu icon
+const menu = document.querySelector('.menu');
+const main = document.querySelector('.content');
+const nav = document.querySelector('.nav-bar');
 
-menu.addEventListener('click', function(e){
-	nav.classList.toggle('open');
-	e.stopPropagation();
+menu.addEventListener('click', (e) => {
+  nav.classList.toggle('open');
+  e.stopPropagation();
 });
 
-main.addEventListener('click',function(){
-	nav.classList.remove('open');
+main.addEventListener('click', () => {
+  nav.classList.remove('open');
 });

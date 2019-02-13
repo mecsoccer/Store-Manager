@@ -6,16 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/new-sign-in.css">
-  <link rel="stylesheet" href="https://mecsoccer.github.io/Store-Manager/UI/stylesheet/new-responsive.css">
-  <link rel="stylesheet" href="/stylesheet/new-main.css">
-  <link rel="stylesheet" href="/stylesheet/new-responsive.css">
+  <link rel="stylesheet" href="./stylesheet/new-main.css">
+  <link rel="stylesheet" href="./stylesheet/new-responsive.css">
   <link rel="icon" href="">
 </head>
 <body>
 
   <nav class="top-navbar">
-    <header class="logo-name dom-color twelvecol">Store Manager</header>
+    <header class="logo-name white-text twelvecol">Store Manager</header>
   </nav>
   <div class="sign-in-container">
     <div class="page-title sign-in-title">Sign in to your account</div>
@@ -40,7 +38,7 @@
       const passwordInput = document.querySelector('#password').value;
       signIn({ usernameInput, passwordInput });
     })
-
+    
     function signIn(loginDetails) {
       return fetch('https://stark-crag-43885.herokuapp.com/api/v1/auth/login', {
         method: 'POST',
@@ -56,7 +54,7 @@
       .then((data) => {
         sessionStorage.setItem('user', data.username);
         sessionStorage.setItem('token', data.token);
-        window.location.assign('https://mecsoccer.github.io/Store-Manager/UI/cart.html');
+        window.location.assign('./cart.html');
       })
       .catch((err) => {
         console.log(err);

@@ -1,4 +1,3 @@
-const signOut = document.querySelector('#sign-out');
 const token = sessionStorage.getItem('token');
 const cartQuantity = document.querySelector('.cart-qty');
 const cartTotal = document.querySelector('.cart-total');
@@ -6,12 +5,6 @@ const seachBar = document.querySelector('.search-bar');
 const globalCart = [];
 const nameIdDict = {};
 let productStore;
-
-signOut.addEventListener('click', () => {
-  sessionStorage.removeItem('token');
-  sessionStorage.removeItem('user');
-  window.location.assign('https://mecsoccer.github.io/Store-Manager/UI/login.html');
-});
 
 function displayProducts(productArray) {
   const oldList = document.querySelectorAll('.product');
@@ -24,12 +17,12 @@ function displayProducts(productArray) {
   productArray.forEach((product) => {
     nameIdDict[product.name] = product.id;
     const tableRow = document.createElement('tr');
-    tableRow.className = 'product align-left';
+    tableRow.className = 'product align-left bold txt-ash-black';
 
     tableRow.innerHTML = `
             <td class="left-end-major fourteen"><input class="fourteen no-margin" type="checkbox" value="${product.name}" name="${product.name}">${product.name}</td>
             <td class="fourteen fifteen-percent align-center" id="price">${product.price}</td>
-            <td class="ten-percent left-padding-10"><span class="qty fourteen">1</span><img class="delta-up" src="https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/increase.svg"><img class="delta-down" src="https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/reduce.svg"></td>
+            <td class="ten-percent left-padding-10"><span class="qty fourteen">1</span><img class="delta-up" src="../UI/image/storemanager/increase.svg"><img class="delta-down" src="../UI/image/storemanager/reduce.svg"></td>
         `;
 
     productList.appendChild(tableRow);
@@ -91,6 +84,7 @@ function addButtonListeners() {
   });
 }
 
+
 function getProducts() {
   return fetch('https://stark-crag-43885.herokuapp.com/api/v1/products/available', {
     headers: { 'Content-Type': 'application/json', Authorization: token },
@@ -123,6 +117,7 @@ seachBar.addEventListener('keydown', () => {
   addButtonListeners();
 });
 
+
 /* show cart contents */
 const cartContent = document.querySelector('.cart-svg');
 
@@ -144,7 +139,7 @@ cartContent.addEventListener('click', () => {
     tableRow.innerHTML = `
             <td class="left-end-major fourteen"><input class="fourteen no-margin" type="checkbox" value="${productName}" name="${productName}" checked>${productName}</td>
             <td class="fourteen fifteen-percent align-center" id="price">${price}</td>
-            <td class="ten-percent left-padding-10"><span class="qty fourteen">${quantity}</span><img class="delta-up" src="https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/increase.svg"><img class="delta-down" src="https://mecsoccer.github.io/Store-Manager/UI/image/storemanager/reduce.svg"></td>
+            <td class="ten-percent left-padding-10"><span class="qty fourteen">${quantity}</span><img class="delta-up" src="increase.svg"><img class="delta-down" src="reduce.svg"></td>
         `;
 
     productList.appendChild(tableRow);
@@ -169,11 +164,14 @@ const placeOrder = document.querySelector('#place-order');
 
 placeOrder.addEventListener('click', () => {
   globalCart.forEach((product) => {
+    /*      const checkButton = product.querySelector('input').checked;
+        if (checkButton === false) continue;  */
     const seller = sessionStorage.getItem('user');
     const productName = product.querySelector('input').value;
-    const quantity = product.querySelector('.qty').innerHTML;
+    const quantitySold = product.querySelector('.qty').innerHTML;
     const price = product.querySelector('#price').innerHTML;
-    const total = Number(quantity) * Number(price);
+    const total = `${String(Number(quantitySold) * Number(price))}.00`;
+    const productId = nameIdDict[productName];
 
     fetch('https://stark-crag-43885.herokuapp.com/api/v1/sales', {
       method: 'POST',
@@ -181,30 +179,13 @@ placeOrder.addEventListener('click', () => {
       headers: { 'Content-Type': 'application/json', Authorization: token },
       mode: 'cors',
       body: JSON.stringify({
-        seller, productName, quantity, price, total,
+        seller, productName, quantitySold, price, total, productId,
       }),
     })
       .then((fetchResponse) => {
-        console.log(fetchResponse);
-        const id = nameIdDict[productName];
-        fetch(`https://stark-crag-43885.herokuapp.com/api/v1/products/${id}`, {
-          method: 'PUT',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json', Authorization: token },
-          mode: 'cors',
-          body: JSON.stringify({
-            quantityLeft: 10, quantity, productName, id,
-          }),
-        })
-          .then((response) => {
-            console.log(response);
-            if (response.status === 200) {
-              modal.style.display = 'block';
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        if (fetchResponse.status === 201) {
+          modal.style.display = 'block';
+        }
       })
       .catch((err) => {
         console.log(err);

@@ -1,6 +1,6 @@
 function validateSales(req, res, next) {
   const {
-    seller, productName, quantity, price, total,
+    seller, productName, quantitySold, price, total, productId,
   } = req.body;
 
   const sellerExp = /^[a-z]+$/g;
@@ -22,10 +22,10 @@ function validateSales(req, res, next) {
     });
   }
 
-  if (integerExp.test(quantity) === false) {
+  if (integerExp.test(quantitySold) === false) {
     return res.status(422).json({
       error: true,
-      message: 'quantity must be an integer.',
+      message: 'quantitySold must be an integer.',
     });
   }
 
@@ -40,6 +40,13 @@ function validateSales(req, res, next) {
     return res.status(422).json({
       error: true,
       message: "total must be a number having two decimal places enclosed in quotes eg. '20.00'",
+    });
+  }
+
+  if (integerExp.test(productId) === false) {
+    return res.status(422).json({
+      error: true,
+      message: 'productId must be an integer.',
     });
   }
 

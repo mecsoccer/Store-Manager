@@ -1,3 +1,13 @@
+// sign out
+const signOut = document.querySelector('#sign-out');
+
+signOut.addEventListener('click', () => {
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('user');
+  window.location.assign('../UI/login.html');
+});
+
+// menu buttons
 const menuButton = document.querySelector('.menu-button');
 const menuButton2 = document.querySelector('.menu-button-2');
 const sideBar = document.querySelector('.side-bar');

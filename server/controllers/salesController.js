@@ -43,18 +43,53 @@ function getSpecificSale(req, res) {
 
 function addSale(req, res) {
   const {
-    seller, productName, quantity, price, total,
+    seller, productName, quantitySold, price, total, productId,
   } = req.body;
 
   const query = {
     text: 'INSERT INTO sales(seller, productName, quantity, price, total) VALUES($1, $2, $3, $4, $5) RETURNING *',
-    values: [seller, productName, quantity, price, total],
+    values: [seller, productName, quantitySold, price, total],
   };
 
   pool.query(query)
     .then((sale) => {
       const newSale = sale.rows[0];
-      return res.status(201).json({ newSale });
+      return newSale;
+    })
+    .then((newSale) => {
+      const query1 = {
+        text: 'SELECT quantityleft,quantitysold FROM products WHERE id = $1;',
+        values: [productId],
+      };
+      pool.query(query1)
+        .then((data) => {
+          const { quantityleft, quantitysold } = data.rows[0];
+          const newQuantityLeft = Number(quantityleft) - Number(quantitySold);
+          const newQuantitySold = Number(quantitysold) + Number(quantitySold);
+          return { newQuantityLeft, newQuantitySold };
+        })
+        .then((data) => {
+          const { newQuantityLeft, newQuantitySold } = data;
+          const query2 = {
+            text: 'UPDATE products SET quantityleft = $1, quantitysold = $2 WHERE id = $3;',
+            values: [newQuantityLeft, newQuantitySold, productId],
+          };
+          pool.query(query2)
+            .then((product) => {
+              const updatedProduct = product;
+              return updatedProduct;
+            })
+            .catch((err) => {
+              res.status(500).json(err);
+            });
+        })
+        .catch((err) => {
+          res.status(500).json(err);
+        });
+      return newSale;
+    })
+    .then((newSale) => {
+      res.status(201).json({ newSale });
     })
     .catch((err) => {
       res.status(500).json(err);

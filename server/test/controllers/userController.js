@@ -21,10 +21,7 @@ describe('Users', () => {
       .send(admin)
       .end((err, res) => {
         adminToken = res.body.token;
-        done();
       });
-  });
-  before((done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(attendant)
@@ -34,7 +31,7 @@ describe('Users', () => {
       });
   });
 
-  context('Tests for Login route', () => {
+  describe('Tests for Login route', () => {
     it('should return a 422 if username or password fields are empty', (done) => {
       chai.request(app)
         .post('/api/v1/auth/login')
@@ -75,7 +72,7 @@ describe('Users', () => {
     });
   });
 
-  context('Add / signup a new store attendant', () => {
+  describe('Add / signup a new store attendant', () => {
     it('Should add new attendant if data is correct', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
