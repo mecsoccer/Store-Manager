@@ -12,5 +12,6 @@ cache:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql -c "CREATE USER jaachimma WITH PASSWORD 'password';" -U postgres
+  - npm run migrate
 script: npm run test
 after_script: npm run coverage
