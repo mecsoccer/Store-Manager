@@ -8,36 +8,27 @@ dotenv.config();
 const secret = process.env.SECRET_KEY;
 
 function getAllUsers(req, res) {
-  const query = {
-    text: 'SELECT * FROM users',
-    values: [],
-  };
-
-  pool.query(query)
+  pool.query('SELECT * FROM users')
     .then((users) => {
       const allUsers = users.rows;
       res.status(200).json({ allUsers });
     })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
+    .catch();
 }
 
 function getUser(req, res) {
   const { userId } = req.params;
 
-  const query = {
-    text: 'SELECT * FROM users WHERE id = $1;',
-    values: [userId],
-  };
-
-  pool.query(query)
+  pool.query('SELECT * FROM users WHERE id = $1;', [userId])
     .then((requestedUser) => {
       const user = requestedUser.rows[0];
-      return res.status(200).json({ user });
+      return !user ? Promise.reject() : user;
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .then((user) => {
+      res.status(200).json({ user });
+    })
+    .catch(() => {
+      res.status(404).json({ error: `user id, ${userId} does not exist` });
     });
 }
 
@@ -50,14 +41,16 @@ function addUser(req, res) {
   const hash = bcrypt.hashSync(password, salt);
 
   const query = {
-    text: 'INSERT INTO users(username, password, email, productSold, noOfSales, worthOfSales, role) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    text: `INSERT INTO
+           users(username, password, email, productSold, noOfSales, worthOfSales, role)
+           VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
     values: [username, hash, email, 0, 0, 0, role],
   };
 
   pool.query(query)
     .then((user) => {
       const newAttendant = user.rows[0];
-      return res.status(201).json({ newAttendant });
+      res.status(201).json({ newAttendant });
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -67,48 +60,67 @@ function addUser(req, res) {
 function login(req, res) {
   const { usernameInput, passwordInput } = req.body;
 
-  const query = {
-    text: 'SELECT * FROM users WHERE username = $1',
-    values: [usernameInput],
-  };
-
-  pool.query(query)
+  pool.query('SELECT * FROM users WHERE username = $1', [usernameInput])
     .then((user) => {
       const foundUser = user.rows[0];
-      if (!bcrypt.compareSync(passwordInput, foundUser.password)) {
-        return res.status(401).json({ error: true, message: 'username or password incorrect' });
-      }
-      return foundUser;
+      const authenticated = bcrypt.compareSync(passwordInput, foundUser.password);
+      return (!authenticated) ? Promise.reject() : foundUser;
     })
     .then((foundUser) => {
       const { username, password, role } = foundUser;
       const token = jwt.sign({ username, password, role }, secret, { expiresIn: '1hr' });
-      return res.status(200).json({ username, role, token });
+      res.status(200).json({ username, role, token });
     })
     .catch(() => {
-      const [error, message] = [true, 'user does not exist'];
-      return res.status(401).json({ error, message });
+      res.status(401).json({ error: 'incorrect username or password' });
     });
 }
 
-function updateUser(req, res) {
+function updateUserSales(req, res) {
   const {
-    username, productSold, noOfSales, worthOfSales,
+    productSold, noOfSales, worthOfSales,
   } = req.body;
   const { userId } = req.params;
 
-  const query = {
-    text: 'UPDATE users SET productSold = $1,noOfSales =$2,worthOfSales = $3 WHERE username = $4 AND id = $5;',
-    values: [productSold, noOfSales, worthOfSales, username, userId],
-  };
+  const text = `UPDATE users
+                SET productSold = $1,noOfSales =$2,worthOfSales = $3
+                WHERE id = $4 returning *;`;
+  const values = [productSold, noOfSales, worthOfSales, userId];
 
-  pool.query(query)
+  pool.query(text, values)
     .then((user) => {
-      const updatedUser = user;
-      return res.status(200).json({ updatedUser });
+      const updatedUser = user.rows[0];
+      return !updatedUser ? Promise.reject(userId) : updatedUser;
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .then((updatedUser) => {
+      res.status(200).json({ updatedUser });
+    })
+    .catch((id) => {
+      res.status(404).json({ error: `user id, ${id} does not exist` });
+    });
+}
+
+function updateUserData(req, res) {
+  const { userId } = req.params;
+  const { username, password, email } = req.body;
+
+  const hashPassword = bcrypt.hashSync(password, 10);
+
+  const text = `UPDATE users
+                SET username=$1, password=$2, email=$3
+                WHERE id=$4 returning *`;
+  const values = [username, hashPassword, email, userId];
+
+  pool.query(text, values)
+    .then((userArray) => {
+      const user = userArray.rows[0];
+      return !user ? Promise.reject() : user;
+    })
+    .then((updatedUser) => {
+      res.status(200).json({ updatedUser });
+    })
+    .catch((id) => {
+      res.status(404).json({ error: `user id, ${id} does not exist` });
     });
 }
 
@@ -116,40 +128,41 @@ function deleteUser(req, res) {
   const { userId } = req.params;
   const { username } = req.body;
 
-  const query = {
-    text: 'DELETE FROM users WHERE id = $1 AND username = $2;',
-    values: [userId, username],
-  };
+  const text = 'DELETE FROM users WHERE id = $1 AND username = $2 returning *;';
+  const values = [userId, username];
 
-  pool.query(query)
+  pool.query(text, values)
     .then((user) => {
-      const deletedUser = user;
-      return res.status(200).json({ deletedUser });
+      const deletedUser = user.rows[0];
+      return !deletedUser ? Promise.reject(userId) : deletedUser;
     })
-    .catch((err) => {
-      res.status(200).json(err);
-    });
+    .then((deletedUser) => {
+      res.status(200).json({ deletedUser });
+    })
+    .catch();
 }
 
 function giveAdminRight(req, res) {
   const { userId } = req.params;
-  const { username, role } = req.body;
+  const { admin } = req.body;
+  const role = (admin === true) ? 'admin' : 'attendant';
 
-  const query = {
-    text: 'UPDATE users SET role=$1 WHERE id=$2 and username=$3;',
-    values: [role, userId, username],
-  };
+  const text = 'UPDATE users SET role=$1 WHERE id=$2 returning *;';
+  const values = [role, userId];
 
-  pool.query(query)
+  pool.query(text, values)
     .then((user) => {
-      const adminUser = user;
-      return res.status(200).json({ adminUser });
+      const adminUser = user.rows[0];
+      return (!adminUser) ? Promise.reject(userId) : adminUser;
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .then((newAdmin) => {
+      res.status(200).json({ newAdmin });
+    })
+    .catch((errorId) => {
+      res.status(404).json({ error: `user id, ${errorId} does not exist` });
     });
 }
 
 export default {
-  addUser, login, getAllUsers, getUser, updateUser, deleteUser, giveAdminRight,
+  addUser, login, getAllUsers, getUser, updateUserSales, updateUserData, deleteUser, giveAdminRight,
 };

@@ -20,7 +20,10 @@ describe('products', () => {
       .send(admin)
       .end((err, res) => {
         adminToken = res.body.token;
+        done();
       });
+  });
+  before((done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .send(attendant)
@@ -80,18 +83,6 @@ describe('products', () => {
   });
 
   describe('post requests for products', () => {
-    it('attendants should not add products to the store', (done) => {
-      chai.request(app)
-        .post('/api/v1/products')
-        .set('Authorization', attendantToken)
-        .send(exampleProduct)
-        .end((err, res) => {
-          expect(res).to.have.status(401);
-          expect(res.body.message).to.equal('Sorry, accessible to admin only');
-          done();
-        });
-    });
-
     it('admin should add products to the store', (done) => {
       chai.request(app)
         .post('/api/v1/products')

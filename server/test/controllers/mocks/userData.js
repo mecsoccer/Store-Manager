@@ -4,12 +4,18 @@ dotenv.config();
 
 const userData = {
   admin: {
-    usernameInput: 'jaachimma onyenze',
-    passwordInput: process.env.ApiKey,
+    usernameInput: 'admin',
+    passwordInput: 'admin',
   },
   attendant: {
-    usernameInput: process.env.AttendantUsername,
-    passwordInput: process.env.AttendantKey,
+    usernameInput: 'attendant',
+    passwordInput: 'attendant',
+  },
+  updateAttendant: {
+    usernameInput: 'jaachido',
+    passwordInput: 'jaachido',
+    email: 'mecsoccerguy@gmail.com',
+    role: 'attendant',
   },
   newAttendant: {
     username: 'onyenze',

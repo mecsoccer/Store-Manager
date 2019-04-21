@@ -1,7 +1,9 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
 
-const connectionString = process.env.DATABASE_URL || 'postgres://postgres:06384579hf@localhost:5432/postgres';
+dotenv.config();
+
+const connectionString = process.env.DATABASE_URI;
 let ssl = false;
 
 if (process.env.NODE_ENV === 'production') ssl = true;

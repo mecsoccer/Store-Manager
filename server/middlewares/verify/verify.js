@@ -1,49 +1,63 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import pool from '../../models/database';
 
 dotenv.config();
 
 const secret = process.env.SECRET_KEY;
 
+function authVerify(req, res, next) {
+  const { authorization } = req.headers;
+
+  if (authorization) {
+    jwt.verify(authorization, secret, (err, authData) => {
+      if (err) {
+        res.status(401).json({ error: 'please provide valid authorization' });
+      }
+      if (authData) {
+        req.authData = authData;
+        next();
+      }
+    });
+  } else {
+    res.status(401).json({ error: 'Please, you have to sign in' });
+  }
+}
+
 function verifyAdmin(req, res, next) {
   const { role } = req.authData;
 
   if (role === 'admin') {
-    return next();
+    next();
+  } else {
+    res.status(401).json({ error: 'Sorry, accessible to admin only' });
   }
-  return res.status(401).json({ message: 'Sorry, accessible to admin only' });
 }
 
 function verifyAttendant(req, res, next) {
   const { role } = req.authData;
 
   if (role === 'attendant') {
-    return next();
+    next();
+  } else {
+    res.status(401).json({ error: 'Sorry, accessible to store attendants only' });
   }
-  return res.status(401).json({ message: 'Sorry, accessible to store attendants only' });
 }
 
-function authVerify(req, res, next) {
-  const { authorization } = req.headers;
+function verifyOwner(req, res, next) {
+  const { userId } = req.params;
+  const { username } = req.authData;
 
-  if (!authorization) {
-    return res.status(401).json({
-      message: 'Please, you have to sign in',
-      error: true,
+  pool.query('SELECT * FROM users WHERE id=$1;', [userId])
+    .then((userArray) => {
+      const user = userArray.rows[0];
+      return (user.username === username) ? next() : Promise.reject();
+    })
+    .catch(() => {
+      res.status(401).json({ error: 'sorry, resource accessible to owner only' });
     });
-  }
-
-  jwt.verify(authorization, secret, (err, authData) => {
-    if (err) {
-      return res.status(401).json({
-        message: 'You must provide valid authorization',
-        error: true,
-      });
-    }
-    req.authData = authData;
-  });
-
-  return next();
 }
 
-export default { verifyAdmin, verifyAttendant, authVerify };
+export default {
+  authVerify, verifyAdmin, verifyAttendant, verifyOwner,
+};
