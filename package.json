@@ -11,7 +11,7 @@
     "devstart": "nodemon --exec babel-node ./server/app.js",
     "migration": "babel-node ./server/models/migration.js",
     "unmigrate": "babel-node ./server/models/unmigrate.js",
-    "seed": "npm run unmigrate && babel-node ./server/models/seed.js",
+    "seed": "babel-node ./server/models/seed.js",
     "test": "npm run seed && nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.js --require @babel/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
