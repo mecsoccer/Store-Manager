@@ -1,5 +1,5 @@
 import pool from './database';
 
-pool.query('TRUNCATE TABLE users RESTART IDENTITY;');
-pool.query('TRUNCATE TABLE products RESTART IDENTITY;');
-pool.query('TRUNCATE TABLE sales RESTART IDENTITY;');
+pool.query('DROP TABLE IF EXISTS users');
+pool.query('DROP TABLE IF EXISTS products');
+pool.query('DROP TABLE IF EXISTS sales');

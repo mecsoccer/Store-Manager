@@ -2,16 +2,14 @@ language: node_js
 node_js: 
   - "stable"
 services:
-  - "postgresql"
+  - postgresql
 env:
   - NODE_ENV=test
-  - DATABASE_URI=postgres://jaachimma:password@localhost:5432/travis_ci_test
 cache:
   directories:
     - "node_modules"
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'create database store_manager;' -U postgres
   - psql -c "CREATE USER jaachimma WITH PASSWORD 'password';" -U postgres
-  - npm run migration
 script: npm run test
 after_script: npm run coverage
