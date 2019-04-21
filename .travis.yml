@@ -4,7 +4,6 @@ node_js:
 services:
   - postgresql
 env:
-  - NODE_ENV=test
   - SECRET_KEY=jaachi_secret
 cache:
   directories:
