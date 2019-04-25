@@ -41,10 +41,8 @@ function addUser(req, res) {
   const hash = bcrypt.hashSync(password, salt);
 
   const query = {
-    text: `INSERT INTO
-           users(username, password, email, productSold, noOfSales, worthOfSales, role)
-           VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-    values: [username, hash, email, 0, 0, 0, role],
+    text: 'INSERT INTO users(username, password, email, role) VALUES($1, $2, $3, $4) RETURNING *',
+    values: [username, hash, email, role],
   };
 
   pool.query(query)
@@ -52,8 +50,8 @@ function addUser(req, res) {
       const newAttendant = user.rows[0];
       res.status(201).json({ newAttendant });
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .catch(() => {
+      res.status(422).json({ error: 'data with same username already exists' });
     });
 }
 
@@ -76,40 +74,18 @@ function login(req, res) {
     });
 }
 
-function updateUserSales(req, res) {
-  const {
-    productSold, noOfSales, worthOfSales,
-  } = req.body;
-  const { userId } = req.params;
-
-  const text = `UPDATE users
-                SET productSold = $1,noOfSales =$2,worthOfSales = $3
-                WHERE id = $4 returning *;`;
-  const values = [productSold, noOfSales, worthOfSales, userId];
-
-  pool.query(text, values)
-    .then((user) => {
-      const updatedUser = user.rows[0];
-      return !updatedUser ? Promise.reject(userId) : updatedUser;
-    })
-    .then((updatedUser) => {
-      res.status(200).json({ updatedUser });
-    })
-    .catch((id) => {
-      res.status(404).json({ error: `user id, ${id} does not exist` });
-    });
-}
-
 function updateUserData(req, res) {
   const { userId } = req.params;
-  const { username, password, email } = req.body;
+  const {
+    username, password, email, role,
+  } = req.body;
 
   const hashPassword = bcrypt.hashSync(password, 10);
 
-  const text = `UPDATE users
-                SET username=$1, password=$2, email=$3
-                WHERE id=$4 returning *`;
-  const values = [username, hashPassword, email, userId];
+  const text = 'UPDATE users SET username=$1, password=$2, email=$3, role=$4 WHERE id=$5 RETURNING *;';
+  const values = [
+    username, hashPassword, email, role, userId,
+  ];
 
   pool.query(text, values)
     .then((userArray) => {
@@ -119,17 +95,16 @@ function updateUserData(req, res) {
     .then((updatedUser) => {
       res.status(200).json({ updatedUser });
     })
-    .catch((id) => {
-      res.status(404).json({ error: `user id, ${id} does not exist` });
+    .catch(() => {
+      res.status(422).json({ error: 'unnable to complete request. choose another username or new id' });
     });
 }
 
 function deleteUser(req, res) {
   const { userId } = req.params;
-  const { username } = req.body;
 
-  const text = 'DELETE FROM users WHERE id = $1 AND username = $2 returning *;';
-  const values = [userId, username];
+  const text = 'DELETE FROM users WHERE id = $1 returning *;';
+  const values = [userId];
 
   pool.query(text, values)
     .then((user) => {
@@ -139,7 +114,9 @@ function deleteUser(req, res) {
     .then((deletedUser) => {
       res.status(200).json({ deletedUser });
     })
-    .catch();
+    .catch((id) => {
+      res.status(404).json({ error: `user id, ${id} does not exist` });
+    });
 }
 
 function giveAdminRight(req, res) {
@@ -164,5 +141,5 @@ function giveAdminRight(req, res) {
 }
 
 export default {
-  addUser, login, getAllUsers, getUser, updateUserSales, updateUserData, deleteUser, giveAdminRight,
+  addUser, login, getAllUsers, getUser, updateUserData, deleteUser, giveAdminRight,
 };

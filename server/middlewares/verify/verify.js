@@ -20,7 +20,7 @@ function authVerify(req, res, next) {
       }
     });
   } else {
-    res.status(401).json({ error: 'Please, you have to sign in' });
+    res.status(401).json({ error: 'please, you have to sign in' });
   }
 }
 
@@ -44,20 +44,23 @@ function verifyAttendant(req, res, next) {
   }
 }
 
-function verifyOwner(req, res, next) {
-  const { userId } = req.params;
-  const { username } = req.authData;
+function verifyAdminOrSeller(req, res, next) {
+  const { saleId } = req.params;
+  const { username, role } = req.authData;
 
-  pool.query('SELECT * FROM users WHERE id=$1;', [userId])
-    .then((userArray) => {
-      const user = userArray.rows[0];
-      return (user.username === username) ? next() : Promise.reject();
+  pool.query('SELECT * FROM sales WHERE id=$1;', [saleId])
+    .then((salesArray) => {
+      const sale = salesArray.rows[0];
+      if (sale) {
+        return (sale.seller === username || role === 'admin') ? next() : Promise.reject();
+      }
+      if (!sale) res.status(404).json({ error: 'sale record does not exist' });
     })
     .catch(() => {
-      res.status(401).json({ error: 'sorry, resource accessible to owner only' });
+      res.status(401).json({ error: 'sorry, resource accessible to seller and admin only' });
     });
 }
 
 export default {
-  authVerify, verifyAdmin, verifyAttendant, verifyOwner,
+  authVerify, verifyAdmin, verifyAttendant, verifyAdminOrSeller,
 };

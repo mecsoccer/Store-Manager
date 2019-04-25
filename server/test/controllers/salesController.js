@@ -63,38 +63,26 @@ describe('Tests for sales', () => {
         });
     });
 
-    it('Should return a single sale if admin', (done) => {
+    it('Should return a single sale if user is admin or the seller', (done) => {
       chai.request(app)
         .get('/api/v1/sales/1')
+        .set('Authorization', attendantToken)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          done();
+        });
+    });
+
+    it('Should return error for non-existent id', (done) => {
+      chai.request(app)
+        .get('/api/v1/sales/10000000')
         .set('Authorization', adminToken)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.an('object');
-          done();
-        });
-    });
-
-    it('Should return an existing sale if attendant', (done) => {
-      chai.request(app)
-        .get('/api/v1/sales/1')
-        .set('Authorization', attendantToken)
-        .end((err, res) => {
-          expect(err).to.equal(null);
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.an('object');
-          done();
-        });
-    });
-
-    it('Should not return sale for non-existent id', (done) => {
-      chai.request(app)
-        .get('/api/v1/sales/10000000')
-        .set('Authorization', attendantToken)
-        .end((err, res) => {
-          expect(err).to.equal(null);
           expect(res).to.have.status(404);
-          expect(res.body.message).to.equal('sorry, the sale record does not exist');
+          expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
     });

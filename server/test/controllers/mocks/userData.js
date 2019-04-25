@@ -1,21 +1,27 @@
 const userData = {
   admin: {
     usernameInput: 'admin',
-    passwordInput: 'admin',
+    passwordInput: 'admin123ABC#',
   },
   attendant: {
     usernameInput: 'attendant',
-    passwordInput: 'attendant',
+    passwordInput: 'attendant1A#',
+  },
+  invalidUserData: {
+    username: '',
+    password: 'jaachido',
+    email: 'mecsoccerguy@gmail.com',
+    role: 'admin',
   },
   updateAttendant: {
-    usernameInput: 'jaachido',
-    passwordInput: 'jaachido',
+    username: 'attendant',
+    password: 'attendant1A#',
     email: 'mecsoccerguy@gmail.com',
     role: 'attendant',
   },
   newAttendant: {
     username: 'onyenze',
-    password: 'attendant0001',
+    password: 'attendant1A#',
     email: 'addattendant@gmail.com',
     role: 'attendant',
   },
