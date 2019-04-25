@@ -66,7 +66,7 @@ describe('Tests for sales', () => {
     it('Should return a single sale if user is admin or the seller', (done) => {
       chai.request(app)
         .get('/api/v1/sales/1')
-        .set('Authorization', attendantToken)
+        .set('Authorization', adminToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
@@ -88,8 +88,30 @@ describe('Tests for sales', () => {
     });
   });
 
-  /*
   describe('post requests for sales', () => {
+    it('should return error message if non-attendant tries to access attendant route', (done) => {
+      chai.request(app)
+        .post('/api/v1/sales')
+        .set('Authorization', adminToken)
+        .send({})
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should return error message if diffent attendant tries to access seller only route', (done) => {
+      chai.request(app)
+        .get('/api/v1/sales/1')
+        .set('Authorization', attendantToken)
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+    /*
     it('should return 401 and error message if request has bad token', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
@@ -197,6 +219,6 @@ describe('Tests for sales', () => {
           expect(res.body).to.have.property('newSale');
           done();
         });
-    });
-  }); */
+    }); */
+  });
 });

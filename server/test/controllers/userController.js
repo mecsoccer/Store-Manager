@@ -14,6 +14,7 @@ const {
 chai.use(chaiHttp);
 
 let adminToken;
+let attendantToken;
 
 describe('Users', () => {
   before((done) => {
@@ -22,6 +23,15 @@ describe('Users', () => {
       .send(admin)
       .end((err, res) => {
         adminToken = res.body.token;
+        done();
+      });
+  });
+  before((done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(attendant)
+      .end((err, res) => {
+        attendantToken = res.body.token;
         done();
       });
   });
@@ -81,6 +91,18 @@ describe('Users', () => {
   });
 
   describe('Add / signup a new store attendant', () => {
+    it('should return error message if non-admin tries to access admin route', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', attendantToken)
+        .send({})
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
     it('Should add new attendant if data is correct', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
@@ -176,7 +198,7 @@ describe('Users', () => {
   describe('Tests for update routes', () => {
     it ('# should update user personal data', (done) => {
       chai.request(app)
-        .put('/api/v1/users/2')
+        .put('/api/v1/users/4')
         .set('Authorization', adminToken)
         .send(updateAttendant)
         .end((err, res) => {

@@ -48,6 +48,6 @@ migrateUserPromise
 migrateProduct('charger', 'electronics', 50, 1, '10.00', 1);
 migrateProduct('chair', 'furniture', 50, 1, '10.00', 1);
 
-migrateSale('attendant', 'charger', 3, '10.00', '30.00');
-migrateSale('attendant', 'chair', 3, '10.00', '30.00');
+migrateSale('anonimous', 'charger', 3, '10.00', '30.00');
+migrateSale('anonimous', 'chair', 3, '10.00', '30.00');
 migrateSale('anonimous', 'chair', 3, '10.00', '30.00');

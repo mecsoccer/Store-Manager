@@ -33,6 +33,44 @@ describe('products', () => {
       });
   });
 
+  describe('Tests for no token or bad token cases', () => {
+    it('should return error message if no token', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .send({})
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+    it('should return error message if token is blank', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', '')
+        .send({})
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+    it('should return error message if token is invalid', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphYWNoaWRvIiwicGFzc3dvcmQiOiIwNjM4NDU3OWhmIiwiaWF0IjoxNTQ3MDY4NzY2LCJleHAiOjE1NDcwNzIzNjZ9._L0BF4aCsGWU9jRJF8lsuu9_WLKyvEGpMJbn1KgSmSM')
+        .send({})
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(401);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+  });
+
   describe('get requests for products', () => {
     it('Should return all products', (done) => {
       chai.request(app)

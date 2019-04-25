@@ -14,7 +14,7 @@ const userData = {
     role: 'admin',
   },
   updateAttendant: {
-    username: 'attendant',
+    username: 'jaachi',
     password: 'attendant1A#',
     email: 'mecsoccerguy@gmail.com',
     role: 'attendant',
