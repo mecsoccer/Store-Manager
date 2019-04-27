@@ -1,53 +1,94 @@
-function validateProduct(req, res, next) {
-  const {
-    name, category, quantityLeft, quantitySold, price, minQuantity,
-  } = req.body;
+import validationLibrary from './library/validationLibrary';
 
-  let valid = 0;
+const { validateTextField, validateNumberField } = validationLibrary;
 
-  const errors = [];
+class ValidateProduct {
+  static validateAddProduct(req, res, next) {
+    const {
+      productName, productCategory, quantityLeft, quantitySold, price, minQuantity,
+    } = req.body;
 
-  if (name.length > 1) {
-    valid += 1;
-  } else {
-    errors.push('Product name should be more than one character long.');
+    const productNameValid = validateTextField('productName', productName, 2, 30, /^\w+$/, 'sugar_23g, sugar, 3233, shirt');
+    const productCategoryValid = validateTextField('productCategory', productCategory, 2, 15, /^\w+$/, 'provisions, clothing');
+    const quantityLeftValid = validateNumberField('quantityLeft', quantityLeft, 0, 10000000, /^\d+$/, '4 or 64');
+    const quantitySoldValid = validateNumberField('quantitySold', quantitySold, 0, 10000000, /^\d+$/, '4, 18');
+    const priceValid = validateNumberField('price', price, 0.01, 100000000, /^\d+.\d\d$/, '30.00, 23.34');
+    const minQuantityValid = validateNumberField('minQuantity', minQuantity, 1, 100000000, /^\d+$/, '4, 18');
+
+    if (productNameValid !== true) {
+      res.status(422).json({ error: productNameValid });
+    } else if (productCategoryValid !== true) {
+      res.status(422).json({ error: productCategoryValid });
+    } else if (quantityLeftValid !== true) {
+      res.status(422).json({ error: quantityLeftValid });
+    } else if (quantitySoldValid !== true) {
+      res.status(422).json({ error: quantitySoldValid });
+    } else if (priceValid !== true) {
+      res.status(422).json({ error: priceValid });
+    } else if (minQuantityValid !== true) {
+      res.status(422).json({ error: minQuantityValid });
+    } else {
+      next();
+    }
   }
 
-  if (category.length > 1) {
-    valid += 1;
-  } else {
-    errors.push('Category name should be more than one character long.');
+  static validateUpdateDetails(req, res, next) {
+    const {
+      productName, productCategory, quantityLeft, price, minQuantity,
+    } = req.body;
+    const { productId } = req.params;
+
+    const productIdValid = validateNumberField('productId', productId, 1, 100000, /^\d+$/, '3, 4, 100');
+    const productNameValid = validateTextField('productName', productName, 2, 30, /^\w+$/, 'sugar_23g, sugar, 3233, shirt');
+    const productCategoryValid = validateTextField('productCategory', productCategory, 2, 15, /^\w+$/, 'provisions, clothing');
+    const quantityLeftValid = validateNumberField('quantityLeft', quantityLeft, 0, 10000000, /^\d+$/, '4 or 64');
+    const priceValid = validateNumberField('price', price, 0.01, 100000000, /^\d+.\d\d$/, '30.00, 23.34');
+    const minQuantityValid = validateNumberField('minQuantity', minQuantity, 1, 100000000, /^\d+$/, '4, 18');
+
+    if (productIdValid !== true) {
+      res.status(422).json({ error: 'productId parameter invalid' });
+    } else if (productNameValid !== true) {
+      res.status(422).json({ error: productNameValid });
+    } else if (productCategoryValid !== true) {
+      res.status(422).json({ error: productCategoryValid });
+    } else if (quantityLeftValid !== true) {
+      res.status(422).json({ error: quantityLeftValid });
+    } else if (priceValid !== true) {
+      res.status(422).json({ error: priceValid });
+    } else if (minQuantityValid !== true) {
+      res.status(422).json({ error: minQuantityValid });
+    } else {
+      next();
+    }
   }
 
-  if (typeof quantityLeft === 'number') {
-    valid += 1;
-  } else {
-    errors.push('quantityLeft should be a number');
+  static validateSalesData(req, res, next) {
+    const { quantitySold } = req.body;
+    const { productId } = req.params;
+
+    const productIdValid = validateNumberField('productId', productId, 1, 100000, /^\d+$/, '3, 4, 100');
+    const quantitySoldValid = validateNumberField('quantitySold', quantitySold, 1, 10000000, /^\d+$/, '4, 18');
+
+    if (productIdValid !== true) {
+      res.status(422).json({ error: 'productId parameter invalid' });
+    } else if (quantitySoldValid !== true) {
+      res.status(422).json({ error: quantitySoldValid });
+    } else {
+      next();
+    }
   }
 
-  if (typeof quantitySold === 'number') {
-    valid += 1;
-  } else {
-    errors.push('quantitySold should be a number');
-  }
+  static validateProductId(req, res, next) {
+    const { productId } = req.params;
 
-  if (typeof price === 'number') {
-    valid += 1;
-  } else {
-    errors.push('price should be a number');
-  }
+    const productIdValid = validateNumberField('productId', productId, 1, 100000, /^\d+$/, '3, 4, 100');
 
-  if (typeof minQuantity === 'number') {
-    valid += 1;
-  } else {
-    errors.push('minQuantity should be a number');
+    if (productIdValid !== true) {
+      res.status(422).json({ error: 'productId parameter invalid' });
+    } else {
+      next();
+    }
   }
-
-  if (valid < 6) {
-    return res.status(422).send({ message: 'Invalid inputs', errors });
-  }
-
-  return next();
 }
 
-export default validateProduct;
+export default ValidateProduct;

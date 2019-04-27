@@ -38,18 +38,17 @@ describe('Tests for sales', () => {
   });
 
   describe('get requests for sales', () => {
-    /*
-    it('Should not return sales record if not admin', (done) => {
+    it('Should return error if not admin', (done) => {
       chai.request(app)
         .get('/api/v1/sales')
         .set('Authorization', attendantToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(401);
-          expect(res.body.message).to.equal('Sorry, accessible to admin only');
+          expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
-    }); */
+    });
 
     it('Should return sales record if user is admin', (done) => {
       chai.request(app)
@@ -111,7 +110,7 @@ describe('Tests for sales', () => {
           done();
         });
     });
-    /*
+
     it('should return 401 and error message if request has bad token', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
@@ -120,11 +119,11 @@ describe('Tests for sales', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(401);
-          expect(res.body).to.have.property('message').that.equals('You must provide valid authorization');
+          expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
     });
-
+/*
     it('should return 401 and error message if user is admin', (done) => {
       chai.request(app)
         .post('/api/v1/sales')

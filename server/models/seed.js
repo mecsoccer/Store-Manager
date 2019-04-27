@@ -14,10 +14,12 @@ function migrateUser(username, password, email, role) {
   pool.query(query);
 }
 
-function migrateProduct(name, category, quantityLeft, quantitySold, price, minQuantity) {
+function migrateProduct(
+  productName, productCategory, quantityLeft, quantitySold, price, minQuantity,
+) {
   const query = {
-    text: 'INSERT INTO products(name, category, quantityLeft, quantitySold, price, minQuantity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
-    values: [name, category, quantityLeft, quantitySold, price, minQuantity],
+    text: 'INSERT INTO products(productName, productCategory, quantityLeft, quantitySold, price, minQuantity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+    values: [productName, productCategory, quantityLeft, quantitySold, price, minQuantity],
   };
 
   pool.query(query);
@@ -47,6 +49,7 @@ migrateUserPromise
 
 migrateProduct('charger', 'electronics', 50, 1, '10.00', 1);
 migrateProduct('chair', 'furniture', 50, 1, '10.00', 1);
+migrateProduct('sugar', 'provisions', 0, 50, '10.00', 1);
 
 migrateSale('anonimous', 'charger', 3, '10.00', '30.00');
 migrateSale('anonimous', 'chair', 3, '10.00', '30.00');

@@ -4,6 +4,7 @@ import saleController from '../controllers/salesController';
 import verify from '../middlewares/verify/verify';
 import userController from '../controllers/userController';
 import validateUserData from '../middlewares/validate/validateUserData';
+import validateProduct from '../middlewares/validate/validateProduct';
 
 const {
   getAllProducts,
@@ -11,7 +12,8 @@ const {
   getFinishedProducts,
   getSpecificProduct,
   addProduct,
-  updateProduct,
+  updateProductDetails,
+  updateQuantitySold,
   deleteProduct,
 } = productController;
 
@@ -29,6 +31,9 @@ const {
 } = verify;
 
 const { validateLogin, validateSignup } = validateUserData;
+const {
+  validateAddProduct, validateUpdateDetails, validateSalesData, validateProductId,
+} = validateProduct;
 
 const router = express.Router();
 
@@ -43,10 +48,11 @@ router.delete('/users/:userId', authVerify, deleteUser);
 router.get('/products', authVerify, getAllProducts);
 router.get('/products/available', authVerify, getAvailableProducts);
 router.get('/products/finished', authVerify, getFinishedProducts);
-router.get('/products/:productId', authVerify, getSpecificProduct);
-router.post('/products', authVerify, verifyAdmin, addProduct);
-router.put('/products/:productId', authVerify, updateProduct);
-router.delete('/products/:productId', authVerify, verifyAdmin, deleteProduct);
+router.get('/products/:productId', authVerify, validateProductId, getSpecificProduct);
+router.post('/products', authVerify, verifyAdmin, validateAddProduct, addProduct);
+router.put('/products/details/:productId', authVerify, verifyAdmin, validateUpdateDetails, updateProductDetails);
+router.put('/products/quantity-sold/:productId', authVerify, verifyAttendant, validateSalesData, updateQuantitySold);
+router.delete('/products/:productId', authVerify, verifyAdmin, validateProductId, deleteProduct);
 
 router.get('/sales', authVerify, verifyAdmin, getAllSales);
 router.get('/sales/:saleId', authVerify, verifyAdminOrSeller, getSpecificSale);
