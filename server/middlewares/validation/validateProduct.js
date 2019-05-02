@@ -2,7 +2,7 @@ import validationLibrary from './library/validationLibrary';
 
 const { validateTextField, validateNumberField } = validationLibrary;
 
-class ValidateProduct {
+class ValidateProductInput {
   static validateAddProduct(req, res, next) {
     const {
       productName, productCategory, quantityLeft, quantitySold, price, minQuantity,
@@ -62,7 +62,7 @@ class ValidateProduct {
     }
   }
 
-  static validateSalesData(req, res, next) {
+  static validateProductSold(req, res, next) {
     const { quantitySold } = req.body;
     const { productId } = req.params;
 
@@ -91,4 +91,4 @@ class ValidateProduct {
   }
 }
 
-export default ValidateProduct;
+export default ValidateProductInput;

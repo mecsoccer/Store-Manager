@@ -5,7 +5,12 @@ const salesData = {
     quantity: '2',
     price: '20.00',
     total: '40.00',
-    productId: '1',
+  },
+  omittedField: {
+    seller: 'jaachimma',
+    quantity: '2',
+    price: '20.00',
+    total: '40.00',
   },
   wrongSellerName: {
     seller: 'Jaachimma',

@@ -12,7 +12,7 @@
     "unmigrate": "babel-node ./server/models/unmigrate.js",
     "seed": "babel-node ./server/models/seed.js",
     "migration": "npm run unmigrate && babel-node ./server/models/migration.js && npm run seed",
-    "test": "npm run migration && nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/*.spec.js --require @babel/register",
+    "test": "npm run migration && nyc ./node_modules/.bin/mocha --exit --timeout 20000 ./server/test/**/saleController.spec.js --require @babel/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "build-babel": "babel --out-dir ./build --source-maps --copy-files ./server",
     "build": "mkdir build && npm run build-babel"

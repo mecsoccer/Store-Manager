@@ -2,7 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../app';
 import userData from './mocks/userData';
-import salesData from './mocks/salesData';
+import salesData from './mocks/saleData';
 
 chai.use(chaiHttp);
 const { expect } = chai;
@@ -10,6 +10,7 @@ const { expect } = chai;
 const { admin, attendant } = userData;
 const {
   exampleSale, wrongSellerName, wrongProductName, wrongQuantity, wrongPrice, wrongTotal,
+  omittedField,
 } = salesData;
 
 const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphYWNoaWRvIiwicGFzc3dvcmQiOiIwNjM4NDU3OWhmIiwiaWF0IjoxNTQ3MDY4NzY2LCJleHAiOjE1NDcwNzIzNjZ9._L0BF4aCsGWU9jRJF8lsuu9_WLKyvEGpMJbn1KgSmSM';
@@ -123,7 +124,7 @@ describe('Tests for sales', () => {
           done();
         });
     });
-/*
+
     it('should return 401 and error message if user is admin', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
@@ -132,21 +133,33 @@ describe('Tests for sales', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(401);
-          expect(res.body).to.have.property('message').that.equals('Sorry, accessible to store attendants only');
+          expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
     });
 
-    it('respond with a 422 for invalid seller name', (done) => {
+    it('should return error if a required field is omitted', (done) => {
+      chai.request(app)
+        .post('/api/v1/sales')
+        .set('Authorization', attendantToken)
+        .send(omittedField)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should respond with a 422 for invalid seller name', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
         .send(wrongSellerName)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
-          expect(res.body).to.be.an('object').that.has.property('message');
           expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
           done();
         });
     });
@@ -158,13 +171,12 @@ describe('Tests for sales', () => {
         .send(wrongProductName)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
-          expect(res.body).to.be.an('object').that.has.property('message');
           expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
           done();
         });
     });
-
+  
     it('respond with a 422 for invalid quantity', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
@@ -172,9 +184,8 @@ describe('Tests for sales', () => {
         .send(wrongQuantity)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
-          expect(res.body).to.be.an('object').that.has.property('message');
           expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
           done();
         });
     });
@@ -186,9 +197,8 @@ describe('Tests for sales', () => {
         .send(wrongPrice)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
-          expect(res.body).to.be.an('object').that.has.property('message');
           expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
           done();
         });
     });
@@ -200,9 +210,8 @@ describe('Tests for sales', () => {
         .send(wrongTotal)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res.body).to.be.an('object').that.has.property('error').that.equals(true);
-          expect(res.body).to.be.an('object').that.has.property('message');
           expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
           done();
         });
     });
@@ -215,9 +224,9 @@ describe('Tests for sales', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(201);
-          expect(res.body).to.have.property('newSale');
+          expect(res.body).to.be.an('object').that.has.property('newSale').that.is.an('object');
           done();
         });
-    }); */
+    });
   });
 });

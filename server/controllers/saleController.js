@@ -43,12 +43,12 @@ function getSpecificSale(req, res) {
 
 function addSale(req, res) {
   const {
-    seller, productName, quantitySold, price, total, productId,
+    seller, productName, quantity, price, total,
   } = req.body;
 
   const query = {
     text: 'INSERT INTO sales(seller, productName, quantity, price, total) VALUES($1, $2, $3, $4, $5) RETURNING *',
-    values: [seller, productName, quantitySold, price, total],
+    values: [seller, productName, quantity, price, total],
   };
 
   pool.query(query)
@@ -58,33 +58,27 @@ function addSale(req, res) {
     })
     .then((newSale) => {
       const query1 = {
-        text: 'SELECT quantityleft,quantitysold FROM products WHERE id = $1;',
-        values: [productId],
+        text: 'SELECT quantityLeft, quantitySold FROM products WHERE productName = $1;',
+        values: [productName],
       };
       pool.query(query1)
         .then((data) => {
           const { quantityleft, quantitysold } = data.rows[0];
-          const newQuantityLeft = Number(quantityleft) - Number(quantitySold);
-          const newQuantitySold = Number(quantitysold) + Number(quantitySold);
+          const newQuantityLeft = Number(quantityleft) - Number(quantity);
+          const newQuantitySold = Number(quantitysold) + Number(quantity);
           return { newQuantityLeft, newQuantitySold };
         })
         .then((data) => {
           const { newQuantityLeft, newQuantitySold } = data;
           const query2 = {
-            text: 'UPDATE products SET quantityleft = $1, quantitysold = $2 WHERE id = $3;',
-            values: [newQuantityLeft, newQuantitySold, productId],
+            text: 'UPDATE products SET quantityLeft = $1, quantitySold = $2 WHERE productName = $3;',
+            values: [newQuantityLeft, newQuantitySold, productName],
           };
           pool.query(query2)
             .then((product) => {
               const updatedProduct = product;
               return updatedProduct;
-            })
-            .catch((err) => {
-              res.status(500).json(err);
             });
-        })
-        .catch((err) => {
-          res.status(500).json(err);
         });
       return newSale;
     })
