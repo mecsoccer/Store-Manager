@@ -10,7 +10,7 @@ const { expect } = chai;
 const { admin, attendant } = userData;
 const {
   exampleSale, wrongSellerName, wrongProductName, wrongQuantity, wrongPrice, wrongTotal,
-  omittedField,
+  omittedField, zeroQuantity, longSellerName,
 } = salesData;
 
 const wrongToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphYWNoaWRvIiwicGFzc3dvcmQiOiIwNjM4NDU3OWhmIiwiaWF0IjoxNTQ3MDY4NzY2LCJleHAiOjE1NDcwNzIzNjZ9._L0BF4aCsGWU9jRJF8lsuu9_WLKyvEGpMJbn1KgSmSM';
@@ -45,7 +45,7 @@ describe('Tests for sales', () => {
         .set('Authorization', attendantToken)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
@@ -77,11 +77,23 @@ describe('Tests for sales', () => {
 
     it('Should return error for non-existent id', (done) => {
       chai.request(app)
-        .get('/api/v1/sales/10000000')
+        .get('/api/v1/sales/100000')
         .set('Authorization', adminToken)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(404);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('Should return error for invalid sale id', (done) => {
+      chai.request(app)
+        .get('/api/v1/sales/ten')
+        .set('Authorization', adminToken)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
@@ -95,7 +107,7 @@ describe('Tests for sales', () => {
         .set('Authorization', adminToken)
         .send({})
         .end((err, res) => {
-          expect(res.status).to.equal(401);
+          expect(res.status).to.equal(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
@@ -106,7 +118,7 @@ describe('Tests for sales', () => {
         .get('/api/v1/sales/1')
         .set('Authorization', attendantToken)
         .end((err, res) => {
-          expect(res.status).to.equal(401);
+          expect(res.status).to.equal(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
@@ -132,7 +144,7 @@ describe('Tests for sales', () => {
         .send(exampleSale)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
@@ -164,6 +176,19 @@ describe('Tests for sales', () => {
         });
     });
 
+    it('should respond with error for seller name too long', (done) => {
+      chai.request(app)
+        .post('/api/v1/sales')
+        .set('Authorization', attendantToken)
+        .send(longSellerName)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
+          done();
+        });
+    });
+
     it('respond with a 422 for invalid product name', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
@@ -176,12 +201,25 @@ describe('Tests for sales', () => {
           done();
         });
     });
-  
+
     it('respond with a 422 for invalid quantity', (done) => {
       chai.request(app)
         .post('/api/v1/sales')
         .set('Authorization', attendantToken)
         .send(wrongQuantity)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.be.an('object').that.has.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('respond with a 422 for zero quantity', (done) => {
+      chai.request(app)
+        .post('/api/v1/sales')
+        .set('Authorization', attendantToken)
+        .send(zeroQuantity)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(422);

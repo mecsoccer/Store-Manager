@@ -12,9 +12,7 @@ class ProductController {
         const allProducts = all.rows;
         res.status(200).json({ allProducts });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static getAvailableProducts(req, res) {
@@ -27,9 +25,7 @@ class ProductController {
         const availableProducts = available.rows;
         res.status(200).json({ availableProducts });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static getFinishedProducts(req, res) {
@@ -42,9 +38,7 @@ class ProductController {
         const finishedProducts = finished.rows;
         res.status(200).json({ finishedProducts });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static getSpecificProduct(req, res) {
@@ -58,11 +52,13 @@ class ProductController {
     pool.query(query)
       .then((productArray) => {
         const product = productArray.rows[0];
-        res.status(200).json({ product });
+        if (product) {
+          res.status(200).json({ product });
+        } else {
+          res.status(404).json({ error: `product with id of '${productId}' does not exist` });
+        }
       })
-      .catch(() => {
-        res.status(404).json({ error: 'product with supplied id does not exist' });
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static addProduct(req, res) {
@@ -78,22 +74,20 @@ class ProductController {
     // check if product name already exists. product name should be unique
     pool.query('SELECT * FROM products WHERE productName=$1;', [productName])
       .then((data) => {
-        if (data.rows[0]) {
-          res.status(409).json({ error: 'product name alread exists. choose another name' });
-        } else {
+        if (!data.rows[0]) {
           pool.query(query)
             .then((productArray) => {
               const newProduct = productArray.rows[0];
               res.status(201).json({ newProduct });
             })
             .catch((err) => {
-              res.status(500).json(err);
+              /* istanbul ignore next */res.status(500).json(err);
             });
+        } else {
+          res.status(409).json({ error: 'product name alread exists. choose another name' });
         }
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static updateProductDetails(req, res) {
@@ -110,9 +104,7 @@ class ProductController {
     // check if product name already exists. product name should be unique
     pool.query('SELECT * FROM products WHERE productName=$1;', [productName])
       .then((data) => {
-        if (data.rows[0]) {
-          res.status(409).json({ error: 'product name alread exists. choose another name' });
-        } else {
+        if (!data.rows[0]) {
           pool.query(query)
             .then((productArray) => {
               const updatedProduct = productArray.rows[0];
@@ -122,14 +114,12 @@ class ProductController {
                 res.status(404).json({ error: 'product with supplied id does not exist' });
               }
             })
-            .catch((err) => {
-              res.status(500).json(err);
-            });
+            .catch(/* istanbul ignore next */err => res.status(500).json(err));
+        } else {
+          res.status(409).json({ error: 'product name alread exists. choose another name' });
         }
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static updateQuantitySold(req, res) {
@@ -156,9 +146,7 @@ class ProductController {
                   res.status(404).json({ error: 'product id supplied does not exist' });
                 }
               })
-              .catch((err) => {
-                res.status(500).json(err);
-              });
+              .catch(/* istanbul ignore next */err => res.status(500).json(err));
           } else {
             res.status(422).json({ error: 'quantity sold surpasses available quantity' });
           }
@@ -166,7 +154,7 @@ class ProductController {
           res.status(404).json({ error: 'product id supplied does not exist' });
         }
       })
-      .catch(err => res.status(500).json(err));
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static deleteProduct(req, res) {
@@ -181,9 +169,7 @@ class ProductController {
           res.status(404).json({ error: 'product with supplied id does not exist' });
         }
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 }
 

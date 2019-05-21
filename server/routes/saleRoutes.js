@@ -14,7 +14,7 @@ const { validateAddSale, validateSaleId } = validate;
 const router = express.Router();
 
 router.get('', authVerify, verifyAdmin, getAllSales);
-router.get('/:saleId', authVerify, verifyAdminOrSeller, validateSaleId, getSpecificSale);
+router.get('/:saleId', authVerify, validateSaleId, verifyAdminOrSeller, getSpecificSale);
 router.post('', authVerify, verifyAttendant, validateAddSale, addSale);
 
 module.exports = router;

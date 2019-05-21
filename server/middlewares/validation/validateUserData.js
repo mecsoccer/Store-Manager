@@ -1,6 +1,6 @@
 import validationLibrary from './library/validationLibrary';
 
-const { validateTextField, validateNumberField } = validationLibrary;
+const { validateTextField } = validationLibrary;
 
 class ValidateUserData {
   static validateLogin(req, res, next) {
@@ -24,7 +24,7 @@ class ValidateUserData {
     } = req.body;
 
     const usernameValid = validateTextField('username', username, 2, 15, /^\w+$/, 'john23, doe, 3233');
-    const passwordValid = validateTextField('password', password, 6, 12, /[a-z]?[A-Z]?[0-9]?[$#@]?/, 'asAS997$, asAS997#, asAS997@');
+    const passwordValid = validateTextField('password', password, 6, 12, /[a-z]+[A-Z]+[0-9]+[$#@]+/, 'asAS997$, asAS997#, asAS997@');
     const emailValid = validateTextField('email', email, 3, 50, /\w+[-.]*\w+@\w+[.][a-z]+/, 'john234.doe@gmail.com, johndoe@gmail.com');
     const roleValid = validateTextField('role', role, 5, 9, /^[a-z]+$/, 'attendant, admin');
 

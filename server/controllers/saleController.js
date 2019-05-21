@@ -11,9 +11,7 @@ function getAllSales(req, res) {
       const allSales = sale.rows;
       res.status(200).json({ allSales });
     })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
+    .catch(/* istanbul ignore next */err => res.status(500).json(err));
 }
 
 function getSpecificSale(req, res) {
@@ -25,20 +23,11 @@ function getSpecificSale(req, res) {
   };
 
   pool.query(query)
-    .then((sale) => {
-      const requestedSale = sale.rows[0];
-      return requestedSale;
+    .then((sales) => {
+      const sale = sales.rows[0];
+      res.status(200).json({ sale });
     })
-    .then((sale) => {
-      const { id } = sale;
-      if (typeof id === 'number') {
-        return res.status(200).json({ sale });
-      }
-      return res.status(404).json({ message: 'sorry, the sale record does not exist' });
-    })
-    .catch(() => {
-      res.status(404).json({ message: 'sorry, the sale record does not exist' });
-    });
+    .catch(/* istanbul ignore next */err => res.status(500).json(err));
 }
 
 function addSale(req, res) {
@@ -54,40 +43,9 @@ function addSale(req, res) {
   pool.query(query)
     .then((sale) => {
       const newSale = sale.rows[0];
-      return newSale;
-    })
-    .then((newSale) => {
-      const query1 = {
-        text: 'SELECT quantityLeft, quantitySold FROM products WHERE productName = $1;',
-        values: [productName],
-      };
-      pool.query(query1)
-        .then((data) => {
-          const { quantityleft, quantitysold } = data.rows[0];
-          const newQuantityLeft = Number(quantityleft) - Number(quantity);
-          const newQuantitySold = Number(quantitysold) + Number(quantity);
-          return { newQuantityLeft, newQuantitySold };
-        })
-        .then((data) => {
-          const { newQuantityLeft, newQuantitySold } = data;
-          const query2 = {
-            text: 'UPDATE products SET quantityLeft = $1, quantitySold = $2 WHERE productName = $3;',
-            values: [newQuantityLeft, newQuantitySold, productName],
-          };
-          pool.query(query2)
-            .then((product) => {
-              const updatedProduct = product;
-              return updatedProduct;
-            });
-        });
-      return newSale;
-    })
-    .then((newSale) => {
       res.status(201).json({ newSale });
     })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
+    .catch(/* istanbul ignore next */err => res.status(500).json(err));
 }
 
 export default { getAllSales, getSpecificSale, addSale };

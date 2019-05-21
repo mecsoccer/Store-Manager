@@ -12,7 +12,7 @@ function authVerify(req, res, next) {
   if (authorization) {
     jwt.verify(authorization, secret, (err, authData) => {
       if (err) {
-        res.status(401).json({ error: 'please provide valid authorization' });
+        res.status(401).json({ error: 'please provide valid token' });
       }
       if (authData) {
         req.authData = authData;
@@ -30,7 +30,7 @@ function verifyAdmin(req, res, next) {
   if (role === 'admin') {
     next();
   } else {
-    res.status(401).json({ error: 'Sorry, accessible to admin only' });
+    res.status(403).json({ error: 'Sorry, accessible to admin only' });
   }
 }
 
@@ -40,7 +40,7 @@ function verifyAttendant(req, res, next) {
   if (role === 'attendant') {
     next();
   } else {
-    res.status(401).json({ error: 'Sorry, accessible to store attendants only' });
+    res.status(403).json({ error: 'Sorry, accessible to store attendants only' });
   }
 }
 
@@ -51,14 +51,15 @@ function verifyAdminOrSeller(req, res, next) {
   pool.query('SELECT * FROM sales WHERE id=$1;', [saleId])
     .then((salesArray) => {
       const sale = salesArray.rows[0];
-      if (sale) {
-        return (sale.seller === username || role === 'admin') ? next() : Promise.reject();
+      if (!sale) {
+        res.status(404).json({ error: 'sale record does not exist' });
+      } else if (sale.seller === username || role === 'admin') {
+        next();
+      } else {
+        res.status(403).json({ error: 'sorry, resource accessible to seller and admin only' });
       }
-      if (!sale) res.status(404).json({ error: 'sale record does not exist' });
     })
-    .catch(() => {
-      res.status(401).json({ error: 'sorry, resource accessible to seller and admin only' });
-    });
+    .catch(/* istanbul ignore next */err => res.status(500).json(err));
 }
 
 export default {

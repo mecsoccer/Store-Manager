@@ -5,35 +5,53 @@ const userData = {
   },
   attendant: {
     usernameInput: 'attendant',
-    passwordInput: 'attendant1A#',
+    passwordInput: 'attendantA1#',
   },
-  invalidUserData: {
-    username: '',
+  invalidUsername: {
+    usernameInput: '',
+  },
+  unknownUser: {
+    usernameInput: 'winterbutter',
+    passwordInput: 'adadaA1&',
+  },
+  invalidPasswordFormat: {
+    usernameInput: 'jaachimma',
+    passwordInput: '',
+  },
+  newAttendant: {
+    username: 'onyenze',
+    password: 'attendantA1#',
+    email: 'addattendant@gmail.com',
+    role: 'attendant',
+  },
+  updateAttendant: {
+    username: 'jaachi',
+    password: 'attendantA1#',
+    email: 'mecsoccerguy@gmail.com',
+    role: 'attendant',
+  },
+  invalidNewUsername: {
+    username: 'Angel',
     password: 'jaachido',
     email: 'mecsoccerguy@gmail.com',
     role: 'admin',
   },
-  updateAttendant: {
+  invalidNewPassword: {
     username: 'jaachi',
-    password: 'attendant1A#',
-    email: 'mecsoccerguy@gmail.com',
-    role: 'attendant',
+    password: 'attendantA',
   },
-  newAttendant: {
+  invalidNewEmail: {
     username: 'onyenze',
-    password: 'attendant1A#',
-    email: 'addattendant@gmail.com',
+    password: 'attendantA1#',
+    email: 'addattendant.com',
     role: 'attendant',
   },
-  emptyFields: {
-    usernameInput: '',
-    passwordInput: '',
+  invalidSignupRole: {
+    username: 'onyenze',
+    password: 'attendantA1#',
+    email: 'addattendant@gmail.com',
+    role: 'user01',
   },
-  unknownUser: {
-    usernameInput: 'winterbutter',
-    passwordInput: 'adasd8ada',
-  },
-  attendantLogin: {},
 };
 
 export default userData;

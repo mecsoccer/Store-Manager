@@ -40,11 +40,11 @@ const migrateUserPromise = new Promise((resolve) => {
 
 migrateUserPromise
   .then((res) => {
-    migrateUser('attendant', 'attendant1A#', 'atten@jmail.com', 'attendant');
+    migrateUser('attendant', 'attendantA1#', 'atten@jmail.com', 'attendant');
     return res;
   })
   .then(() => {
-    migrateUser('anonimous', 'anonimous123ABC#', 'anonimous@jmail.com', 'attendant');
+    migrateUser('anonimous', 'anonimousABC123#', 'anonimous@jmail.com', 'attendant');
   });
 
 migrateProduct('charger', 'electronics', 50, 1, '10.00', 1);

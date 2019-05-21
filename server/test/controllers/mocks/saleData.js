@@ -47,6 +47,16 @@ const salesData = {
     price: '20.00',
     total: 'forty',
   },
+  longSellerName: {
+    seller: 'jaachimmaonyenzendukwaoguguoonyenzennanyerechiomajaneonyenze',
+  },
+  zeroQuantity: {
+    seller: 'jaachimma',
+    productName: 'bag',
+    quantity: '0',
+    price: '20.00',
+    total: 'forty',
+  },
 };
 
 export default salesData;

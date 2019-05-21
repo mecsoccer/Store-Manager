@@ -13,7 +13,7 @@ function getAllUsers(req, res) {
       const allUsers = users.rows;
       res.status(200).json({ allUsers });
     })
-    .catch();
+    .catch(/* istanbul ignore next */err => res.status(500).json(err));
 }
 
 function getUser(req, res) {
@@ -22,7 +22,7 @@ function getUser(req, res) {
   pool.query('SELECT * FROM users WHERE id = $1;', [userId])
     .then((requestedUser) => {
       const user = requestedUser.rows[0];
-      return !user ? Promise.reject() : user;
+      /* istanbul ignore next */return !user ? Promise.reject() : user;
     })
     .then((user) => {
       res.status(200).json({ user });
@@ -62,7 +62,7 @@ function login(req, res) {
     .then((user) => {
       const foundUser = user.rows[0];
       const authenticated = bcrypt.compareSync(passwordInput, foundUser.password);
-      return (!authenticated) ? Promise.reject() : foundUser;
+      /* istanbul ignore next */return (!authenticated) ? Promise.reject() : foundUser;
     })
     .then((foundUser) => {
       const { username, password, role } = foundUser;
@@ -90,7 +90,7 @@ function updateUserData(req, res) {
   pool.query(text, values)
     .then((userArray) => {
       const user = userArray.rows[0];
-      return !user ? Promise.reject() : user;
+      /* istanbul ignore next */return !user ? Promise.reject() : user;
     })
     .then((updatedUser) => {
       res.status(200).json({ updatedUser });
@@ -109,7 +109,7 @@ function deleteUser(req, res) {
   pool.query(text, values)
     .then((user) => {
       const deletedUser = user.rows[0];
-      return !deletedUser ? Promise.reject(userId) : deletedUser;
+      /* istanbul ignore next */return !deletedUser ? Promise.reject(userId) : deletedUser;
     })
     .then((deletedUser) => {
       res.status(200).json({ deletedUser });
@@ -122,7 +122,7 @@ function deleteUser(req, res) {
 function giveAdminRight(req, res) {
   const { userId } = req.params;
   const { admin } = req.body;
-  const role = (admin === true) ? 'admin' : 'attendant';
+  /* istanbul ignore next */const role = (admin === true) ? 'admin' : 'attendant';
 
   const text = 'UPDATE users SET role=$1 WHERE id=$2 returning *;';
   const values = [role, userId];
@@ -130,7 +130,7 @@ function giveAdminRight(req, res) {
   pool.query(text, values)
     .then((user) => {
       const adminUser = user.rows[0];
-      return (!adminUser) ? Promise.reject(userId) : adminUser;
+      /* istanbul ignore next */return (!adminUser) ? Promise.reject(userId) : adminUser;
     })
     .then((newAdmin) => {
       res.status(200).json({ newAdmin });

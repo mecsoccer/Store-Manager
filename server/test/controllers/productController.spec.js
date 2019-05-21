@@ -9,8 +9,10 @@ const { expect } = chai;
 
 const { admin, attendant } = userData;
 const {
-  exampleProduct, invalidProduct, invalidProductDetails, updateProductDetails,
-  invalidQuantitySold, updateQuantitySold,
+  exampleProduct,
+  invalidProductName, invalidProductCategory, invalidProductPrice, invalidProductLeft,
+  invalidProductSold, invalidMinQuantity, invalidQuantitySold, invalidProductDetails,
+  updateQuantitySold, updateProductDetails,
 } = productData;
 
 let adminToken;
@@ -133,6 +135,17 @@ describe('products', () => {
           done();
         });
     });
+
+    it('Should return error for non-existent id', (done) => {
+      chai.request(app)
+        .get('/api/v1/products/10000')
+        .set('Authorization', attendantToken)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
   });
 
   describe('post requests for products', () => {
@@ -143,17 +156,82 @@ describe('products', () => {
         .send(exampleProduct)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
     });
 
-    it('products should follow a format', (done) => {
+    it('product name should follow a format', (done) => {
       chai.request(app)
         .post('/api/v1/products')
         .set('Authorization', adminToken)
-        .send(invalidProduct)
+        .send(invalidProductName)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('product category should follow a format', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', adminToken)
+        .send(invalidProductCategory)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('product price should follow a format', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', adminToken)
+        .send(invalidProductPrice)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('product quantity left should follow a format', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', adminToken)
+        .send(invalidProductLeft)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('product quantity sold should follow a format', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', adminToken)
+        .send(invalidProductSold)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('product min. quantity should follow a format', (done) => {
+      chai.request(app)
+        .post('/api/v1/products')
+        .set('Authorization', adminToken)
+        .send(invalidMinQuantity)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(422);
@@ -219,11 +297,11 @@ describe('products', () => {
     it('attendant should not update product details', (done) => {
       chai.request(app)
         .put('/api/v1/products/details/3')
-        .set('Authorization', attendant)
+        .set('Authorization', attendantToken)
         .send(updateProductDetails)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(403);
           expect(res.body).to.have.property('error').that.is.an('string');
           done();
         });
@@ -275,7 +353,7 @@ describe('products', () => {
         .send(updateQuantitySold)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(403);
           expect(res.body).to.have.property('error').that.is.an('string');
           done();
         });
@@ -326,7 +404,7 @@ describe('products', () => {
         .set('Authorization', attendantToken)
         .end((err, res) => {
           expect(err).to.equal(null);
-          expect(res).to.have.status(401);
+          expect(res).to.have.status(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });

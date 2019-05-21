@@ -10,7 +10,7 @@ class ValidateSaleInput {
 
     const sellerValid = validateTextField('seller', seller, 2, 30, /^[a-z]+$/, 'john, doe, jaachi, uche');
     const productNameValid = validateTextField('productName', productName, 2, 30, /^\w+$/, 'sugar_23g, sugar, 3233, shirt');
-    const quantityValid = validateNumberField('quantity', quantity, 0, 10000000, /^\d+$/, '4, 18');
+    const quantityValid = validateNumberField('quantity', quantity, 1, 10000000, /^\d+$/, '4, 18');
     const priceValid = validateNumberField('price', price, 0.01, 100000000.00, /^\d+.\d\d$/, '30.00, 23.34');
     const totalValid = validateNumberField('total', total, 0.01, 100000000.00, /^\d+.\d\d$/, '30000.00, 23500.34');
 

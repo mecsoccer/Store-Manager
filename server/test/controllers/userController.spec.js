@@ -6,9 +6,9 @@ import mocks from './mocks/userData';
 const { expect } = chai;
 
 const {
-  admin, attendant, newAttendant,
-  updateAttendant, emptyFields, unknownUser,
-  invalidUserData,
+  admin, attendant, newAttendant, updateAttendant, invalidUsername, unknownUser,
+  invalidNewUsername, invalidPasswordFormat, invalidNewEmail, invalidSignupRole,
+  invalidNewPassword,
 } = mocks;
 
 chai.use(chaiHttp);
@@ -37,10 +37,22 @@ describe('Users', () => {
   });
 
   describe('Tests for Login route', () => {
-    it('should return a 422 for invalid username or password fields', (done) => {
+    it('should return a 422 for invalid username', (done) => {
       chai.request(app)
         .post('/api/v1/auth/login')
-        .send(emptyFields)
+        .send(invalidUsername)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should return a 422 for invalid password', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/login')
+        .send(invalidPasswordFormat)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(422);
@@ -97,7 +109,7 @@ describe('Users', () => {
         .set('Authorization', attendantToken)
         .send({})
         .end((err, res) => {
-          expect(res.status).to.equal(401);
+          expect(res.status).to.equal(403);
           expect(res.body).to.have.property('error').that.is.a('string');
           done();
         });
@@ -144,11 +156,50 @@ describe('Users', () => {
         });
     });
 
-    it('should return error for invalid data', (done) => {
+    it('should return error for invalid username', (done) => {
       chai.request(app)
         .post('/api/v1/auth/signup')
         .set('Authorization', adminToken)
-        .send(invalidUserData)
+        .send(invalidNewUsername)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should return a 422 for invalid password format', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', adminToken)
+        .send(invalidNewPassword)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should return a 422 for invalid email', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', adminToken)
+        .send(invalidNewEmail)
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(422);
+          expect(res.body).to.have.property('error').that.is.a('string');
+          done();
+        });
+    });
+
+    it('should return a 422 for invalid role', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .set('Authorization', adminToken)
+        .send(invalidSignupRole)
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res.status).to.equal(422);
@@ -249,11 +300,11 @@ describe('Users', () => {
         });
     });
 
-    it ('# should return error for invalid user data', (done) => {
+    it ('# should return error for invalid user name', (done) => {
       chai.request(app)
         .put('/api/v1/users/2')
         .set('Authorization', adminToken)
-        .send(invalidUserData)
+        .send(invalidNewUsername)
         .end((err, res) => {
           expect(res.status).to.equal(422);
           expect(res.body).to.have.property('error');
