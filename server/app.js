@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Credentials', 'false');
   res.header('Access-Control-Allow-Headers', 'Content-type, Authorization');
   res.header('Access-Control-Allow-Methods', 'POST, OPTIONS, GET, PUT, DELETE');
   next();

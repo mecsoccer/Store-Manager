@@ -58,16 +58,17 @@ function addUser(req, res) {
 function login(req, res) {
   const { usernameInput, passwordInput } = req.body;
 
-  pool.query('SELECT * FROM users WHERE username = $1', [usernameInput])
+  pool.query('SELECT * FROM users WHERE username=$1;', [usernameInput])
     .then((user) => {
       const foundUser = user.rows[0];
       const authenticated = bcrypt.compareSync(passwordInput, foundUser.password);
-      /* istanbul ignore next */return (!authenticated) ? Promise.reject() : foundUser;
-    })
-    .then((foundUser) => {
-      const { username, password, role } = foundUser;
-      const token = jwt.sign({ username, password, role }, secret, { expiresIn: '1hr' });
-      res.status(200).json({ username, role, token });
+      /* istanbul ignore if */if (foundUser && authenticated) {
+        const { username, password, role } = foundUser;
+        const token = jwt.sign({ username, password, role }, secret, { expiresIn: '1hr' });
+        res.status(200).json({ username, role, token });
+      } else {
+        Promise.reject();
+      }
     })
     .catch(() => {
       res.status(401).json({ error: 'incorrect username or password' });
