@@ -4,7 +4,7 @@ const signOut = document.querySelector('#sign-out');
 signOut.addEventListener('click', () => {
   sessionStorage.removeItem('token');
   sessionStorage.removeItem('user');
-  window.location.assign('../UI/login.html');
+  window.location.assign('./login.html');
 });
 
 // menu buttons

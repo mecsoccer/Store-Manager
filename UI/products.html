@@ -1,74 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Store Man</title>
+  <title>Store Manager</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="./stylesheet/new-main.css">
-  <link rel="stylesheet" href="./stylesheet/new-responsive.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheet/main.css">
+  <link rel="stylesheet" href="./stylesheet/responsive.css">
   <link rel="icon" href="">
 </head>
 <body>
-
-  <nav class="top-navbar">
-    <div class="menu-button">
-        <img class="menu" src="./image/storemanager/ic_menu.svg">
-    </div>
-    <header class="logo-menu logo-name white-text sixty-percent"><a class="format-link" href="#">Store Manager</a></header>
-  </nav>
-  <div class="container">
-      <div class="side-bar eightcol side-bar-customs open close">
-        <div>
-            <img class="back-arrow top-margin-25" src="backward-arrow.svg">
+    <div class="side-bar ">
+        <div class="dark-theme sm-gap bottom-margin-20">
+            <header class="logo-name">Store Manager</header>
         </div>
-        <ul class="side-nav-list">
-            <li class="side-nav-btn"><a href="./cart.html" class="format-link">CART</a></li>
-            <li class="side-nav-btn highlighted">PRODUCTS</li>
-            <li class="side-nav-btn">CATEGORIES</li>
-            <li class="side-nav-btn">SALES</li>
-            <li class="side-nav-btn">MY PROFILE</li>
-            <li class="side-nav-btn top-padding-45 pointer" id="sign-out">SIGN OUT</li>
-        </ul>
-      </div>
-      <div class="tab-position">
-        <div class="tab-container twelvecol top-margin-25 roboto align-center">
-            <div class="all-product-tab tab tab-main fourteen fourcol">ALL</div>
-            <div class="available-product-tab tab fourteen fourcol">AVAILABLE</div>
-            <div class="finished-product-tab tab fourteen fourcol">FINISHED</div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="category-table">
-            <div class="category-dropdown top-margin-20">
-                <select class="padding-5 border-1 eightcol">
-                    <option>choose category</option>
-                </select>
-            </div>
-            <div class="products top-margin-20 cat-prod-list">
-                <table class="roboto">
-                    <tr class="table-header align-left fourteen">
-                        <th>Product</th>
-                        <th class="align-center">Price($)</th>
-                        <th>Quantity</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="fit centered roboto thirteen txt-ash-black showing">
-            <span>SHOWING
-                <span>1-10</span> OF
-                <span>100</span>
-            </span>
-            <span><img src="./image/storemanager/pagination-left.svg" class="delta-up"></span>
-            <span><img src="./image/storemanager/pagination-right.svg" class="delta-down"></span>
+        <div class="sm-gap dark-theme vh75">
+            <ul class="side-nav-list sixteen medium">
+                <li class="side-nav-btn"><span class="nav-icons material-icons">add_shopping_cart</span><a class="format-link" href="./cart.html">Cart</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">crop_3_2</span><a class="format-link" href="#">Products</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">flag</span><a class="format-link" href="#">Categories</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">business_center</span><a class="format-link" href="#">Sales</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">person</span><a class="format-link" href="#">My Profile</a></li>
+                <li class="side-nav-btn" id="sign-out">
+                    <span class="nav-icons material-icons" style="transform: rotate(180deg)">input</span>
+                    <a class="format-link" href="#">Sign Out</a>
+                </li>
+            </ul>
         </div>
     </div>
-  </div>
+    <div class="main">
+        <div class="head">
+            <div class="dk-blue-bkg h50 right-left-p5">
+                <button class="menu-button material-icons">menu</button>
+                <span class="lt-sp-5 block twelvecol align-center eighteen white-text roboto relative bottom22">Products</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="tab-position">
+              <div class="tab-container twelvecol roboto align-center">
+                  <div class="all-product-tab tab tab-main fourteen fourcol" title="view all products">All</div>
+                  <div class="available-product-tab tab fourteen fourcol" title="view available products">Available</div>
+                  <div class="finished-product-tab tab fourteen fourcol" title="view finished products">Finished</div>
+              </div>
+            </div>
+            <div class="content">
+              <div class="category-table">
+                  <div class="category-dropdown top-margin-20">
+                      <select class="padding-5 border-1 eightcol">
+                          <option>choose category</option>
+                      </select>
+                  </div>
+                  <div class="products top-margin-20 cat-prod-list">
+                      <table class="roboto">
+                          <tr class="table-header align-left fourteen">
+                              <th>Product</th>
+                              <th class="align-center">Price($)</th>
+                              <th>Quantity</th>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+              <div class="fit centered roboto thirteen txt-ash-black showing">
+                  <span>SHOWING
+                      <span>1-10</span> OF
+                      <span>100</span>
+                  </span>
+                  <span><img src="./image/storemanager/pagination-left.svg" class="delta-up"></span>
+                  <span><img src="./image/storemanager/pagination-right.svg" class="delta-down"></span>
+              </div>
+          </div>
+        </div>
+    
+    </div>
+    <script src="./javascript/buttons.js"></script>
+    <script src="./javascript/products.js"></script>
+    <script>
+        // sign out
+        const signOut = document.querySelector('#sign-out');
 
-  <script src="./javascript/storeman.js"></script>
-  <script src="./javascript/products.js"></script>
-
+        signOut.addEventListener('click', () => {
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('user');
+            window.location.assign('./login.html');
+        });
+ 
+    </script>
+    
 </body>
 </html>

@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="./UI/stylesheet/new-main.css">
-  <link rel="stylesheet" href="./UI/stylesheet/new-responsive.css">
+  <link rel="stylesheet" href="./UI/stylesheet/login.css">
   <link rel="icon" href="">
 </head>
 <body>
@@ -38,7 +37,7 @@
       const passwordInput = document.querySelector('#password').value;
       signIn({ usernameInput, passwordInput });
     })
-
+    
     function signIn(loginDetails) {
       return fetch('https://stark-crag-43885.herokuapp.com/api/v1/auth/login', {
         method: 'POST',

@@ -15,14 +15,14 @@ function displayProducts(productArray) {
   });
 
   productArray.forEach((product) => {
-    nameIdDict[product.name] = product.id;
+    nameIdDict[product.productname] = product.id;
     const tableRow = document.createElement('tr');
     tableRow.className = 'product align-left bold txt-ash-black';
 
     tableRow.innerHTML = `
-            <td class="left-end-major fourteen"><input class="fourteen no-margin" type="checkbox" value="${product.name}" name="${product.name}">${product.name}</td>
+            <td class="left-end-major fourteen"><input class="fourteen no-margin" type="checkbox" value="${product.productname}" name="${product.productname}">${product.productname}</td>
             <td class="fourteen fifteen-percent align-center" id="price">${product.price}</td>
-            <td class="ten-percent left-padding-10"><span class="qty fourteen">1</span><img class="delta-up" src="../UI/image/storemanager/increase.svg"><img class="delta-down" src="../UI/image/storemanager/reduce.svg"></td>
+            <td class="ten-percent left-padding-10"><span class="qty fourteen">1</span><img class="delta-up" src="./image/storemanager/increase.svg"><img class="delta-down" src="./image/storemanager/reduce.svg"></td>
         `;
 
     productList.appendChild(tableRow);
@@ -168,9 +168,9 @@ placeOrder.addEventListener('click', () => {
         if (checkButton === false) continue;  */
     const seller = sessionStorage.getItem('user');
     const productName = product.querySelector('input').value;
-    const quantitySold = product.querySelector('.qty').innerHTML;
+    const quantity = product.querySelector('.qty').innerHTML;
     const price = product.querySelector('#price').innerHTML;
-    const total = `${String(Number(quantitySold) * Number(price))}.00`;
+    const total = `${String(Number(quantity) * Number(price))}.00`;
     const productId = nameIdDict[productName];
 
     fetch('https://stark-crag-43885.herokuapp.com/api/v1/sales', {
@@ -179,7 +179,7 @@ placeOrder.addEventListener('click', () => {
       headers: { 'Content-Type': 'application/json', Authorization: token },
       mode: 'cors',
       body: JSON.stringify({
-        seller, productName, quantitySold, price, total, productId,
+        seller, productName, quantity, price, total, productId,
       }),
     })
       .then((fetchResponse) => {
