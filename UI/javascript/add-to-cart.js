@@ -175,7 +175,7 @@ placeOrder.addEventListener('click', () => {
 
     fetch('https://stark-crag-43885.herokuapp.com/api/v1/sales', {
       method: 'POST',
-      credentials: 'include',
+      credentials: 'omit',
       headers: { 'Content-Type': 'application/json', Authorization: token },
       mode: 'cors',
       body: JSON.stringify({
