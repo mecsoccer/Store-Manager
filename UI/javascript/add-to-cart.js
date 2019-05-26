@@ -109,7 +109,7 @@ seachBar.addEventListener('keydown', () => {
   productStore.forEach((product) => {
     let userInput = seachBar.value;
     userInput = userInput.toLowerCase();
-    const productName = product.name.toLowerCase();
+    const productName = product.productname.toLowerCase();
     if (productName.includes(userInput)) filteredProducts.push(product);
   });
 
