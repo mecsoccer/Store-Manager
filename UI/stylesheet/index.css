@@ -1,112 +1,100 @@
-@import url(http://weloveiconfonts.com/api/?family=zocial);
-@import url(http://weloveiconfonts.com/api/?family=typicons);
-/* zocial */
-[class*="zocial-"]:before {
-  font-family: 'zocial', sans-serif;
+html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
+  box-sizing: border-box;
 }
-/* typicons */
-[class*="typicons-"]:before {
-  font-family: 'typicons', sans-serif;
-}
-.page-title{
-  position: fixed;
-  top: 125px;
-  text-align: center;
+html, body, .main{
   width: 100%;
-  color: darkblue;
+  height: 100%;
 }
-.searcher{
-  margin: 7px 10%;
-  width: 80%;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid cadetblue;
-  padding: 15px 0 15px 40px;
-  background-image: url('https://mecsoccer.github.io/Store-Manager/UI/image/searchicon.png');
-  background-position: 10px 13px;
-  background-repeat: no-repeat;
+body{
+  margin: 0;
+  background: url('../image/store.jpg');
+  margin-bottom: 100px;
+  font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
 }
-.container{
-  width: 100%;
-  margin: auto;
-}
-.box{
-  width: 90%;
-  height: 200px;
-  border: 1px solid blue;
-  border-radius: 5px;
-  padding: 5px;
-  margin: auto;
-  margin-top: 15px;
-}
-img{
-  width: 100%;
-  height: -webkit-fill-available;
-  border-radius: 5px;
-}
-.img-50{
-  width: 50%;
-  float: left;
-  padding: 2px;
-}
-.desc-50{
-  width: 50%;
-  float:left;
-  padding: 2px;
-}
-.desc-50 p{
-  margin: 2% 0;
-  text-align: center;
-  padding: 4px 0;
-}
-.desc-50 div span{
-  width: 50%;
-}
-.btn-cn{
-  text-align: center;
-  width: 100%;
-  float: left;
+a{
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
-.btn-cn a{
-  text-decoration: none;
+.container {
+    position: fixed;
+    margin: auto;
+    z-index: 1;
+    padding: 0 10px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
-.product-name{
-  color: blue;
+.site_name{
+  color: white;
+  letter-spacing: 1px;
+  font-size: 2rem;
 }
-.product-category{
-  color: cadetblue;
+.nav{
+  padding: 20px 0;
 }
-.product-price{
-  color: blue;
+.nav button{
+  border-radius: 10px;
+  background: #3E474F;
+  color: white;
+  padding: 5px 20px;
+  border: none;
+  cursor: pointer;
 }
-.product-detail{
-  border: 0.5px solid cadetblue;
-  border-radius: 3px;
-  color: cadetblue;
+.attendant_button{
+  color: #f16821 !important;
+  background: white !important;
 }
-.footer{
+.header{
   margin-top: 20px;
+  text-align: center;
 }
-.img-50, .desc-50{
-  height: 188px;
+.intro{
+  margin-top: 120px;
+  margin-bottom: 0;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
 }
-.cart{
-  padding: 0 10%;
-  font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid blue;
-  text-decoration: none;
-  color: blue;
+.sub_intro{
+  margin-top: 5px;
+  text-align: center;
+  color: white;
 }
-
-@media screen and (min-width: 600px) {
-  .box{
-    width: 30%;
-    height: 200px;
-    margin: 0 1%;
+.call_action{
+  width: fit-content;
+  margin: auto;
+  color: white;
+  border-radius: 20px;
+  background: #f16821;
+  border: none;
+  padding: 13px;
+  cursor: pointer;
+}
+.centered{
+  margin: auto;
+  width: fit-content;
+}
+@media (min-width: 600px) {
+  .container{
+    padding: 0 100px;
+  }
+  .site_name{
     float: left;
-    margin-top: 15px;
+  }
+  .nav{
+    padding: 0;
+    margin-top: 0;
+    float: right;
+  }
+  .nav button{
+    margin: 0 0 0 25px;
+  }
+  .intro {
+    margin-top: 40vh;
+    letter-spacing: 13px;
+    font-weight: normal;
   }
 }
