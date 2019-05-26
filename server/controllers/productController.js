@@ -12,9 +12,7 @@ class ProductController {
         const allProducts = all.rows;
         res.status(200).json({ allProducts });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static getAvailableProducts(req, res) {
@@ -27,9 +25,7 @@ class ProductController {
         const availableProducts = available.rows;
         res.status(200).json({ availableProducts });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static getFinishedProducts(req, res) {
@@ -42,9 +38,7 @@ class ProductController {
         const finishedProducts = finished.rows;
         res.status(200).json({ finishedProducts });
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static getSpecificProduct(req, res) {
@@ -56,79 +50,126 @@ class ProductController {
     };
 
     pool.query(query)
-      .then((requestedProduct) => {
-        const product = requestedProduct.rows[0];
-        return product;
-      })
-      .then((product) => {
-        const { id } = product;
-        if (typeof id === 'number') {
-          return res.status(200).json({ product });
+      .then((productArray) => {
+        const product = productArray.rows[0];
+        if (product) {
+          res.status(200).json({ product });
+        } else {
+          res.status(404).json({ error: `product with id of '${productId}' does not exist` });
         }
       })
-      .catch(() => {
-        res.status(404).json({ message: 'sorry, product does not exist' });
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static addProduct(req, res) {
     const {
-      name, category, quantityLeft, quantitySold, price, minQuantity,
+      productName, productCategory, quantityLeft, quantitySold, price, minQuantity,
     } = req.body;
 
     const query = {
-      text: 'INSERT INTO products(name, category, quantityLeft, quantitySold, price, minQuantity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
-      values: [name, category, quantityLeft, quantitySold, price, minQuantity],
+      text: 'INSERT INTO products(productName, productCategory, quantityLeft, quantitySold, price, minQuantity) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+      values: [productName, productCategory, quantityLeft, quantitySold, price, minQuantity],
     };
 
-    pool.query(query)
-      .then((product) => {
-        const newProduct = product.rows[0];
-        return res.status(201).json({ newProduct });
+    // check if product name already exists. product name should be unique
+    pool.query('SELECT * FROM products WHERE productName=$1;', [productName])
+      .then((data) => {
+        if (!data.rows[0]) {
+          pool.query(query)
+            .then((productArray) => {
+              const newProduct = productArray.rows[0];
+              res.status(201).json({ newProduct });
+            })
+            .catch((err) => {
+              /* istanbul ignore next */res.status(500).json(err);
+            });
+        } else {
+          res.status(409).json({ error: 'product name alread exists. choose another name' });
+        }
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
-  static updateProduct(req, res) {
+  static updateProductDetails(req, res) {
     const {
-      name, category, quantityLeft, price, minQuantity,
+      productName, productCategory, quantityLeft, price, minQuantity,
     } = req.body;
     const { productId } = req.params;
 
     const query = {
-      text: 'UPDATE products SET name = $1, category =$2, quantityLeft = $3, price = $4, minQuantity = $5 WHERE id = $6;',
-      values: [name, category, quantityLeft, price, minQuantity, productId],
+      text: 'UPDATE products SET productName = $1, productCategory =$2, quantityLeft = $3, price = $4, minQuantity = $5 WHERE id = $6 RETURNING *;',
+      values: [productName, productCategory, quantityLeft, price, minQuantity, productId],
     };
 
-    pool.query(query)
-      .then((product) => {
-        const updatedProduct = product;
-        return res.status(200).json({ updatedProduct });
+    // check if product name already exists. product name should be unique
+    pool.query('SELECT * FROM products WHERE productName=$1;', [productName])
+      .then((data) => {
+        if (!data.rows[0]) {
+          pool.query(query)
+            .then((productArray) => {
+              const updatedProduct = productArray.rows[0];
+              if (updatedProduct) {
+                res.status(200).json({ updatedProduct });
+              } else {
+                res.status(404).json({ error: 'product with supplied id does not exist' });
+              }
+            })
+            .catch(/* istanbul ignore next */err => res.status(500).json(err));
+        } else {
+          res.status(409).json({ error: 'product name alread exists. choose another name' });
+        }
       })
-      .catch((err) => {
-        res.status(500).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
+  }
+
+  static updateQuantitySold(req, res) {
+    const { quantitySold } = req.body;
+    const { productId } = req.params;
+
+    pool.query('SELECT quantityLeft, quantitySold FROM products WHERE id = $1;', [productId])
+      .then((data) => {
+        if (data.rowCount) {
+          const { quantityleft, quantitysold: dbQuantitySold } = data.rows[0];
+          const newQuantityLeft = Number(quantityleft) - Number(quantitySold);
+
+          if (newQuantityLeft >= 0) {
+            const newQuantitySold = Number(quantitySold) + Number(dbQuantitySold);
+            const queryText = 'UPDATE products SET quantityLeft=$1, quantitySold=$2 WHERE id=$3 RETURNING *;';
+            const queryValues = [newQuantityLeft, newQuantitySold, productId];
+
+            pool.query(queryText, queryValues)
+              .then((productArray) => {
+                const updatedProduct = productArray.rows[0];
+                if (updatedProduct) {
+                  res.status(200).json({ updatedProduct });
+                } else {
+                  res.status(404).json({ error: 'product id supplied does not exist' });
+                }
+              })
+              .catch(/* istanbul ignore next */err => res.status(500).json(err));
+          } else {
+            res.status(422).json({ error: 'quantity sold surpasses available quantity' });
+          }
+        } else {
+          res.status(404).json({ error: 'product id supplied does not exist' });
+        }
+      })
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 
   static deleteProduct(req, res) {
     const { productId } = req.params;
-    const { name } = req.body;
 
-    const query = {
-      text: 'DELETE FROM products WHERE id = $1 AND name = $2;',
-      values: [productId, name],
-    };
-
-    pool.query(query)
-      .then((product) => {
-        const deletedProduct = product;
-        return res.status(200).json({ deletedProduct });
+    pool.query('DELETE FROM products WHERE id = $1 RETURNING *;', [productId])
+      .then((productArray) => {
+        const deletedProduct = productArray.rows[0];
+        if (deletedProduct) {
+          res.status(200).json({ deletedProduct });
+        } else {
+          res.status(404).json({ error: 'product with supplied id does not exist' });
+        }
       })
-      .catch((err) => {
-        res.status(200).json(err);
-      });
+      .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }
 }
 

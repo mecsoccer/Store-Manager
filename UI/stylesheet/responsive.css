@@ -1,88 +1,150 @@
-@media screen and (min-width: 600px) {
-	.menu{
-		display: none;
-	}
-	.header{
-		height: 105px;
-	}
-	.header h1{
-		float: left;
-		margin-top: 25px;
-		margin-left: 10px;
-		border: 2px solid darkblue;
-		font-size: 30px;
-		padding: 1px 36px;
-		width: fit-content;
-		border-radius: 10px;
-	}
-	.nav-bar{
-		transform: translate(0, 0);
-		position: static;
-		background: none;
-		padding-left: 10px;
-		margin-top: 30px;
-		width: calc(97vw - 220px);
-		float: left;
-  }
-	.nav-bar li{
-		margin: 0;
-		display: inline-block;
-		width: fit-content;
-		padding: 0 2%;
-		float: left;
-	}
-	.nav-bar li a{
-		padding: 0;
-	}
-	.login{
-		float: right !important;
-		margin-right: 2%;
-		width: auto;
-	}
-	.content, .sign-up{
-		margin: auto;
-		margin-top: 170px;
-		padding: 0 5%;
-	}
-	.category{
-		width: 44%;
-		float: left;
-		margin: 3%;
-	}
-	.sign-up{
-		width: 80%;
-		padding: 40px 80px;
-		height: auto;
-	}
-	.submit-sign-up{
-		width: 30%;
-		float: right;
-	}
-	.col-25{
-		float: left;
-		width: 25%;
-		margin-top: 6px;
-	}
-	.col-75{
-		float: left;
-		width: 75%;
-		margin-top: 6px;
-	}
-	.right{
-		width: auto;
-		float: right;
-	}
-	input[type=text], input[type=password], select {
-		width: 75%;
-	}
+@media screen and (min-width: 100px) {
+    /*customs*/
+    .card{
+        margin: 3px;
+    }
 }
 
-@media screen and (min-width: 1000px) {
-	.category{
-		margin: 1%;
-		width: 48%;
-	}
-	.sign-up{
-		width: 60%;
-	}
+@media screen and (min-width: 200px) {
+    /*customs*/
+    .card{
+        width: 80px;
+        height: 105px;
+        margin: 13px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .tab{
+        max-width: 35%;
+        overflow: scroll;
+    }
+}
+
+@media screen and (min-width: 300px) {
+    /*customs*/
+    .card{
+        width: 40%;
+        max-width: 130px;
+        height: 88px;
+        margin: 4%;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .products {
+        padding: 10px 15px 0 15px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    /*customs*/
+    .form-responsive{
+        padding: 30px 10%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .side-bar{
+        position: relative;
+        transform: translate(0, 0);
+    }
+    body{
+        display: flex;
+        flex-flow: row nowrap;
+    }
+    .main{
+        width: auto;
+        flex-grow: 1;
+    }
+    .days td {
+        padding: 0 16px;
+    }
+    .top-navbar{
+        height: 80px;
+        margin-bottom: 85px;
+    }
+    .logo-name{
+        font-size: 32px;
+        padding: 1rem;
+    }
+    .container.open{
+        width: 100%;
+        padding: 4% 20%;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .logo-name{
+        width: 100%;
+    }
+    .head span{
+        position: unset;
+        padding-top: 12px;
+    }
+    .menu-button{
+        display: none;
+    }
+    .back-arrow{
+        display: none;
+    }
+    .tab-position{
+        padding: 5px 10% 0 10%;
+    }
+    .tab {
+        width: auto;
+        max-width: 34%;
+    }
+    /* custom css*/
+    .side-bar{
+        left: 0;
+        -webkit-transform: translate(0, 0);
+        transform: translate(0, 0);
+        transition: transform 0.3s ease;
+    }
+    .side-bar-close{
+        -webkit-transform: translate(-25vw, 0);
+        transform: translate(-25vw, 0);
+        transition: transform 0.3s ease;
+    }
+    .products{
+        height: 60vh;
+    }
+    .days td {
+        padding: 7px 42px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    /* customs */
+    .content {
+        padding: 1px 15%;
+    }
+    .input-form{
+        padding: 20px 25%;
+    }
+    .form-container {
+        margin: 150px 15% 0 15%;
+    }
+    .form-responsive{
+        padding: 30px 15%;
+    }
+    .modal-content{
+        width: 60%;
+    }
+    .card{
+        width: 145px;
+        height: 115px;
+        margin: 3%;
+        padding: 10px;
+    }
+    .input-card{
+        -webkit-transition: font-size 0.5s;
+        transition: font-size 0.5s;
+        -webkit-transition-timing-function: linear;
+        transition-timing-function: linear;
+    }
+    .input-card:hover{
+        font-size: 17px;
+    }
 }

@@ -2,8 +2,8 @@
 
 ### Build Status
 
-[![Build Status](https://travis-ci.com/mecsoccer/Store-Manager.svg?branch=master)](https://travis-ci.com/mecsoccer/Store-Manager)
-[![Coverage Status](https://coveralls.io/repos/github/mecsoccer/Store-Manager/badge.svg?branch=master)](https://coveralls.io/github/mecsoccer/Store-Manager?branch=master)
+[![Build Status](https://travis-ci.com/mecsoccer/Store-Manager.svg?branch=develop)](https://travis-ci.com/mecsoccer/Store-Manager)
+[![Coverage Status](https://coveralls.io/repos/github/mecsoccer/Store-Manager/badge.svg?branch=develop)](https://coveralls.io/github/mecsoccer/Store-Manager?branch=develop)
 
 Store Manager is a web application that helps store owners manage sales and product inventory records.
 

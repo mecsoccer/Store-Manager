@@ -1,6 +1,3 @@
-const allProductTab = document.querySelector('.all-product-tab');
-const availableProductTab = document.querySelector('.available-product-tab');
-const finishedProductTab = document.querySelector('.finished-product-tab');
 const tabs = document.querySelectorAll('.tab');
 const categorySelectElement = document.querySelector('select');
 const categories = [];
@@ -10,6 +7,7 @@ class Products {
   constructor(category, query = '') {
     this.url = `https://stark-crag-43885.herokuapp.com/api/v1/products${query}`;
     this.category = category;
+    this.categories = [];
     this.categoryProducts = [];
     this.categoryShowing = false;
     this.productsLoaded = false;
@@ -23,7 +21,6 @@ class Products {
     })
       .then(fetchResponse => fetchResponse.json())
       .then((data) => {
-        // displayProducts(data.products);
         products = data.allProducts || data.availableProducts || data.finishedProducts;
         return products;
       })
@@ -34,10 +31,11 @@ class Products {
 
   getCategories(allProductArray, categoriesArray) {
     allProductArray.forEach((product) => {
-      if (!categoriesArray.includes(product.category)) {
-        categoriesArray.push(product.category);
+      if (!categoriesArray.includes(product.productcategory)) {
+        categoriesArray.push(product.productcategory);
       }
     });
+    this.categories = categoriesArray;
     return categoriesArray;
   }
 
@@ -48,12 +46,13 @@ class Products {
       categoryOption.innerHTML = category;
       categorySelect.appendChild(categoryOption);
     });
+    this.categoryShowing = true;
   }
 
   getCategoryProducts(productsArray, category) {
     if (category === 'choose category') return products;
     productsArray.forEach((product) => {
-      if (product.category === category) {
+      if (product.productcategory === category) {
         this.categoryProducts.push(product);
       }
     });
@@ -66,18 +65,20 @@ class Products {
       const tableRow = document.createElement('tr');
       tableRow.className = 'product align-left bold fourteen txt-ash-black';
       tableRow.innerHTML = `
-                <td class="left-end-major">${product.name}</td>
+                <td class="left-end-major">${product.productname}</td>
                 <td class="fifteen-percent align-center">${product.price}</td>
                 <td class="ten-percent align-center">${product.quantityleft}</td>
             `;
       productTable.appendChild(tableRow);
     });
+    this.productsLoaded = true;
   }
 
   clearTable() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const tableHead = document.querySelector('tr');
       document.querySelector('table').innerHTML = '';
+      this.tableHead = tableHead;
       resolve(tableHead);
     });
   }
@@ -137,7 +138,7 @@ function showTabProducts() {
         });
       return data;
     })
-    .then((data) => {
+    .then(() => {
       newProducts.display(newProducts.getCategoryProducts(products, categorySelected));
     })
     .catch((err) => {

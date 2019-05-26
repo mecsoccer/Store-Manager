@@ -1,10 +1,13 @@
 html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
     box-sizing: border-box;
 }
-body{
+html, body, .main{
     width: 100%;
+    height: 100%;
+}
+body{
     margin: 0;
-    background: rgb(255, 255, 255);
+    background: white;
     margin-bottom: 100px;
     font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
 }
@@ -24,6 +27,9 @@ body{
 }
 .sixteen{
     font-size: 16px;
+}
+.eighteen{
+    font-size: 18px;
 }
 .twenty{
     font-size: 20px
@@ -45,8 +51,17 @@ body{
 .white-text{
     color: white;
 }
+.dk-text{
+    color: #3E474F;
+}
 .bold{
     font-weight: bold;
+}
+.medium{
+    font-weight: 500;
+}
+.underline{
+    text-decoration: underline;
 }
 
 /* color */
@@ -111,6 +126,18 @@ svg{
 .height-fit{
     height: fit-content;
 }
+.vh100{
+    height: 100vh;
+}
+.vh75{
+    height: 75vh;
+}
+.h60{
+    height: 60px;
+}
+.h50{
+    height: 50px;
+}
 
 /* link */
 .format-link{
@@ -122,7 +149,7 @@ svg{
 .padding-5{
     padding: 5px;
 }
-.paddign-10{
+.padding-10{
     padding: 10px;
 }
 .top-bottom-p10{
@@ -140,8 +167,14 @@ svg{
 .top-padding-45{
     padding-top: 45px;
 }
+.top-pad-15cent{
+    padding-top: 15%;
+}
 .left-padding-10{
     padding-left: 10px;
+}
+.left-padding-75{
+    padding-left: 75px;
 }
 
 /* margin */
@@ -199,7 +232,7 @@ svg{
     border: none;
     text-decoration: none;
 }
-.trans-btn{
+.trans-btn {
     width: fit-content;
     padding: 0 10px;
     border: 2px solid;
@@ -210,11 +243,16 @@ svg{
 
 /* tables */
 .table-header{
-    background-color: #44A751;
+    background-color: #0c8be8;
     color: white;
 }
 tr:nth-child(even){
     background-color: #f2f2f2
+}
+
+/* list */
+.no-li-style{
+    list-style: none;
 }
 
 /* navigation */
@@ -233,27 +271,39 @@ tr:nth-child(even){
     margin-top: 0px;
 }
 .side-bar{
-    height: 100vh;
-    position: fixed;
-    top: 60px;
+    height: 115%;
+    position: absolute;
+    overflow-y: scroll;
+    width: 300px;
     left: 0;
-    transform: translate(0, 0);
+    transform: translate(-300px, 0);
     transition: transform 0.3s ease;
     z-index: 1;
+    background: #3E474F;
+    padding-left: 5px;
 }
-.close{
-    -webkit-transform: translate(-100vw, 0);
-    transform: translate(-100vw, 0);
+.side-bar.open{
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    transition: transform 0.3s ease;
+}
+.open{
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
     transition: transform 0.3s ease;
 }
 .side-nav-list{
     list-style: none;
-    margin-top: 75px;
-    padding-left: 60px;
+    margin: 0;
+    padding-left: 15px;
 }
 .side-nav-btn{
-    color: white;
-    margin-bottom: 15%;
+    color: #dbe2e8;
+    margin-bottom: 10%;
+    letter-spacing: 5px;
+}
+.side-nav-btn:last-child{
+    padding-top: 90px;
 }
 .highlighted{
     color: rgba(255, 255, 255, 0.5);
@@ -261,14 +311,19 @@ tr:nth-child(even){
 
 /* tabs */
 .tab-container{
+    padding: 15px 15px 0px 15px;
     overflow-y: hidden;
 }
-.tab{
-    color: #707070;
+.tab {
+    text-align: center;
+    color: #3E474F;
     border-radius: 5px 5px 0px 0px;
-    padding: 7px 5%;
+    padding: 8px 5%;
     float: left;
+    font-size: 14px;
     cursor: pointer;
+    width: 33.3%;
+    max-width: 96px;
 }
 .tab:hover{
     background: aliceblue;
@@ -296,25 +351,48 @@ tr:nth-child(even){
 .absolute{
     position: absolute;
 }
+.top10{
+    top: 10px;
+}
+
+/* index */
+.index-1{
+    z-index: 1;
+}
+.index-2{
+    z-index: 2;
+}
+.index-3{
+    z-index: 3;
+}
 
 /* cursor */
 .pointer{
     cursor: pointer;
 }
+.not-allowed{
+    cursor: not-allowed;
+}
 
 /* others */
 .logo-name{
+    color: white;
+    font-weight: bold;
     font-size: 24px;
+    letter-spacing: 2px;
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    padding-top: 13px;
-    float: left;
+    padding: 6px 0;
 }
 .menu-button{
-    padding: 15px 0 0 10px;
-    width: 20%;
-    float: left;
+    width: 30px;
+    height: 29px;
+    position: relative;
+    top: 9px;
+    color: white;
+    background: inherit;
+    border: 0;
+    z-index: 2;
 }
 .menu-button:hover{
     cursor: pointer;
@@ -327,12 +405,18 @@ tr:nth-child(even){
 .menu-button-2:hover{
     cursor: pointer;
 }
+.add-button{
+    width: 25px;
+    height: 25px;
+}
 .container{
     width: 100%;
-    margin-top: 60px;
 }
 .dom-color{
     color: #0C8BE8;
+}
+.dark-theme{
+    background: #3E474F;
 }
 .dom-color-bkg{
     background-color: #0C8BE8;
@@ -340,8 +424,8 @@ tr:nth-child(even){
 .bkg-color{
     background-color: #F4F4EF;
 }
-.white{
-    color: white;
+.white-bkg{
+    background: white;
 }
 .centered{
     margin: auto;
@@ -393,15 +477,28 @@ tr:nth-child(even){
 .left-end-major{
     width: 80%;
 }
-.search-bar{
+.search-bar {
     height: 40px;
     border-radius: 3px;
     border: 1px solid gainsboro;
     padding: 5px;
     box-shadow: 0px 1px 2px 1px gainsboro;
 }
+.cart-content {
+    height: 55vh;
+}
 .fit{
     width: fit-content;
+}
+.products {
+    width: 100%;
+    height: 55vh;
+    background: white;
+    list-style: none;
+    padding: 5px 2px 0 2px;
+    overflow-y: scroll;
+    border-style: inset;
+    border: 1px solid gainsboro;
 }
 .left{
     float: left;
@@ -412,41 +509,62 @@ tr:nth-child(even){
 .off{
     display: none;
 }
+.main{
+    background: inherit;
+}
+.main-shift{
+    transform: translate(85%, 0);
+    transition: transform 0.3s ease;
+}
+.head{
+    width: 100%;
+    background: inherit;
+    position: sticky;
+    top: 0;
+}
+.form-container{
+    margin: 120px 4% 0 4%;
+}
+.error{
+    color: red;
+    margin-bottom: 30px;
+}
 
 /*customs*/
-.sign-in-container{
-    width: 100%;
-    margin-top: 100px;
-    padding: 4%;
+.tab-position{
+    background: #e7e8e9;
+    position: initial;
+    padding-top: 15px;
 }
-.cart-svg{
+.lt-sp-5{
+    letter-spacing: 5px;
+    padding-top: 5px;
+}
+.cart-svg {
     width: fit-content;
     height: 58px;
-    background-image: url("../image/storemanager/cart.svg");
+    background-image: url(../image/storemanager/cart.svg);
     padding-left: 22px;
     margin: auto;
     margin-top: 20px;
     cursor: pointer;
 }
-.cart-qty{
+.cart-qty {
     width: 20px;
     height: 20px;
     background: red;
     text-align: center;
     border-radius: 10px;
 }
-.products{
-    width: 100%;
-    height: 40vh;
+.cart-total {
+    margin-left: 35px;
     background: white;
-    list-style: none;
-    padding: 5px 2px 0 2px;
-    overflow-y: scroll;
-    border-style: inset;
-    border: 1px solid gainsboro;
+    padding: 21px 11px;
 }
-.product{
-    overflow: hidden;
+.a-t-c-btn {
+    height: 35px;
+    border-color: #0C8BE8;
+    color: #0C8BE8;
 }
 .delta-up{
     width: 10px;
@@ -460,69 +578,76 @@ tr:nth-child(even){
     margin-left: 5px;
     cursor: pointer;
 }
-.qty{
-    background: #F9F9F9;
+.nav-icons{
+    width: 40px;
+    position: relative;
+    top: 10px;
+    margin-right: 10px;
+    font-size: 32px;
 }
-.a-t-c-btn{
-    height: 35px;
-    border-color: #0C8BE8;
-    color: #0C8BE8;
+.sm-gap{
+    width: calc(100% - 7px);
 }
-.side-bar-customs{
-    background: #58646d;
+.dk-blue-bkg{
+    background: #437192;
 }
-.back-arrow{
-    width: 12px;
-    height: 12px;
-    float: right;
-    margin-right: 30px;
+.green-bkg{
+    background: #08C293;
 }
-.sign-in-title{
-    font-weight: lighter;
-    font-size: 24px;
+.dk-green-text{
+    color: #0A5B47;
 }
-.green-color{
-    color: #44A751;
+.dk-gray{
+    background: #9A9C9C;
 }
-.cart-content{
-    height: 55vh;
+.card{
+    width: 108px;
+    height: 88px;
+    border-radius: 5px;
+    margin: 14px;
+    display: inline-block;
+    box-shadow: 3px 2px 6px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
 }
-.cart-total{
-    margin-left: 35px;
-    background: white;
-    padding: 21px 11px;
+.card:last-child{
+    padding-top: 27px;
+    box-shadow: none;
 }
-hr{
-    margin-top: 0;
-    height: 1px;
-    background-color: #44A751; 
-    border: none;
+.input-card{
+    background: #CB5165;
 }
-.cat-prod-list{
-    height: 60vh;
+.activity-card{
+    background: #7571E5;
 }
-.showing{
-    padding: 5px;
-    border-right: 1px solid gainsboro;
-    border-left: 1px solid gainsboro;
-    border-bottom: 1px solid gainsboro;
-}
-.content{
+.content {
+    width: 100%;
     padding: 1px 4%;
+    display: inline-block;
+    margin-top: 30px;
 }
-.tab-position{
-    padding: 5px 2% 0 2%;
-    background: #ECEEEF;
-    height: 60px;
+.lh-10{
+    line-height: 10px;
 }
-.menu{
-    width: 30px;
-    color: white;
-    background: inherit;
-    border: 0;
+.bottom22{
+    bottom: 22px;
 }
-/* The Modal (background) */
-.modal {
+.abs-1{
+    padding: 2px 4px;
+}
+.abs-3{
+    position: relative;
+    bottom: 18px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    color: #0A5B47;
+}
+.input-form{
+    padding: 20px 5%;
+}
+
+    /* The Modal (background) */
+    .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -550,28 +675,165 @@ hr{
     animation-name: animatetop;
     animation-duration: 0.4s
 }
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
 .modal-header {
     padding: 2px 16px;
     background-color: #5cb85c;
     color: white;
     text-align: center;
 }
-
-.modal-body {padding: 2px 16px;}
-
+.modal-body {
+    padding: 2px 16px;
+}
 .modal-footer {
     padding: 2px 16px;
     color: white;
 }
+.form-responsive{
+    padding: 30px 0px;
+}
+.abs-4{
+    border: 2px solid #0A5B47;
+    border-radius: 5px;
+    padding: 2px;
+    margin: 5px 0;
+}
+.abs-4 ul{
+    padding: 0;
+}
+.input-table td{
+    border: 1px solid gainsboro;
+    padding: 0 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.card-expand{
+    width: fit-content;
+    height: fit-content;
+    overflow: auto;
+    margin:auto;
+    background: #CB5165;
+    border-radius: 5px;
+    padding: 5px 25px;
+    position: relative;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-name: animatetop;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+@-webkit-keyframes animatetop {
+    from {opacity:0}
+    to {opacity:1}
+}
+@keyframes animatetop {
+    from {opacity:0}
+    to {opacity:1}
+}
+
+.update-input-btn{
+    padding: 8px 20px;
+    background: #0A5B47;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #0A5B47;
+    margin: 20px 0;
+}
+
+input[type=submit] {
+    width: 40%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 25px 30%;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* loader */
+#loader {
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: 10px auto;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* calendar */
+.calendar{
+    padding: 63px 14px 0px 14px;
+}
+.calendar-title{
+    height: 49px;
+    background: #08C293;
+    margin-bottom: 12px
+}
+.cal-arrows{
+    width: 5px;
+    height: 9px;
+}
+.cal-back-arrow{
+    position: relative;
+    top: 15px;
+    padding-left: 10px;
+}
+.cal-fwd-arrow{
+    position: relative;
+    bottom: 55px;
+    padding-right: 10px;
+    float: right;
+}
+.calendar-body{
+    border-spacing: 0;
+}
+.weekdays {
+    background: #ECEEEF;
+    height: 50px;
+    margin: 12px 0 0 0;
+    padding: 14px 15px;
+    list-style: none;
+}
+.weekdays th {
+    width: 14.2%;
+    height: 19px;
+    color: #0A5B47;
+    text-align: center;
+    font-weight: 500;
+    padding: 0 8px;
+}
+.days{
+    background: white;
+}
+.days td {
+    height: 34px;
+    padding: 0 8px;
+    text-align: center;
+  }
+  .days td .active {
+    padding: 5px;
+    background: #3E474F;
+    color: white !important
+  }

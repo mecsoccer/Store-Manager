@@ -1,62 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Store Man</title>
+  <title>Store Manager</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="./stylesheet/new-main.css">
-  <link rel="stylesheet" href="./stylesheet/new-responsive.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheet/main.css">
+  <link rel="stylesheet" href="./stylesheet/responsive.css">
   <link rel="icon" href="">
 </head>
 <body>
-
-  <nav class="top-navbar">
-    <div class="menu-button">
-        <img class="menu" src="./image/storemanager/ic_menu.svg">
+    <div class="side-bar ">
+        <div class="dark-theme sm-gap bottom-margin-20">
+            <header class="logo-name">Store Manager</header>
+        </div>
+        <div class="sm-gap dark-theme vh75">
+            <ul class="side-nav-list sixteen medium">
+                <li class="side-nav-btn"><span class="nav-icons material-icons">add_shopping_cart</span><a class="format-link" href="#">Cart</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">crop_3_2</span><a class="format-link" href="./products.html">Products</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">flag</span><a class="format-link" href="#">Categories</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">business_center</span><a class="format-link" href="#">Sales</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">person</span><a class="format-link" href="#">My Profile</a></li>
+                <li class="side-nav-btn" id="sign-out">
+                    <span class="nav-icons material-icons" style="transform: rotate(180deg)">input</span>
+                    <a class="format-link" href="#">Sign Out</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <header class="logo-menu logo-name white-text sixty-percent"><a class="format-link" href="#">Store Manager</a></header>
-  </nav>
-  <div class="container">
-    <div class="side-bar eightcol side-bar-customs open close">
-        <div>
-            <img class="back-arrow top-margin-25" src="./image/storemanager/backward-arrow.svg">
-        </div>
-        <ul class="side-nav-list">
-            <li class="side-nav-btn highlighted">CART</li>
-            <li class="side-nav-btn"><a href="./products.html" class="format-link">PRODUCTS</a></li>
-            <li class="side-nav-btn">CATEGORIES</li>
-            <li class="side-nav-btn">SALES</li>
-            <li class="side-nav-btn">MY PROFILE</li>
-            <li class="side-nav-btn top-padding-45" id="sign-out">SIGN OUT</li>
-        </ul>
-    </div>
-    <div class="content">
-        <div class="fit left top-margin-25">
-            <img class="menu-button-2" src="./image/storemanager/menu2.svg">
-        </div>
-        <div class="cart-svg">
-            <div class="cart-qty white-text"><a class="format-link" href="#">0</a></div>
-            <span class="cart-total">$0</span>
-        </div>
-        <input class="search-bar twelvecol top-margin-45" type="text" placeholder="Search for products and categories">
-        <div>
-            <div class="cart-content products align-center">
-                <table>
-                    <tr class="table-header align-left">
-                        <th>Product name</th>
-                        <th class="align-center">Price($)</th>
-                        <th>Quantity</th>
-                    </tr>
-                </table>
+    <div class="main">
+        <div class="head">
+            <div class="dk-blue-bkg h50 right-left-p5">
+                <button class="menu-button material-icons">menu</button>
+                <span class="lt-sp-5 block twelvecol align-center eighteen white-text roboto relative bottom22">Cart Page</span>
             </div>
         </div>
-        <div class="centered fit">
-            <button class="trans-btn a-t-c-btn top-margin-25" id="place-order">Place order</button>
+        <div class="content">
+            <div class="cart-svg">
+                <div class="cart-qty white-text"><a class="format-link" href="#">0</a></div>
+                <span class="cart-total">$0</span>
+            </div>
+            <input class="search-bar twelvecol top-margin-45" type="text" placeholder="Search for products and categories">
+            <div>
+                <div class="cart-content products align-center">
+                    <table>
+                        <tr class="table-header align-left">
+                            <th>Product name</th>
+                            <th class="align-center">Price($)</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="centered fit">
+                <button class="trans-btn a-t-c-btn top-margin-25 pointer" id="place-order">Place order</button>
+            </div>
         </div>
     </div>
-  <!-- The Modal -->
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
@@ -69,15 +72,26 @@
             <p class="fourteen align-center">click continue to keep selling</p>
         </div>
         <div class="modal-footer centered">
-            <div class="fit centered"><button id="modal-continue" class="normal-btn radius-5 sixteen dom-color-bkg white-text">Continue</button></div>
+            <div class="fit centered">
+                <button id="modal-continue" class="normal-btn radius-5 sixteen dom-color-bkg white-text pointer">Continue</button>
+            </div>
         </div>
         </div>
     
     </div>
-  
-  <script src="./javascript/storeman.js"></script>
-  <script src="./javascript/add-to-cart.js"></script>
-  
+    <script src="./javascript/buttons.js"></script>
+    <script src="./javascript/add-to-cart.js"></script>
+    <script>
+        // sign out
+        const signOut = document.querySelector('#sign-out');
+
+        signOut.addEventListener('click', () => {
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('user');
+            window.location.assign('./login.html');
+        });
+ 
+    </script>
+    
 </body>
 </html>
-  

@@ -1,0 +1,112 @@
+body {
+    width: 100%;
+    margin: 0;
+    background: rgb(255, 255, 255);
+    margin-bottom: 100px;
+    font-family: 'Roboto','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
+}
+html, body, div, span, nav, a, button, img, input, header, ul, li, select, option {
+    box-sizing: border-box;
+}
+.top-navbar {
+    position: fixed;
+    top: 0px;
+    height: 60px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+    background-color: #437192;
+    flex-wrap: wrap;
+    padding: 0;
+    z-index: 2;
+}
+.logo-name {
+    font-size: 24px;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 5px 5px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding-top: 13px;
+    letter-spacing: 3px;
+    float: left;
+}
+.sign-in-container {
+    width: 100%;
+    margin-top: 100px;
+    padding: 4%;
+}
+.sign-in-title {
+    font-weight: lighter;
+    font-size: 24px;
+}
+.password-field {
+    height: 45px;
+    width: 100%;
+    border: 1px solid #DBDBDB;
+    font-size: 14px;
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+    padding: 0 2%;
+    margin-bottom: 20px;
+}
+.sign-in-button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 17px 15px 35px 0px rgba(0, 0, 0, 0.2);
+}
+.twelvecol {
+    width: 100%;
+}
+.white-text {
+    color: white;
+}
+.page-title {
+    margin-bottom: 35px;
+}
+.center-text {
+    margin: auto;
+    text-align: center;
+}
+.margin-top40 {
+    margin-top: 40px;
+}
+.format-link {
+    text-decoration: none;
+    color: inherit;
+}
+.dom-color {
+    color: #437192;
+}
+.dom-color-bkg {
+    background-color: #437192;
+}
+.centered {
+    margin: auto;
+}
+.white {
+    color: white;
+}
+
+@media screen and (min-width: 600px) {
+    .top-navbar {
+        height: 80px;
+        margin-bottom: 85px;
+    }
+    .logo-name {
+        font-size: 32px;
+        padding: 15px;
+    }
+    .sign-in-container {
+        background-color: white;
+        box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
+        padding: 4% 10%;
+        margin: 150px 20% 0 20%;
+        width: auto;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .logo-name {
+        width: 100%;
+    }
+}

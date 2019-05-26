@@ -13,7 +13,7 @@ function getAllUsers(req, res) {
       const allUsers = users.rows;
       res.status(200).json({ allUsers });
     })
-    .catch();
+    .catch(/* istanbul ignore next */err => res.status(500).json(err));
 }
 
 function getUser(req, res) {
@@ -22,7 +22,7 @@ function getUser(req, res) {
   pool.query('SELECT * FROM users WHERE id = $1;', [userId])
     .then((requestedUser) => {
       const user = requestedUser.rows[0];
-      return !user ? Promise.reject() : user;
+      /* istanbul ignore next */return !user ? Promise.reject() : user;
     })
     .then((user) => {
       res.status(200).json({ user });
@@ -41,10 +41,8 @@ function addUser(req, res) {
   const hash = bcrypt.hashSync(password, salt);
 
   const query = {
-    text: `INSERT INTO
-           users(username, password, email, productSold, noOfSales, worthOfSales, role)
-           VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-    values: [username, hash, email, 0, 0, 0, role],
+    text: 'INSERT INTO users(username, password, email, role) VALUES($1, $2, $3, $4) RETURNING *',
+    values: [username, hash, email, role],
   };
 
   pool.query(query)
@@ -52,8 +50,8 @@ function addUser(req, res) {
       const newAttendant = user.rows[0];
       res.status(201).json({ newAttendant });
     })
-    .catch((err) => {
-      res.status(500).json(err);
+    .catch(() => {
+      res.status(422).json({ error: 'data with same username already exists' });
     });
 }
 
@@ -64,7 +62,7 @@ function login(req, res) {
     .then((user) => {
       const foundUser = user.rows[0];
       const authenticated = bcrypt.compareSync(passwordInput, foundUser.password);
-      return (!authenticated) ? Promise.reject() : foundUser;
+      /* istanbul ignore next */return (!authenticated) ? Promise.reject() : foundUser;
     })
     .then((foundUser) => {
       const { username, password, role } = foundUser;
@@ -76,76 +74,55 @@ function login(req, res) {
     });
 }
 
-function updateUserSales(req, res) {
-  const {
-    productSold, noOfSales, worthOfSales,
-  } = req.body;
-  const { userId } = req.params;
-
-  const text = `UPDATE users
-                SET productSold = $1,noOfSales =$2,worthOfSales = $3
-                WHERE id = $4 returning *;`;
-  const values = [productSold, noOfSales, worthOfSales, userId];
-
-  pool.query(text, values)
-    .then((user) => {
-      const updatedUser = user.rows[0];
-      return !updatedUser ? Promise.reject(userId) : updatedUser;
-    })
-    .then((updatedUser) => {
-      res.status(200).json({ updatedUser });
-    })
-    .catch((id) => {
-      res.status(404).json({ error: `user id, ${id} does not exist` });
-    });
-}
-
 function updateUserData(req, res) {
   const { userId } = req.params;
-  const { username, password, email } = req.body;
+  const {
+    username, password, email, role,
+  } = req.body;
 
   const hashPassword = bcrypt.hashSync(password, 10);
 
-  const text = `UPDATE users
-                SET username=$1, password=$2, email=$3
-                WHERE id=$4 returning *`;
-  const values = [username, hashPassword, email, userId];
+  const text = 'UPDATE users SET username=$1, password=$2, email=$3, role=$4 WHERE id=$5 RETURNING *;';
+  const values = [
+    username, hashPassword, email, role, userId,
+  ];
 
   pool.query(text, values)
     .then((userArray) => {
       const user = userArray.rows[0];
-      return !user ? Promise.reject() : user;
+      /* istanbul ignore next */return !user ? Promise.reject() : user;
     })
     .then((updatedUser) => {
       res.status(200).json({ updatedUser });
     })
-    .catch((id) => {
-      res.status(404).json({ error: `user id, ${id} does not exist` });
+    .catch(() => {
+      res.status(422).json({ error: 'unnable to complete request. choose another username or new id' });
     });
 }
 
 function deleteUser(req, res) {
   const { userId } = req.params;
-  const { username } = req.body;
 
-  const text = 'DELETE FROM users WHERE id = $1 AND username = $2 returning *;';
-  const values = [userId, username];
+  const text = 'DELETE FROM users WHERE id = $1 returning *;';
+  const values = [userId];
 
   pool.query(text, values)
     .then((user) => {
       const deletedUser = user.rows[0];
-      return !deletedUser ? Promise.reject(userId) : deletedUser;
+      /* istanbul ignore next */return !deletedUser ? Promise.reject(userId) : deletedUser;
     })
     .then((deletedUser) => {
       res.status(200).json({ deletedUser });
     })
-    .catch();
+    .catch((id) => {
+      res.status(404).json({ error: `user id, ${id} does not exist` });
+    });
 }
 
 function giveAdminRight(req, res) {
   const { userId } = req.params;
   const { admin } = req.body;
-  const role = (admin === true) ? 'admin' : 'attendant';
+  /* istanbul ignore next */const role = (admin === true) ? 'admin' : 'attendant';
 
   const text = 'UPDATE users SET role=$1 WHERE id=$2 returning *;';
   const values = [role, userId];
@@ -153,7 +130,7 @@ function giveAdminRight(req, res) {
   pool.query(text, values)
     .then((user) => {
       const adminUser = user.rows[0];
-      return (!adminUser) ? Promise.reject(userId) : adminUser;
+      /* istanbul ignore next */return (!adminUser) ? Promise.reject(userId) : adminUser;
     })
     .then((newAdmin) => {
       res.status(200).json({ newAdmin });
@@ -164,5 +141,5 @@ function giveAdminRight(req, res) {
 }
 
 export default {
-  addUser, login, getAllUsers, getUser, updateUserSales, updateUserData, deleteUser, giveAdminRight,
+  addUser, login, getAllUsers, getUser, updateUserData, deleteUser, giveAdminRight,
 };
