@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Store Manager</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheet/main.css">
+  <link rel="stylesheet" href="./stylesheet/admin.css">
+  <link rel="stylesheet" href="./stylesheet/sign-up.css">
+  <link rel="stylesheet" href="./stylesheet/responsive.css">
+  <link rel="icon" href="">
+</head>
+<body>
+    <div class="side-bar ">
+        <div class="dark-theme sm-gap bottom-margin-20">
+            <header class="logo-name">Store Manager</header>
+        </div>
+        <div class="sm-gap dark-theme vh75">
+            <ul class="side-nav-list sixteen medium">
+                <li class="side-nav-btn"><span class="nav-icons material-icons">crop_3_2</span><a class="format-link" href="./products.html">Products</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">flag</span><a class="format-link" href="#">Categories</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">business_center</span><a class="format-link" href="#">Sales</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">person</span><a class="format-link" href="#">Users</a></li>
+                <li class="side-nav-btn" id="sign-out">
+                    <span class="nav-icons material-icons" style="transform: rotate(180deg)">input</span>
+                    <a class="format-link" href="#">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <div class="head">
+            <div class="dk-blue-bkg h50 right-left-p5">
+                <button class="menu-button material-icons">menu</button>
+                <span class="lt-sp-5 block twelvecol align-center eighteen white-text roboto relative bottom22">Admin Page</span>
+            </div>
+        </div>
+        <div class="admin_content">
+            <div class="flex wrap">
+                <div class="admin_cards users_card">
+                    <div class="centered fit">
+                        <span class="material-icons user_icon sixty left"><a href="#" class="format-link">people</a></span>
+                        <div class="inline left top-padding-5">
+                            <span class="block lt-sp-5 bold num_users">10</span>
+                            <span class="block lt-sp-5">users</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin_cards products_card">
+                    <div class="centered fit">
+                        <span class="material-icons user_icon sixty left"><a href="./products.html" class="format-link">business_center</a></span>
+                        <div class="inline left top-padding-5">
+                            <span class="block lt-sp-5 bold num_users">1000</span>
+                            <span class="block lt-sp-5">products</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="admin_cards sales_card">
+                    <div class="centered fit">
+                        <span class="material-icons user_icon sixty left"><a href="#" class="format-link">shopping_cart</a></span>
+                        <div class="inline left top-padding-5">
+                            <span class="block lt-sp-5 bold num_users">500</span>
+                            <span class="block lt-sp-5">sales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="general">
+                <div class="admin_accordions users_accordion">
+                    <button class="accordion bold lt-sp-5">MANAGE USERS</button>
+                    <div class="panel">
+                        <div class="align-center"><a href="#" class="format-link">Add New User</a></div>
+                        <div class="align-center"><a href="#" class="format-link">Edit User Data</a></div>
+                        <div class="align-center"><a href="#" class="format-link">Delete User</a></div>
+                        <div class="align-center"><a href="#" class="format-link">Give Admin Rights</a></div>
+                    </div>
+                </div>
+                <div class="admin_accordions products_accordion">
+                    <button class="accordion bold lt-sp-5">MANAGE PRODUCTS</button>
+                    <div class="panel">
+                        <div class="align-center"><a href="#" class="format-link">Add New Product</a></div>
+                        <div class="align-center"><a href="#" class="format-link">Edit Product Details</a></div>
+                        <div class="align-center"><a href="#" class="format-link">Delete Products</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="sign-up">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold eighteen sub-title-color">Create Product</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20">
+                <label for="product-name" class="col-25">Product Name</label>
+                <input type="text" id="firstname" name="product-name" class="col-75" required>
+        
+                <label for="product-quantity" class="col-25">Quantity</label>
+                <input type="text" id="email" name="product-quantity" class="col-75" required>
+                
+                <label for="product-price" class="col-25">Price</label>
+                <input type="text" id="username" name="product-price" class="col-75">
+                
+                <label for="min-quantity" class="col-25">min-Quantity</label>
+                <input type="password" id="password" name="min-quantiy" class="col-75">
+                
+                <label for="product-image" class="col-25">Image</label>
+                <input accept="image/*" type="file" id="confirm-password" name="product-image" class="col-75">
+            
+                <input class="submit-sign-up" type="submit" value="Update">
+            </form>
+        </div>
+    
+    </div>
+
+    <script src="./javascript/buttons.js"></script>
+    <script>
+        // accordion
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function(){
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
+            }
+        }
+
+        /* Modal region */
+        const modal = document.getElementById('myModal');
+        const modalContinue = document.querySelector('#modal-continue');
+
+        modalContinue.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+        window.location.reload();
+        });
+
+        // sign out
+        const signOut = document.querySelector('#sign-out');
+
+        signOut.addEventListener('click', () => {
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('user');
+            window.location.assign('./login.html');
+        });
+ 
+    </script>
+    
+</body>
+</html>

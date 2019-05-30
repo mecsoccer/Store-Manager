@@ -1,46 +1,165 @@
-.section{
-	padding: 5px 2%;
-	margin: 10px 5% 20px 5%;
-	background: darkgray;
-  border-radius: 8px;
-	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 2px 9px 1px rgba(0, 0, 0, 0.12);
+.dash_board{
+    width: 100%;
+    list-style: none;
+    padding: 10px;
+    color: #dbe2e8;
+    letter-spacing: 4px;
 }
-.btn{
-	cursor: pointer;
-	border: 0.5px solid lightgray;
-	border-radius: 10px;
-	color: black;
-	background: darkblue;
-	text-decoration: none;
-	width: 100%;
-	padding: 5px 0;
-	margin: 5px 0;
-	text-transform: capitalize;
+.dash_board h4{
+    border: 1px solid;
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    color: white;
 }
-.btn a{
-  text-decoration: none;
-  color: white;
+.dash_board li{
+    padding-left: 20px;
+    color: #dbe2e8;
+    letter-spacing: 4px;
+    margin-top: 10px;
 }
-.btn:hover{
-	background: blue;
+.admin_content{
+    width: 100%;
+    padding: 0 20px;
 }
-.centered{
-	padding: 0 10%;
+.general{
+    width: 100%;
+    height: 200px;
+    margin-top: 70px;
 }
-.title{
-	text-align: center;
-	color: darkblue;
-  margin-bottom: 30px;
+.admin_cards{
+    background: #e5e5e5;
+    width: 100%;
+    height: 100px;
+    margin: 20px 0;
+    padding: 20px 20px;
+    cursor: pointer;
 }
-h3{
-	color: darkblue;
+.admin_cards:hover{
+    background: #b3b3b3;
+}
+.user_icon{
+    margin-right: 10px;
+    color: #509cc6;
+}
+.admin_cards span{
+    text-align: center;
+}
+.admin_cards span:last-child{
+    color: #9d9696;
+}
+.num_users{
+    color: #3E474F;
+}
+.users_card{
+    
+}
+.products_card{
+    
+}
+.sales_card{
+
+}
+.admin_accordions{
+    background: #F4F4EF;
+    width: 100%;
+    margin-top: 20px;
+}
+.users_accordion{
+    
+}
+.products_accordion{
+    
+}
+.sales_accordion{
+    
+}
+button.accordion {
+    background-color: #5ca4cc;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+button.accordion.active, button.accordion:hover {
+    background-color: #35799f;
+}
+button.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: #5ca4cc;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796";
+}
+div.panel {
+    background-color: inherit;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+    padding: 0 5px;
+}
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+    color: #3E474F;
+}
+.panel div{
+    border-bottom: 1px solid #DED6D6;
+    padding: 11px 0;
+}
+.panel div:hover{
+    background: white;
 }
 
 @media screen and (min-width: 600px) {
-	.section{
-		margin: 10px 15% 20px 15%;
-	}
-	.centered {
-		padding: 0 25%;
-	}
+    .admin_content{
+        width: 100%;
+        padding: 70px;
+    }
+    .general{
+        display: flex;
+        width: 100%;
+        margin-top: 30px;
+    }
+    .admin_cards{
+        display: flex;
+        width: 31%;
+        margin: 20px 1.1%;
+    }
+    button.accordion{
+        text-align: center;
+    }  
+    button.accordion:after {
+        content: '';
+    }
+    button.accordion.active:after {
+        content: "";
+    }
+    div.panel{
+        max-height: 500px;
+        opacity: 1;
+    }
+    .admin_accordions{
+        margin: 20px;
+    }
+}
+
+@media screen and (min-width: 600px) and  (max-width: 1130px){
+    .admin_cards span {
+        display: block;
+        float: none;
+    }
+    .admin_cards{
+        height: fit-content;
+    }
 }

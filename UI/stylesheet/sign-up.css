@@ -7,7 +7,9 @@ input[type=text], input[type=password], select {
 	border-radius: 4px;
 	box-sizing: border-box;
 }
-
+input[type=file]{
+	margin-top: 10px;
+}
 .submit-sign-up {
 	width: 100%;
 	background-color:#5959aa;
@@ -27,4 +29,10 @@ input[type=text], input[type=password], select {
 	border-radius: 5px;
 	background-color: #f2f2f2;
 	padding: 40px;
+	margin: 0 25px;
+}
+.modal-close-btn{
+	position: relative;
+	bottom: 25px;
+	color: red;
 }

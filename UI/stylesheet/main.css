@@ -37,6 +37,9 @@ body{
 .twenty-four{
     font-size: 24px;
 }
+.sixty{
+    font-size: 60px;
+}
 
 /* text */
 .align-left{
@@ -121,6 +124,9 @@ svg{
 .sixty-percent{
     width: 60%;
 }
+.seventy-percent{
+    width: 70%;
+}
 
 /* height */
 .height-fit{
@@ -163,6 +169,9 @@ svg{
 }
 .right-left-p5{
     padding: 0 5px;
+}
+.top-padding-5{
+    padding-top: 5px;
 }
 .top-padding-45{
     padding-top: 45px;
@@ -275,6 +284,7 @@ tr:nth-child(even){
     position: absolute;
     overflow-y: scroll;
     width: 300px;
+    min-width: 299px;
     left: 0;
     transform: translate(-300px, 0);
     transition: transform 0.3s ease;
@@ -303,7 +313,7 @@ tr:nth-child(even){
     letter-spacing: 5px;
 }
 .side-nav-btn:last-child{
-    padding-top: 90px;
+    margin-top: 90px;
 }
 .highlighted{
     color: rgba(255, 255, 255, 0.5);
@@ -344,6 +354,12 @@ tr:nth-child(even){
 .block{
     display: block;
 }
+.flex{
+    display: flex;
+}
+.wrap{
+    flex-wrap: wrap;
+}
 /* position */
 .relative{
     position: relative;
@@ -372,6 +388,11 @@ tr:nth-child(even){
 }
 .not-allowed{
     cursor: not-allowed;
+}
+
+/* colors */
+.sub-title-color{
+    color: #0C8BE8;
 }
 
 /* others */
@@ -743,14 +764,14 @@ tr:nth-child(even){
 
 input[type=submit] {
     width: 40%;
-    background-color: #4CAF50;
+    background-color: #0C8BE8;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 25px 30%;
+    margin: 25px 30% 0 30%;
 }
 
 input[type=submit]:hover {

@@ -48,6 +48,7 @@
     .side-bar{
         position: relative;
         transform: translate(0, 0);
+        flex-wrap: wrap;
     }
     body{
         display: flex;

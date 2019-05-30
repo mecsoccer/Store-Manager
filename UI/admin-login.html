@@ -6,35 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <link rel="stylesheet" href="./UI/stylesheet/index.css">
+  <link rel="stylesheet" href="./stylesheet/login.css">
   <link rel="icon" href="">
 </head>
 <body>
 
-    <div class="container">
-      <div class="header">
-        <div class="site_name">StoreManager</div>
-        <div class="nav">
-          <button class="admin_button" title="login in as admin">
-            <a href="./UI/admin-login.html">ADMIN</a>
-          </button>
-          <button class="attendant_button" title="login in as attendant">
-            <a href="./UI/login.html">ATTENDANT</a>
-          </button>
-        </div>
-      </div>
-
-      <h2 class="intro">MAKE MORE SALES</h2>
-      <h5 class="sub_intro">A store inventory application</h5>
-
-      <div class="centered">
-          <button class="call_action">
-            <a href="./UI/login.html">GET STARTED</a>
-          </button>
-      </div>
-
+  <nav class="top-navbar">
+    <header class="logo-name white-text twelvecol">StoreManager</header>
+  </nav>
+  <div class="sign-in-container">
+    <div class="page-title sign-in-title">Sign in to your account</div>
+    <div class="">
+        <input type="text" id="username" class="twelvecol password-field" placeholder="Username"/>
     </div>
-
+    <div class="">
+        <input type="password" id="password" class="twelvecol password-field" placeholder="Password"/>
+    </div>
+    <div class="">
+        <button class="dom-color-bkg white centered sign-in-button">SIGN IN</button>
+    </div>
+    <div class="center-text margin-top40">
+        <a class="twelvecol dom-color format-link" href="#">Forgot your password?</a>
+    </div>
+  </div>
   <script>
     const submit = document.querySelector('.sign-in-button');
 
@@ -59,7 +53,7 @@
       .then((data) => {
         sessionStorage.setItem('user', data.username);
         sessionStorage.setItem('token', data.token);
-        window.location.assign('./UI/cart.html');
+        window.location.assign('./admin.html');
       })
       .catch((err) => {
         console.log(err);
