@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Store Manager</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./stylesheet/main.css">
+  <link rel="stylesheet" href="./stylesheet/responsive.css">
+  <link rel="icon" href="">
+</head>
+<body>
+    <div class="side-bar ">
+        <div class="dark-theme sm-gap bottom-margin-20">
+            <header class="logo-name">Store Manager</header>
+        </div>
+        <div class="sm-gap dark-theme vh75">
+            <ul class="side-nav-list sixteen medium">
+                <li class="side-nav-btn"><span class="nav-icons material-icons">crop_3_2</span><a class="format-link" href="./admin-products.html">Products</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">flag</span><a class="format-link" href="#">Categories</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">business_center</span><a class="format-link" href="#">Sales</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">person</span><a class="format-link" href="#">Users</a></li>
+                <li class="side-nav-btn" id="sign-out">
+                    <span class="nav-icons material-icons" style="transform: rotate(180deg)">input</span>
+                    <a class="format-link" href="#">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <div class="head">
+            <div class="dk-blue-bkg h50 right-left-p5">
+                <button class="menu-button material-icons">menu</button>
+                <span class="lt-sp-5 block twelvecol align-center sixteen white-text roboto relative bottom22">Admin Products Page</span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="tab-position">
+              <div class="tab-container twelvecol roboto align-center">
+                  <div class="all-product-tab tab tab-main fourteen fourcol" title="view all products">All</div>
+                  <div class="available-product-tab tab fourteen fourcol" title="view available products">Available</div>
+                  <div class="finished-product-tab tab fourteen fourcol" title="view finished products">Finished</div>
+              </div>
+            </div>
+            <div class="content">
+              <div class="category-table">
+                  <div class="category-dropdown top-margin-20">
+                      <select class="padding-5 border-1 eightcol">
+                          <option>choose category</option>
+                      </select>
+                  </div>
+                  <div class="products top-margin-20 cat-prod-list">
+                      <table class="roboto">
+                          <tr class="table-header align-left fourteen">
+                              <th>Product</th>
+                              <th class="align-center">Price($)</th>
+                              <th>Quantity</th>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+              <div class="fit centered roboto thirteen txt-ash-black showing">
+                  <span>SHOWING
+                      <span>1-10</span> OF
+                      <span>100</span>
+                  </span>
+                  <span><img src="./image/storemanager/pagination-left.svg" class="delta-up"></span>
+                  <span><img src="./image/storemanager/pagination-right.svg" class="delta-down"></span>
+              </div>
+          </div>
+        </div>
+    
+    </div>
+    <script src="./javascript/buttons.js"></script>
+    <script src="./javascript/products.js"></script>
+    <script>
+        // sign out
+        const signOut = document.querySelector('#sign-out');
+
+        signOut.addEventListener('click', () => {
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('user');
+            window.location.assign('./login.html');
+        });
+ 
+    </script>
+    
+</body>
+</html>

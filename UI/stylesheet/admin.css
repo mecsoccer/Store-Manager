@@ -70,7 +70,7 @@
     
 }
 .products_accordion{
-    
+    margin-bottom: 100px;
 }
 .sales_accordion{
     
@@ -124,7 +124,7 @@ div.panel.show {
 @media screen and (min-width: 600px) {
     .admin_content{
         width: 100%;
-        padding: 70px;
+        padding: 50px;
     }
     .general{
         display: flex;
@@ -135,6 +135,9 @@ div.panel.show {
         display: flex;
         width: 31%;
         margin: 20px 1.1%;
+    }
+    .products_accordion{
+        margin-bottom: 0;
     }
     button.accordion{
         text-align: center;

@@ -21,7 +21,7 @@
         </div>
         <div class="sm-gap dark-theme vh75">
             <ul class="side-nav-list sixteen medium">
-                <li class="side-nav-btn"><span class="nav-icons material-icons">crop_3_2</span><a class="format-link" href="./products.html">Products</a></li>
+                <li class="side-nav-btn"><span class="nav-icons material-icons">crop_3_2</span><a class="format-link" href="./admin-products.html">Products</a></li>
                 <li class="side-nav-btn"><span class="nav-icons material-icons">flag</span><a class="format-link" href="#">Categories</a></li>
                 <li class="side-nav-btn"><span class="nav-icons material-icons">business_center</span><a class="format-link" href="#">Sales</a></li>
                 <li class="side-nav-btn"><span class="nav-icons material-icons">person</span><a class="format-link" href="#">Users</a></li>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="admin_cards products_card">
                     <div class="centered fit">
-                        <span class="material-icons user_icon sixty left"><a href="./products.html" class="format-link">business_center</a></span>
+                        <span class="material-icons user_icon sixty left"><a href="./admin-products.html" class="format-link">business_center</a></span>
                         <div class="inline left top-padding-5">
                             <span class="block lt-sp-5 bold num_users">1000</span>
                             <span class="block lt-sp-5">products</span>
@@ -74,76 +74,179 @@
                 <div class="admin_accordions users_accordion">
                     <button class="accordion bold lt-sp-5">MANAGE USERS</button>
                     <div class="panel">
-                        <div class="align-center"><a href="#" class="format-link">Add New User</a></div>
-                        <div class="align-center"><a href="#" class="format-link">Edit User Data</a></div>
-                        <div class="align-center"><a href="#" class="format-link">Delete User</a></div>
-                        <div class="align-center"><a href="#" class="format-link">Give Admin Rights</a></div>
+                        <div class="align-center add-user-btn"><a href="#" class="format-link">Add New User</a></div>
+                        <div class="align-center update-user-btn"><a href="#" class="format-link">Edit User Data</a></div>
+                        <div class="align-center delete-user-btn"><a href="#" class="format-link">Delete User</a></div>
+                        <div class="align-center admin-rights-btn"><a href="#" class="format-link">Give Admin Rights</a></div>
                     </div>
                 </div>
                 <div class="admin_accordions products_accordion">
                     <button class="accordion bold lt-sp-5">MANAGE PRODUCTS</button>
                     <div class="panel">
-                        <div class="align-center"><a href="#" class="format-link">Add New Product</a></div>
-                        <div class="align-center"><a href="#" class="format-link">Edit Product Details</a></div>
-                        <div class="align-center"><a href="#" class="format-link">Delete Products</a></div>
+                        <div class="align-center add-product-btn"><a href="#" class="format-link">Add New Product</a></div>
+                        <div class="align-center update-product-btn"><a href="#" class="format-link">Update Product Details</a></div>
+                        <div class="align-center delete-product-btn"><a href="#" class="format-link">Delete Products</a></div>
                     </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <p>Copyright &copy; 2018 store manager design. All rights reserved.</p>
+        </footer>
     </div>
 
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="sign-up">
+        <div class="sign-up add-user-form">
             <span class="right modal-close-btn pointer">x</span>
-            <h4 class="align-center no-margin bold eighteen sub-title-color">Create Product</h4>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Create User</h4>
             <form action="/forms/sign-up" method="post" class="top-margin-20">
-                <label for="product-name" class="col-25">Product Name</label>
-                <input type="text" id="firstname" name="product-name" class="col-75" required>
+                <label for="username" class="col-25">Username</label><span style="color: red"></span>
+                <input type="text" name="username" class="col-75" required>
         
-                <label for="product-quantity" class="col-25">Quantity</label>
-                <input type="text" id="email" name="product-quantity" class="col-75" required>
+                <label for="email" class="col-25">email</label><span style="color: red"></span>
+                <input type="email" name="email" class="col-75" required>
                 
-                <label for="product-price" class="col-25">Price</label>
-                <input type="text" id="username" name="product-price" class="col-75">
-                
-                <label for="min-quantity" class="col-25">min-Quantity</label>
-                <input type="password" id="password" name="min-quantiy" class="col-75">
-                
-                <label for="product-image" class="col-25">Image</label>
-                <input accept="image/*" type="file" id="confirm-password" name="product-image" class="col-75">
+                <label for="password" class="col-25">password</label><span style="color: red"></span>
+                <input type="password" name="password" class="col-75">
+
+                <div class="loader"></div>
             
-                <input class="submit-sign-up" type="submit" value="Update">
+                <input class="form-btn" type="submit" value="Create">
+            </form>
+        </div>
+
+        <div class="sign-up update-user-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Create User</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20">
+                <label for="username" class="col-25">Username</label><span style="color: red"></span>
+                <input type="text" name="username" class="col-75" required>
+        
+                <label for="email" class="col-25">email</label><span style="color: red"></span>
+                <input type="email" name="email" class="col-75" required>
+                
+                <label for="password" class="col-25">password</label><span style="color: red"></span>
+                <input type="password" name="password" class="col-75">
+
+                <div class="loader"></div>
+            
+                <input class="form-btn" type="submit" value="Create">
+            </form>
+        </div>
+
+        <div class="sign-up delete-user-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Delete User</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20 del-user-form">
+                <label for="username-delete" class="col-25">Username</label><span style="color: red"></span>
+                <select type="text" name="username-delete" class="col-75" required>
+                    <option>choose a user</option>
+                    <option>chidimma</option>
+                    <option>nkiru</option>
+                </select>
+
+                <div class="loader"></div>
+
+                <input class="form-btn pointer" type="submit" value="Delete">
+            </form>
+        </div>
+
+        <div class="sign-up admin-rights-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Give User Admin Rights</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20 del-user-form">
+                <label for="admin-rights" class="col-25">username</label>
+                <select type="text" name="admin-rights" class="col-75" required>
+                    <option>choose a user</option>
+                    <option>chidimma</option>
+                    <option>nkiru</option>
+                </select>
+                <label for="role" class="col-25">role</label>
+                <select type="text" name="role" class="col-75" required>
+                    <option>attendant</option>
+                    <option>admin</option>
+                </select>
+
+                <div class="loader"></div>
+
+                <input class="form-btn pointer" type="submit" value="Give Admin Rights">
+            </form>
+        </div>
+
+        <div class="sign-up add-product-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Create Product</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20">
+                <label for="product-name" class="col-25">Product Name</label><span style="color: red"></span>
+                <input type="text" name="product-name" class="col-75" required>
+        
+                <label for="product-quantity" class="col-25">Quantity</label><span style="color: red"></span>
+                <input type="text" name="product-quantity" class="col-75" required>
+                
+                <label for="product-price" class="col-25">Price</label><span style="color: red"></span>
+                <input type="text" name="product-price" class="col-75">
+                
+                <label for="min-quantity" class="col-25">min-Quantity</label><span style="color: red"></span>
+                <input type="text" name="min-quantiy" class="col-75">
+                
+                <label for="product-image" class="col-25">Image</label><span style="color: red"></span>
+                <input accept="image/*" type="file" name="product-image" class="col-75">
+
+                <div class="loader"></div>
+            
+                <input class="form-btn" type="submit" value="Update">
+            </form>
+        </div>
+
+        <div class="sign-up update-product-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Update Product</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20">
+                <label for="product-name" class="col-25">Product Name</label><span style="color: red"></span>
+                <input type="text" name="product-name" class="col-75" required>
+        
+                <label for="product-quantity" class="col-25">Quantity</label><span style="color: red"></span>
+                <input type="text" name="product-quantity" class="col-75" required>
+                
+                <label for="product-price" class="col-25">Price</label><span style="color: red"></span>
+                <input type="text" name="product-price" class="col-75">
+                
+                <label for="min-quantity" class="col-25">min-Quantity</label><span style="color: red"></span>
+                <input type="text" name="min-quantiy" class="col-75">
+                
+                <label for="product-image" class="col-25">Image</label><span style="color: red"></span>
+                <input accept="image/*" type="file" name="product-image" class="col-75">
+
+                <div class="loader"></div>
+            
+                <input class="form-btn" type="submit" value="Update">
+            </form>
+        </div>
+
+        <div class="sign-up delete-product-form">
+            <span class="right modal-close-btn pointer">x</span>
+            <h4 class="align-center no-margin bold twenty sub-title-color">Delete Product</h4>
+            <form action="/forms/sign-up" method="post" class="top-margin-20">
+                <label for="product-delete" class="col-25">Username</label>
+                <select type="text" name="product-delete" class="col-75" required>
+                    <option>select a product</option>
+                    <option>suger</option>
+                    <option>milk</option>
+                </select>
+
+                <div class="loader"></div>
+
+                <input class="form-btn pointer" type="submit" value="Delete">
             </form>
         </div>
     
     </div>
 
     <script src="./javascript/buttons.js"></script>
+    <script src="./javascript/admin.js"></script>
     <script>
-        // accordion
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].onclick = function(){
-                this.classList.toggle("active");
-                this.nextElementSibling.classList.toggle("show");
-            }
-        }
-
-        /* Modal region */
-        const modal = document.getElementById('myModal');
-        const modalContinue = document.querySelector('#modal-continue');
-
-        modalContinue.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-        window.location.reload();
-        });
-
         // sign out
         const signOut = document.querySelector('#sign-out');
 

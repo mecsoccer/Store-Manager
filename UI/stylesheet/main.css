@@ -319,6 +319,18 @@ tr:nth-child(even){
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* footer */
+footer{
+    position: fixed;
+    bottom: 0;
+    background: white;
+    letter-spacing: 5px;
+    border-top: 1px solid gainsboro;
+    text-align: center;
+    max-height: 50px;
+    overflow-y: auto;
+}
+
 /* tabs */
 .tab-container{
     padding: 15px 15px 0px 15px;
@@ -360,6 +372,7 @@ tr:nth-child(even){
 .wrap{
     flex-wrap: wrap;
 }
+
 /* position */
 .relative{
     position: relative;
@@ -644,7 +657,7 @@ tr:nth-child(even){
     width: 100%;
     padding: 1px 4%;
     display: inline-block;
-    margin-top: 30px;
+    margin-bottom: 150px;
 }
 .lh-10{
     line-height: 10px;
@@ -762,22 +775,6 @@ tr:nth-child(even){
     margin: 20px 0;
 }
 
-input[type=submit] {
-    width: 40%;
-    background-color: #0C8BE8;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 25px 30% 0 30%;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
-
 /* loader */
 #loader {
     z-index: 1;
@@ -852,9 +849,9 @@ input[type=submit]:hover {
     height: 34px;
     padding: 0 8px;
     text-align: center;
-  }
-  .days td .active {
-    padding: 5px;
-    background: #3E474F;
-    color: white !important
-  }
+}
+.days td .active {
+padding: 5px;
+background: #3E474F;
+color: white !important
+}

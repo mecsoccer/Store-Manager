@@ -52,7 +52,6 @@
     }
     body{
         display: flex;
-        flex-flow: row nowrap;
     }
     .main{
         width: auto;
@@ -72,6 +71,12 @@
     .container.open{
         width: 100%;
         padding: 4% 20%;
+    }
+    footer{
+        width: calc(100vw - 300px);
+    }
+    .modal{
+        padding-top: 50px;
     }
 }
 
@@ -109,7 +114,7 @@
         transition: transform 0.3s ease;
     }
     .products{
-        height: 60vh;
+        height: 40vh;
     }
     .days td {
         padding: 7px 42px;
