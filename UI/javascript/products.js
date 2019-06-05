@@ -67,7 +67,7 @@ class Products {
       tableRow.innerHTML = `
                 <td class="left-end-major">${product.productname}</td>
                 <td class="fifteen-percent align-center">${product.price}</td>
-                <td class="ten-percent align-center">${product.quantityleft}</td>
+                <td class="ten-percent align-center">${product.quantityleft}</td
             `;
       productTable.appendChild(tableRow);
     });

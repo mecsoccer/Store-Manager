@@ -1,0 +1,15 @@
+.content {
+    width: 100%;
+    height: auto;
+    padding: 1px 4%;
+    display: inline-block;
+    margin-bottom: 100px;
+}
+
+@media screen and (min-width: 600px) {
+    .content{
+        padding: 1px 15%;
+        height: 100%;
+        margin-bottom: 100px;
+    }
+}

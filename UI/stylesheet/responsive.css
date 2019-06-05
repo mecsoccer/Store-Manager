@@ -46,7 +46,7 @@
 
 @media screen and (min-width: 600px) {
     .side-bar{
-        position: relative;
+        position: fixed;
         transform: translate(0, 0);
         flex-wrap: wrap;
     }
@@ -54,6 +54,7 @@
         display: flex;
     }
     .main{
+        padding-left: 300px;
         width: auto;
         flex-grow: 1;
     }
@@ -71,9 +72,6 @@
     .container.open{
         width: 100%;
         padding: 4% 20%;
-    }
-    footer{
-        width: calc(100vw - 300px);
     }
     .modal{
         padding-top: 50px;
@@ -114,7 +112,7 @@
         transition: transform 0.3s ease;
     }
     .products{
-        height: 40vh;
+        height: 60vh;
     }
     .days td {
         padding: 7px 42px;
@@ -123,9 +121,6 @@
 
 @media screen and (min-width: 900px) {
     /* customs */
-    .content {
-        padding: 1px 15%;
-    }
     .input-form{
         padding: 20px 25%;
     }

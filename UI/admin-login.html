@@ -51,9 +51,13 @@
         return responseJson;
       })
       .then((data) => {
-        sessionStorage.setItem('user', data.username);
-        sessionStorage.setItem('token', data.token);
-        window.location.assign('./admin.html');
+        if (data.role === 'admin') {
+          sessionStorage.setItem('user', data.username);
+          sessionStorage.setItem('token', data.token);
+          window.location.assign('./admin.html');
+        } else {
+          window.location.assign('../index.html');
+        }
       })
       .catch((err) => {
         console.log(err);
