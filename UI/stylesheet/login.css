@@ -9,7 +9,7 @@ html, body, div, span, nav, a, button, img, input, header, ul, li, select, optio
     box-sizing: border-box;
 }
 .top-navbar {
-    position: fixed;
+    position: sticky;
     top: 0px;
     height: 60px;
     width: 100%;
@@ -29,9 +29,11 @@ html, body, div, span, nav, a, button, img, input, header, ul, li, select, optio
     float: left;
 }
 .sign-in-container {
-    width: 100%;
-    margin-top: 100px;
+    background: white;
+    width: auto;
     padding: 4%;
+    margin: 50px 5px;
+    border-radius: 5px;
 }
 .sign-in-title {
     font-weight: lighter;
@@ -96,11 +98,10 @@ html, body, div, span, nav, a, button, img, input, header, ul, li, select, optio
         padding: 15px;
     }
     .sign-in-container {
-        background-color: white;
         box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2);
-        padding: 4% 10%;
-        margin: 150px 20% 0 20%;
-        width: auto;
+        padding: 4% 4%;
+        width: fit-content;
+        margin: auto;
         border-radius: 10px;
     }
 }

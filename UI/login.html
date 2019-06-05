@@ -51,9 +51,13 @@
         return responseJson;
       })
       .then((data) => {
-        sessionStorage.setItem('user', data.username);
-        sessionStorage.setItem('token', data.token);
-        window.location.assign('./cart.html');
+        if (data.role === 'attendant') {
+          sessionStorage.setItem('user', data.username);
+          sessionStorage.setItem('token', data.token);
+          window.location.assign('./cart.html');
+        } else {
+          window.location.assign('../index.html');
+        }
       })
       .catch((err) => {
         console.log(err);
