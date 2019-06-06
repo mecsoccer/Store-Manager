@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import userRouter from './routes/userRoutes';
 import productRouter from './routes/productRoutes';
 import saleRouter from './routes/saleRoutes';
+import botRouter from './routes/slackBotRoutes';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use('/api/v1/auth', userRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/sales', saleRouter);
+app.use('/api/v1', botRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
