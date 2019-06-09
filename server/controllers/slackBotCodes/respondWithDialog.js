@@ -33,7 +33,10 @@ function openDialog(triggerId, resObject) {
     body: JSON.stringify({ trigger_id: triggerId, dialog }),
   })
     .then(data => data.json())
-    .then(json => resObject.status(200))
+    .then((json) => {
+      resObject.status(200);
+      console.log(json);
+    })
     .catch(err => console.log(err));
 }
 
