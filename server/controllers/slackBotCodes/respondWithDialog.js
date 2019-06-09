@@ -34,8 +34,7 @@ function openDialog(triggerId, resObject) {
   })
     .then(data => data.json())
     .then((json) => {
-      resObject.status(200);
-      console.log(json);
+      resObject.status(200).json();
     })
     .catch(err => console.log(err));
 }

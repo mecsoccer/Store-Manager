@@ -32,7 +32,7 @@ function sendMessage(submission, user, channel, resObject) {
   })
     .then(reply => reply.json())
     .then((data) => {
-      resObject.status(200);
+      resObject.status(200).json();
     })
     .catch(err => err);
 }
