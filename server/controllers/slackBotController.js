@@ -8,13 +8,15 @@ function botController(req, res) {
 
   if (payload.trigger_id) {
     const { trigger_id: id } = jsonPayload;
-    openDialog(id);
+    openDialog(id, res);
   }
 
   if (payload.type && payload.type === 'dialog_submission') {
     const { submission, user, channel } = jsonPayload;
     sendMessage(submission, user, channel);
   }
+
+  console.log(jsonPayload);
 }
 
 export default botController;
