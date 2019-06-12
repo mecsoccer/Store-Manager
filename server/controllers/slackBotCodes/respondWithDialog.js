@@ -22,7 +22,7 @@ const dialog = {
   ],
 };
 
-function openDialog(triggerId, resObject) {
+function openDialog(triggerId) {
   dialog.trigger_id = triggerId;
   return fetch('https://slack.com/api/dialog.open', {
     method: 'POST',
@@ -34,7 +34,7 @@ function openDialog(triggerId, resObject) {
   })
     .then(data => data.json())
     .then((json) => {
-      resObject.status(200).json();
+      console.log(json);
     })
     .catch(err => console.log(err));
 }

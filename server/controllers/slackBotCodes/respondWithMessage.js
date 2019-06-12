@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-function sendMessage(submission, user, channel, resObject) {
+function sendMessage(submission, user, channel) {
   const reportMessage = {
     channel: channel.name,
     blocks: [
@@ -32,7 +32,7 @@ function sendMessage(submission, user, channel, resObject) {
   })
     .then(reply => reply.json())
     .then((data) => {
-      resObject.status(200).json();
+      console.log(data);
     })
     .catch(err => err);
 }
