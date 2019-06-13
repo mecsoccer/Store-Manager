@@ -1,4 +1,7 @@
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function sendMessage(submission, user, channel) {
   const reportMessage = {
@@ -25,7 +28,7 @@ function sendMessage(submission, user, channel) {
       },
     ],
   };
-  return fetch('https://hooks.slack.com/services/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', {
+  return fetch(process.env.test_bot_url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(reportMessage),
