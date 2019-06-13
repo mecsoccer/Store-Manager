@@ -1,4 +1,7 @@
 import fetch from 'node-fetch';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const dialog = {
   callback_id: 'progress-46e2b0',
@@ -28,7 +31,7 @@ function openDialog(triggerId) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer xoxb-641771922531-657174156405-v3PVe2qKamSg5kW4Wpf6l6R4',
+      Authorization: `Bearer ${process.env.slack_token}`,
     },
     body: JSON.stringify({ trigger_id: triggerId, dialog }),
   })
