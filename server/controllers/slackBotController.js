@@ -6,12 +6,12 @@ function botController(req, res) {
   const { payload } = req.body;
   const jsonPayload = JSON.parse(payload);
 
-  if (payload.trigger_id) {
+  if (jsonPayload.trigger_id) {
     const { trigger_id: id } = jsonPayload;
     openDialog(id, res);
   }
 
-  if (payload.type && payload.type === 'dialog_submission') {
+  if (jsonPayload.type && jsonPayload.type === 'dialog_submission') {
     const { submission, user, channel } = jsonPayload;
     sendMessage(submission, user, channel);
   }
