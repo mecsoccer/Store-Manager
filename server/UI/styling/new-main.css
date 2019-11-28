@@ -1,0 +1,97 @@
+.logo-div{
+    margin: auto;
+    width: fit-content;
+    margin-top: 15px;
+    height: 40px;
+}
+.section0{
+    height: 100vh;
+    width: 100%;
+}
+.big-text-div p{
+    text-align: center;
+    font-size: 2.125rem;
+    line-height: 35px;
+    padding: 0 30px;
+    margin: 20px 0;
+}
+.sm-text-div p{
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.625rem;
+    padding: 0 50px;
+}
+.dn-arrow-div{
+    width: fit-content;
+    margin: auto;
+}
+.dn-arrow-div img{
+    height: 50px;
+    width: 30px;
+}
+
+.section-1{
+    width: 100%;
+    height: 100vh;
+    background: white;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+    .section0{
+        height: 100vh;
+        width: 100%;
+        padding: 50px;
+        overflow: hidden;
+    }
+    .logo-div{
+        margin: 0;
+        width: fit-content;
+        height: 40px;
+        margin-bottom: 50px;
+    }
+    .big-text-div{
+        padding-top: 20%;
+        height: auto;
+    }
+    .dn-arrow-div {
+        padding-top: 30%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .logo-div{
+        width: auto;
+        margin: 0;
+    }
+    .dn-arrow-div {
+        padding-top: 5%;
+    }
+    .big-text-div{
+        padding-top: 2%;
+        height: auto;
+        margin: auto;
+    }
+    .big-text-div p{
+        font-size: 60px;
+        font-weight: 800;
+        line-height: 4.375rem;
+        margin: 70px 0;
+    }
+    .sm-text-div{
+        width: fit-content;
+        margin: auto;
+    }
+    .sm-text-div p{
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+        width: 610px;
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (min-width: 1250px) {
+    .big-text-div{
+        max-width: 1050px;
+    }
+}

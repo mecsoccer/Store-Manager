@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Pali Global</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="./styling/main.css">
+  <link rel="stylesheet" href="./styling/new-main.css">
+  <link rel="stylesheet" href="./styling/responsive.css">
+  <link rel="icon" href="">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="section0">
+                <div class="logo-div">
+                    <img src="./img/pali copy2.png">
+                </div>
+                <div class="big-text-div">
+                    <p>Building an attractive and dynamic digital product is not an easy task.</p>
+                </div>
+                <div class="sm-text-div">
+                    <p>Taking an idea from the blank page to a working digitally native artefact is complicated and subtle. Pali solves that problem</p>
+                </div>
+                <div class="dn-arrow-div">
+                    <a href="#section1">
+                        <img src="./img/down-arrow-svgrepo-com.svg">
+                    </a>
+                </div>
+            </div>
+            <div id="section1" class="section-1">
+                <div class="col-1 centered">
+                    <div class="fg-color1  changing-div">
+                            <p>We bring <span class='fg-color3'>expertise</span> to our <span class='fg-color3'>client’s vision</span> and turn it into working proposition.</p>
+                    </div>
+                    <div class="fg-color2">
+                        <p>
+                            Pali is a product consultancy and engineering firm. That means we try to build the absolute best products. We wake up each morning excited to build thoughtful proposition customers want to use.
+                        </p>
+                    </div>
+                    <div class="email-btn-div">
+                        <button class="email-btn dom-bg white-fg">hello@paliglobal.com</button>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="img-anim">
+                        <img src="./img/android_1.png" class="android">
+                        <img src="./img/iphone_1.png" class="iphone">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+        const dynamicText = ["<p>We create digital ventures.</p>",
+            "<p>We bring <span class='fg-color3'>expertise</span> to our <span class='fg-color3'>client’s vision</span> and turn it into working proposition.</p>",
+            "<p>We create products customers love.</p>"];
+    
+        let i = 0;
+        const changingDiv = document.querySelector('.changing-div');
+    
+        setInterval(function () {
+            if (i < dynamicText.length-1) i++;
+            else i = 0;
+    
+            // changingDiv.innerHTML = dynamicText[i];
+        }, 7000);
+        </script>
+</body>

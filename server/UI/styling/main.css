@@ -1,0 +1,207 @@
+html,body,div,span,nav,a,button,img,input,header,ul,li,select,option{
+    box-sizing: border-box;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    margin: 0;
+    background: white;
+    font-family: 'Lato','sans-serif','Segoe UI', 'Tahoma', 'Geneva', 'Verdana';
+    font-size: 18px;
+    font-weight: 400;
+    background-image: linear-gradient(48deg, #FFFFFF 0%, #F1F1F1 45%, #FFFFFF 91%);
+    overflow-x: hidden;
+}
+
+/* colors */
+.dom-fg{
+    color: #4faafc;
+}
+.dom-bg{
+    background: #4faafc;
+}
+.white-fg{
+    color: white;
+}
+
+.centered{
+    width: fit-content;
+    margin: auto;
+}
+
+.col-1{
+    padding: 0 15px;
+}
+.fg-color1{
+    line-height: 38px;
+    max-height: 30vh;
+    overflow-y: auto;
+}
+.fg-color2{
+    line-height: 28px;
+    padding: 0 10px;
+    max-height: 50vh;
+    overflow: auto;
+}
+.fg-color3{
+    color: #4067B2;
+}
+.fg-color1 p{
+    margin: 0 auto;
+    max-width: 300px;
+    font-size: 32px;
+    font-weight: 400;
+    padding: 30px 0;
+    text-align: center;
+    color: #283754;
+}
+.fg-color2 p{
+    color: #4A4A4A;
+    font-size: 18px;
+    text-align: center;
+}
+.container{
+    width: 100%;
+}
+.header-div{
+    margin: auto;
+    width: fit-content;
+    margin-top: 35px;
+    height: 40px;
+}
+.header-div img{
+    height: inherit;
+}
+.statement{
+    margin: 70px 35px 0;
+    font-size: 45px;
+    text-align: center;
+    color: #2e3082;
+}
+.email-btn-div{
+    margin: 20px auto;
+    width: fit-content;
+    max-height: 20vh;
+    overflow-y: auto;
+}
+.email-btn{
+    font-size: 18px;
+    padding: 10px;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    background: #4FAAFC;
+}
+.col-2{
+    display: none;
+}
+.section1{
+    height: auto;
+    background: inherit;
+    padding: 15px;
+}
+.section2{
+    height: 453px;
+    background: white;
+}
+.img-anim{
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .section1 {
+        height: 570px;
+    }
+    .fg-color2 {
+        padding: 0px 50px;
+    }
+    .header-div {
+        width: auto;
+    }
+    .container{
+        height: 100%;
+        margin: auto;
+    }
+    .fg-color1 {
+        font-size: 45px;
+        letter-spacing: -1.5px;
+        line-height: 58px;
+    }
+    .fg-color1 p {
+        max-width: 100%;
+    }
+    .col-1{
+        height: inherit;
+        padding: 20% 5%;
+    }
+    .iphone {
+        position: absolute;
+        width: 325px;
+        top: -9em;
+        right: -16em;
+        transform: rotate(-10deg);
+        z-index: 1;
+    }
+    .android {
+        position: absolute;
+        width: 325px;
+        top: -14em;
+        right: 0em;
+        transform: rotate(10deg);
+        z-index: 0;
+    }
+    .section2 {
+        position: relative;
+    }
+    .container{
+        overflow-x: hidden;
+    }
+    .email-btn {
+        font-size: 20px;
+        padding: 15px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .fg-color1 {
+        overflow-y: unset;
+    }
+    .col-1 {
+        padding: 0;
+        width: 60%;
+        float: left;
+    }
+    .col-2{
+        display: inline-block;
+    }
+    .img-anim{
+        display: inline-block;
+        position: relative;
+        top: 285px;
+    }
+    .container{
+        margin: auto;
+    }
+    .fg-color1{
+        line-height: 90px;
+    }
+    .fg-color2 {
+        padding: 0 200px;
+        margin: 80px 0;
+    }
+    .fg-color1 p {
+        max-width: 500px;
+    }
+    .android {
+        top: -198px;
+        right: -27em;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .container{
+        margin: auto;
+    }
+}

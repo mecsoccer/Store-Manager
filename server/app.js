@@ -2,12 +2,15 @@ import http from 'http';
 import createError from 'http-errors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
+import ejs from 'ejs';
 import logger from 'morgan';
+import path from 'path';
 import dotenv from 'dotenv';
 import userRouter from './routes/userRoutes';
 import productRouter from './routes/productRoutes';
 import saleRouter from './routes/saleRoutes';
 import botRouter from './routes/slackBotRoutes';
+import frontendRouter from './routes/home';
 
 dotenv.config();
 
@@ -25,11 +28,17 @@ app.use((req, res, next) => {
   next();
 });
 
+app.set('views', path.join(__dirname, 'UI'));
+app.engine('html', ejs.renderFile);
+app.set('view engine', 'html');
+
 app.use('/api/v1/auth', userRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/sales', saleRouter);
 app.use('/api/v1', botRouter);
+
+app.use('/', frontendRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -52,5 +61,7 @@ app.set('port', port);
 
 const server = http.createServer(app);
 server.listen(port);
+
+console.log('server listening at port:', port);
 
 module.exports = app;
