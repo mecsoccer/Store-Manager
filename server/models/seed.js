@@ -25,10 +25,10 @@ function migrateProduct(
   pool.query(query);
 }
 
-function migrateSale(seller, productName, quantitySold, price, total) {
+function migrateSale(orderId, seller, productId, productName, quantity, unitPrice, totalPrice) {
   const query = {
-    text: 'INSERT INTO sales(seller, productName, quantity, price, total) VALUES($1, $2, $3, $4, $5) RETURNING *',
-    values: [seller, productName, quantitySold, price, total],
+    text: 'INSERT INTO sales(seller, productId, quantity, unitPrice, totalPrice, orderId, productName) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+    values: [seller, productId, quantity, unitPrice, totalPrice, orderId, productName],
   };
   pool.query(query);
 }
@@ -51,6 +51,7 @@ migrateProduct('charger', 'electronics', 50, 1, '10.00', 1);
 migrateProduct('chair', 'furniture', 50, 1, '10.00', 1);
 migrateProduct('sugar', 'provisions', 0, 50, '10.00', 1);
 
-migrateSale('anonimous', 'charger', 3, '10.00', '30.00');
-migrateSale('anonimous', 'chair', 3, '10.00', '30.00');
-migrateSale('anonimous', 'chair', 3, '10.00', '30.00');
+migrateSale('g2pcfj9wk3zs3qf3', '1', '3', 'biscuits', 3, '200.00', '600.00');
+migrateSale('g2pcfj9wk3zs3qf3', '1', '1', 'sugar', 3, '200.00', '600.00');
+migrateSale('24zuq33ck40z84ba', '3', '3', 'biscuits', 1, '200.00', '600.00');
+migrateSale('24zuq33ck40z84ba', '3', '5', 'hp_pavillion_15', 1, '200000.00', '200000.00');

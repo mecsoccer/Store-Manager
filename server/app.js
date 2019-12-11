@@ -53,4 +53,6 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port);
 
+console.log('listening at port', port);
+
 module.exports = app;

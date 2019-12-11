@@ -46,20 +46,20 @@ function verifyAttendant(req, res, next) {
 
 function verifyAdminOrSeller(req, res, next) {
   const { saleId } = req.params;
-  const { username, role } = req.authData;
+  const { id, role } = req.authData;
 
-  pool.query('SELECT * FROM sales WHERE id=$1;', [saleId])
+  pool.query('SELECT * FROM sales WHERE orderId=$1;', [saleId])
     .then((salesArray) => {
       const sale = salesArray.rows[0];
       if (!sale) {
         res.status(404).json({ error: 'sale record does not exist' });
-      } else if (sale.seller === username || role === 'admin') {
+      } else if (sale.seller === id || role === 'admin') {
         next();
       } else {
         res.status(403).json({ error: 'sorry, resource accessible to seller and admin only' });
       }
     })
-    .catch(/* istanbul ignore next */err => res.status(500).json(err));
+    .catch(/* istanbul ignore next */err => res.status(500).json({ err: err.message }));
 }
 
 export default {

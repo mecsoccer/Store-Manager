@@ -17,7 +17,7 @@ const { validateLogin, validateSignup } = validateUserData;
 const router = express.Router();
 
 router.post('/signup', authVerify, verifyAdmin, validateSignup, addUser);
-router.post('/login', validateLogin, login);
+router.post('/login', /* validateLogin */login);
 router.get('', authVerify, verifyAdmin, getAllUsers);
 router.get('/:userId', authVerify, verifyAdmin, getUser);
 router.put('/:userId', authVerify, verifyAdmin, validateSignup, updateUserData);

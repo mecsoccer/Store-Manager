@@ -3,7 +3,7 @@ import pool from '../models/migration';
 class ProductController {
   static getAllProducts(req, res) {
     const query = {
-      text: 'SELECT * FROM products',
+      text: 'SELECT * FROM products ORDER BY productName',
       values: [],
     };
 
@@ -17,7 +17,7 @@ class ProductController {
 
   static getAvailableProducts(req, res) {
     const query = {
-      text: 'SELECT * FROM products where quantityLeft > 0',
+      text: 'SELECT * FROM products WHERE quantityleft>0 ORDER BY productName',
     };
 
     pool.query(query)
@@ -30,7 +30,7 @@ class ProductController {
 
   static getFinishedProducts(req, res) {
     const query = {
-      text: 'SELECT * FROM products where quantityLeft < 1',
+      text: 'SELECT * FROM products where quantityLeft < 1 ORDER BY productName',
     };
 
     pool.query(query)
@@ -101,23 +101,13 @@ class ProductController {
       values: [productName, productCategory, quantityLeft, price, minQuantity, productId],
     };
 
-    // check if product name already exists. product name should be unique
-    pool.query('SELECT * FROM products WHERE productName=$1;', [productName])
-      .then((data) => {
-        if (!data.rows[0]) {
-          pool.query(query)
-            .then((productArray) => {
-              const updatedProduct = productArray.rows[0];
-              if (updatedProduct) {
-                res.status(200).json({ updatedProduct });
-              } else {
-                res.status(404).json({ error: 'product with supplied id does not exist' });
-              }
-            })
-            .catch(/* istanbul ignore next */err => res.status(500).json(err));
-        } else {
-          res.status(409).json({ error: 'product name alread exists. choose another name' });
+    pool.query(query)
+      .then((productArray) => {
+        const updatedProduct = productArray.rows[0];
+        if (!productArray.rows[0]) {
+          return res.status(404).json({ error: 'product with supplied id does not exist' });
         }
+        return res.status(200).json({ updatedProduct });
       })
       .catch(/* istanbul ignore next */err => res.status(500).json(err));
   }

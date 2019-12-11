@@ -32,7 +32,7 @@ class ValidateSaleInput {
   static validateSaleId(req, res, next) {
     const { saleId } = req.params;
 
-    const saleIdValid = validateNumberField('saleId', saleId, 1, 10000000, /^\d+$/, '3, 4, 100');
+    const saleIdValid = true;// validateNumberField('saleId', saleId, 1, 10000000, /^\d+$/, '3, 4, 100');
 
     if (saleIdValid !== true) {
       res.status(422).json({ error: 'saleId parameter invalid' });
