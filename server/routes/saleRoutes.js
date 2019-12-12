@@ -15,6 +15,6 @@ const router = express.Router();
 
 router.get('', authVerify, verifyAdmin, getAllSales);
 router.get('/:saleId', authVerify, validateSaleId, verifyAdminOrSeller, getSpecificSale);
-router.post('', authVerify, verifyAttendant, validateAddSale, addSale);
+router.post('', authVerify, /* verifyAttendant, validateAddSale, */ addSale);
 
 module.exports = router;

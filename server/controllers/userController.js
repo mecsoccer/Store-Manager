@@ -8,7 +8,7 @@ dotenv.config();
 const secret = process.env.SECRET_KEY;
 
 function getAllUsers(req, res) {
-  pool.query('SELECT * FROM users')
+  pool.query('SELECT id,username,email,role FROM users')
     .then((users) => {
       const allUsers = users.rows;
       res.status(200).json({ allUsers });
@@ -63,16 +63,20 @@ function login(req, res) {
       const foundUser = user.rows[0];
       const authenticated = bcrypt.compareSync(passwordInput, foundUser.password);
       /* istanbul ignore if */if (foundUser && authenticated) {
-        const { username, password, role } = foundUser;
-        const token = jwt.sign({ username, password, role }, secret, { expiresIn: '1hr' });
-        res.status(200).json({ username, role, token });
+        const {
+          username, password, role, id,
+        } = foundUser;
+        const token = jwt.sign(
+          { id, username, password, role },
+          secret,
+          { expiresIn: '1hr' },
+        );
+        res.status(200).json({ id, username, role, token });
       } else {
-        Promise.reject();
+        res.status(401).json({ error: 'incorrect username or password' });
       }
     })
-    .catch(() => {
-      res.status(401).json({ error: 'incorrect username or password' });
-    });
+    .catch();
 }
 
 function updateUserData(req, res) {

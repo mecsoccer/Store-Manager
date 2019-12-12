@@ -5,8 +5,8 @@ pool.query(`CREATE TABLE IF NOT EXISTS users(id SERIAL PRIMARY KEY NOT NULL, use
 pool.query(`CREATE TABLE IF NOT EXISTS products(id SERIAL PRIMARY KEY NOT NULL,
     productName TEXT NOT NULL UNIQUE,productCategory TEXT NOT NULL, quantityLeft INT NOT NULL, quantitySold INT NOT NULL,
     price NUMERIC(20,2),minQuantity INT NOT NULL)`);
-pool.query(`CREATE TABLE IF NOT EXISTS sales(id SERIAL PRIMARY KEY NOT NULL,
-    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,seller TEXT NOT NULL, productName TEXT NOT NULL,
-    quantity INT NOT NULL,price NUMERIC(20,2), total NUMERIC(20,2))`);
+pool.query(`CREATE TABLE IF NOT EXISTS sales(orderId TEXT NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,seller TEXT NOT NULL, productId TEXT NOT NULL, productName TEXT NOT NULL,
+    quantity INT NOT NULL,unitprice NUMERIC(20,2), totalprice NUMERIC(20,2))`);
 
 export default pool;

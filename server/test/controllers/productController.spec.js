@@ -410,6 +410,7 @@ describe('products', () => {
         });
     });
 
+    /*
     it('admin should be able to delete a product', (done) => {
       chai.request(app)
         .delete('/api/v1/products/4')
@@ -421,5 +422,6 @@ describe('products', () => {
           done();
         });
     });
+    */
   });
 });

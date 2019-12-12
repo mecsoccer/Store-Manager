@@ -22,7 +22,7 @@ class validate {
 
     /* istanbul ignore if */if (required === false) {
       message = true;
-    } else if (!input) {
+    } else if (!input && Number(input) !== 0) {
       message = `input ${field} must be included`;
     } else if (input < min || input > max) {
       message = `${field} should be a number between ${min} and ${max}`;
