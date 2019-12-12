@@ -4,6 +4,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import ejs from 'ejs';
 import logger from 'morgan';
+import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 import userRouter from './routes/userRoutes';
@@ -20,13 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Credentials', 'false');
-  res.header('Access-Control-Allow-Headers', 'Content-type, Authorization');
-  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS, GET, PUT, DELETE');
-  next();
-});
+app.use(cors());
 
 app.set('views', path.join(__dirname, 'UI'));
 app.engine('html', ejs.renderFile);
