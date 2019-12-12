@@ -6,7 +6,7 @@ dotenv.config();
 let connectionString;
 let ssl = false;
 
-connectionString = process.env.DATABASE_URI;
+connectionString = process.env.DATABASE_URL;
 /* istanbul ignore if */if (process.env.NODE_ENV === 'test') connectionString = 'postgres://jaachimma:password@localhost:5432/store_manager';
 /* istanbul ignore if */if (process.env.NODE_ENV === 'production') ssl = true;
 
